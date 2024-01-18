@@ -138,7 +138,7 @@ $(function() {
 </script>
 
 <div id="hd_pop">
-    <div id="hd_pops_1" class="hd_pops" style="top:10px;left: 500px; display: none" >
+    <div id="hd_pops_1" class="hd_pops" style="top:10px;left:500px; display: none" >
         <div class="hd_pops_con" style="width:360px;height:550px">
             <a href="https://alv-777.com/" rel="nofollow">
             	<img src="https://image.yes24.com/goods/91120112/XL" title="84e5429b092ee0c270c5cf22c777ae43_1704525918_2587.png" alt="84e5429b092ee0c270c5cf22c777ae43_1704525918_2587.png" />
