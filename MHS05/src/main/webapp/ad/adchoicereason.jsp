@@ -50,9 +50,33 @@
 			left:700px;
 			position: absolute;
 		}
-		.ktable
+		.keyword1
 		{
-			top:200px;
+			top:185px;
+			left:700px;
+			position: absolute;
+		}
+		.keyword2
+		{
+			top:220px;
+			left:700px;
+			position: absolute;
+		}
+		.keyword3
+		{
+			top:255px;
+			left:700px;
+			position: absolute;
+		}
+		.keyword4
+		{
+			top:295px;
+			left:700px;
+			position: absolute;
+		}
+		.keyword5
+		{
+			top:330px;
 			left:700px;
 			position: absolute;
 		}
@@ -117,6 +141,160 @@
 			left:1500px;
 			position: absolute;			
 		}
+		.stick1
+		{
+			border-left:thick solid black;
+			height:820px;
+			margin-left:600px;
+			position:absolute;
+		}
+		.stick2
+		{
+			border-left:thick solid black;
+			height:820px;
+			margin-left:1200px;
+			position:absolute;
+		}
+		.stick3
+		{
+			border-bottom:3px solid black;
+			width:100px;
+			margin-left:850px;
+			margin-top:130px;
+			position: absolute;
+		}
+		.stick4
+		{
+			border-bottom:3px solid black;
+			width:100px;
+			margin-left:850px;
+			margin-top:165px;
+			position: absolute;
+		}
+		.stick5
+		{
+			border-bottom:3px solid black;
+			width:100px;
+			margin-left:850px;
+			margin-top:200px;
+			position: absolute;
+		}
+		.stick6
+		{
+			border-bottom:3px solid black;
+			width:100px;
+			margin-left:850px;
+			margin-top:240px;
+			position: absolute;
+		}
+		.stick7
+		{
+			border-bottom:3px solid black;
+			width:100px;
+			margin-left:850px;
+			margin-top:275px;
+			position: absolute;
+		}
+		.arrow1
+		{
+			position: absolute;
+			content: '';
+		    width: 10px; /* 사이즈 */
+		    height: 10px; /* 사이즈 */
+		    border-top: 5px solid #121212; /* 선 두께 */
+		    border-right: 5px solid #121212; /* 선 두께 */
+		    display: inline-block;
+		    transform: rotate(45deg); /* 각도 */
+		    position: absolute;
+		    top: 210px; /* 기본 0px 값으로 해주세요 */
+		    left: 945px; /* 기본 0px 값으로 해주세요 */
+		}
+		.arrow2
+		{
+			position: absolute;
+			content: '';
+		    width: 10px; /* 사이즈 */
+		    height: 10px; /* 사이즈 */
+		    border-top: 5px solid #121212; /* 선 두께 */
+		    border-right: 5px solid #121212; /* 선 두께 */
+		    display: inline-block;
+		    transform: rotate(45deg); /* 각도 */
+		    position: absolute;
+		    top: 245px; /* 기본 0px 값으로 해주세요 */
+		    left: 945px; /* 기본 0px 값으로 해주세요 */
+		}
+		.arrow3
+		{
+			position: absolute;
+			content: '';
+		    width: 10px; /* 사이즈 */
+		    height: 10px; /* 사이즈 */
+		    border-top: 5px solid #121212; /* 선 두께 */
+		    border-right: 5px solid #121212; /* 선 두께 */
+		    display: inline-block;
+		    transform: rotate(45deg); /* 각도 */
+		    position: absolute;
+		    top: 280px; /* 기본 0px 값으로 해주세요 */
+		    left: 945px; /* 기본 0px 값으로 해주세요 */
+		}
+		.arrow4
+		{
+			position: absolute;
+			content: '';
+		    width: 10px; /* 사이즈 */
+		    height: 10px; /* 사이즈 */
+		    border-top: 5px solid #121212; /* 선 두께 */
+		    border-right: 5px solid #121212; /* 선 두께 */
+		    display: inline-block;
+		    transform: rotate(45deg); /* 각도 */
+		    position: absolute;
+		    top: 320px; /* 기본 0px 값으로 해주세요 */
+		    left: 945px; /* 기본 0px 값으로 해주세요 */
+		}
+		.arrow5
+		{
+			position: absolute;
+			content: '';
+		    width: 10px; /* 사이즈 */
+		    height: 10px; /* 사이즈 */
+		    border-top: 5px solid #121212; /* 선 두께 */
+		    border-right: 5px solid #121212; /* 선 두께 */
+		    display: inline-block;
+		    transform: rotate(45deg); /* 각도 */
+		    position: absolute;
+		    top: 355px; /* 기본 0px 값으로 해주세요 */
+		    left: 945px; /* 기본 0px 값으로 해주세요 */
+		}
+		.Similarity1
+		{
+			top:185px;
+			left:1000px;
+			position: absolute;
+		}
+		.Similarity2
+		{
+			top:220px;
+			left:1000px;
+			position: absolute;
+		}
+		.Similarity3
+		{
+			top:255px;
+			left:1000px;
+			position: absolute;
+		}
+		.Similarity4
+		{
+			top:295px;
+			left:1000px;
+			position: absolute;
+		}
+		.Similarity5
+		{
+			top:330px;
+			left:1000px;
+			position: absolute;
+		}
 	</style>
 	<body bgcolor='#4dd5b0'>
 		<div style="text-align:center"><h1>*광고 선정 이유*</h1></div>
@@ -125,37 +303,33 @@
 		<span class="boardpngraph"><h3>게시물 문장별 긍부정 그래프</h3></span>
 		<span class="pnratio"><h3>긍부정 비율 : </h3></span>
 		<span class="percent"><font color='red'><h1>긍정 53%</h1></font></span>
-		<div style="border-left:thick solid black;height:820px;margin-left:600px;position: absolute;"></div>
+		<div class="stick1"></div>
 		<span class="correlationarea"><h2>연관성 영역</h2></span>
 		<span class="representkey"><h3>대표 키워드 5개</h3></span>
-		<span class="ktable">
-			<table width="450px" height="150px">
-				<tr align="center">
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>아침(13회)</b></td>
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>유사도 : 1.0</b></td>
-				</tr>
-				<tr align="center">
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>도움(5회)</b></td>
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>유사도 : 1.0</b></td>
-				</tr>
-				<tr align="center">
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>달걀(5회)</b></td>
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>유사도 : 1.0</b></td>
-				</tr>
-				<tr align="center">
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>국민(4회)</b></td>
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>유사도 : 1.0</b></td>
-				</tr>
-				<tr align="center">
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>결식(4회)</b></td>
-					<td style="border-radius:10px;border:1px solid black;color:red;"><b>유사도 : 1.0</b></td>
-				</tr>
-			</table>
-		</span>
+		<span class="keyword1"><font color='red'><h3>아침(13회)</h3></font></span>
+		<div class="stick3"></div>
+		<div class="arrow1"></div>
+		<span class="keyword2"><font color='red'><h3>도움(5회)</h3></font></span>
+		<div class="stick4"></div>
+		<div class="arrow2"></div>
+		<span class="keyword3"><font color='red'><h3>달걀(5회)</h3></font></span>
+		<div class="stick5"></div>
+		<div class="arrow3"></div>
+		<span class="keyword4"><font color='red'><h3>국민(4회)</h3></font></span>
+		<div class="stick6"></div>
+		<div class="arrow4"></div>
+		<span class="keyword5"><font color='red'><h3>결식(4회)</h3></font></span>
+		<div class="stick7"></div>
+		<div class="arrow5"></div>
+		<span class="Similarity1"><font color='red'><h3>유사도 1.0</h3></font></span>
+		<span class="Similarity2"><font color='red'><h3>유사도 0.9</h3></font></span>
+		<span class="Similarity3"><font color='red'><h3>유사도 0.8</h3></font></span>
+		<span class="Similarity4"><font color='red'><h3>유사도 0.7</h3></font></span>
+		<span class="Similarity5"><font color='red'><h3>유사도 0.6</h3></font></span>
 		<span class="bkeyfrequency"><h3>게시물 키워드 빈도수</h3></span>
 		<span class="bkfgraph"><img src="../image/graph.png"></span>
 		<span class="bkfgraphtext"><h3>게시물 키워드, 광고 키워드 간 유사도 그래프</h3></span>
-		<div style="border-left:thick solid black;height:820px;margin-left:1200px;position: absolute;"></div>
+		<div class="stick2"></div>
 		<span class="choicead"><h2>선정 광고</h2></span>
 		<span class="ad"><img src="../image/ad.jpg"></span>
 		<span class="bkeyword1"><h3>최다 게시물 키워드</h3></span>
