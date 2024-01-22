@@ -29,6 +29,8 @@ if(loginVO == null)
 					</td>
 					<td colspan="4" height="50px" align="right" valign="bottom" style="font-size: 14px; font-weight: 700;">
 						<div class="button" style="background-color: white; width:10px;"></div>
+						<a href="../ad/adupload.jsp"><ins>광고등록</ins></a>
+						<div class="button" style="background-color: white; width:10px;"></div>
 						관리자님
 						<div class="button" style="background-color: white; width:10px;"></div>
 						<a href="../login/logout.jsp"><ins>로그아웃</ins></a>
@@ -59,5 +61,5 @@ if(loginVO == null)
 					<div class="admin">
 						<a href="member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
-					<table border="0" width="910px" align="center">
+					<table border="1" width="910px" align="center">
 						<!-- 여기까찌 -->
