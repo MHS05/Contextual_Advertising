@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="../include/head.jsp" %>
+<%@ include file="../admininclude/newshead.jsp" %>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -18,7 +18,7 @@
 		margin-right     : 15px;
 		box-shadow       : 1px 3px 5px 3px lightgray;
 	}
-	.category
+	.head
 	{
 		position : absolute;
 		top      : 220px;
@@ -29,8 +29,8 @@
 		position      : absolute;
 		top           : 310px;
 		left          : 600px;
-		border-bottom :3px solid lightgray;
-		width         : 1000px;
+		border-bottom : 3px solid lightgray;
+		width         : 950px;
 	}
 	.title
 	{
@@ -52,12 +52,12 @@
 	}
 	.btn-upload
 	{
-		position      : absolute;
-		top           : 475px;
-		left          : 780px;
-		padding       : 0px 0px;
-		border        : 1px solid black;
-		border-radius : 10px;
+		position         : absolute;
+		top              : 465px;
+		left             : 780px;
+		padding          : 10px 10px;
+		border-radius    : 10px;
+		background-color : #4dd5b0;
 	}
 	.upload
 	{
@@ -77,43 +77,45 @@
 	}
 	.image_container
 	{
-		position : absolute;
-		top      : 550px;
-		left     : 600px;
-		height   : 300px;
-		width    : 800px;
-		border   : 1px solid black;
+		position    : absolute;
+		top         : 570px;
+		left        : 600px;
+		height      : 300px;
+		width       : 950px;
+		border      : 1px solid black;
+		text-align  : center;
+		line-height : 300px;
 	}
 	.note
 	{
 		position : absolute;
-		top      : 840px;
+		top      : 880px;
 		left     : 600px;
 	}
 	.noteinput
 	{
 		position : absolute;
-		top      : 900px;
+		top      : 950px;
 		left     : 600px;
-		width    : 800px;
+		width    : 960px;
 	}
 	.submit
 	{
 		position         : absolute;
-		top              : 1300px;
+		top              : 1630px;
 		left             : 900px;
 		background-color : #4dd5b0;
-		padding          : 10px 15px;
+		padding          : 10px 50px;
 		border           : 1px solid #4dd5b0;
 		border-radius    : 10px;
 	}
 	.cancel
 	{
 		position         : absolute;
-		top              : 1300px;
-		left             : 1000px;
+		top              : 1630px;
+		left             : 1150px;
 		background-color : lightgrey;
-		padding          : 10px 15px;
+		padding          : 10px 50px;
 		border           : 1px solid lightgrey;
 		border-radius    : 10px;
 	}
@@ -126,11 +128,13 @@
 		$("#").submit();
 	}
 	function setThumbnail(event) {
+		$("#image_container").html("");
+		
         var reader = new FileReader();
 
         reader.onload = function(event) {
           var img = document.createElement("img");
-          img.style.width  = "800px";
+          img.style.width  = "950px";
           img.style.height = "300px";
           img.setAttribute("src", event.target.result);
           document.querySelector("div#image_container").appendChild(img);
@@ -138,7 +142,7 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
-	<table border="0" align="center" width="1200px" height="1300px">
+	<table border="0" align="center" width="1200px" height="1600px">
 		<tr>
 			<td rowspan="3" width="200px" valign="top" >		
 				<div><a href="news.jsp"><h1><u>건강소식</u></h1></a></div> 	
@@ -171,11 +175,11 @@
 		</tr>
 		<tr>
 			<td valign="top" colspan="2">
-				<div class="category"><h1>건강소식</h1></div>
+				<div class="head"><h1>건강소식</h1></div>
 				<div class="line"></div>
 				<div class="title">
 					<h2>제목 : 
-						<input id=" title" type="text" style="width:500px;">
+						<input id=" title" type="text" style="width:870px;height:30px;" placeholder="제목을 입력해주세요.">
 					</h2>
 				</div>
 				<div class="mainyn" id="mainyn">
@@ -194,10 +198,10 @@
 					<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
 				</div>
 				<div class="displayi"><h2>이미지 나오는 곳 : </h2></div>
-				<div class="image_container" id="image_container"></div>
+				<div class="image_container" id="image_container">※이미지 출력※</div>
 				<div class="note"><h2>내용 : </h2></div>
 				<div class="noteinput" id="noteinput">
-					<textarea name="ir1" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+					<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:950px;height:500px;">내용을 입력해주세요.</textarea>
 					<script id="smart" type="text/javascript">
 						var oEditors = [];
 						nhn.husky.EZCreator.createInIFrame({
@@ -208,9 +212,9 @@
 						});
 					</script>
 				</div>
-				<span class="submit" id="submit">등록</span>
-				<span class="cancel" id="cancel">취소</span>
+				<span class="submit" id="submit"><a href="submit.jsp">등록</a></span>
+				<span class="cancel" id="cancel"><a href="newslist.jsp">취소</a></span>
 			</td>
 		</tr>
 	</table>
-<%@ include file="../include/tail.jsp" %>
+<%@ include file="../admininclude/newstail.jsp" %>
