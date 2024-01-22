@@ -17,8 +17,14 @@ if(loginVO == null)
 	<head>
 		<meta charset="EUC-KR">
 		<title>나만의 건강 쇼핑몰</title>
-		 <link rel="stylesheet" href="../admin/admin.css"/>
-		 <script src="../js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="../admin/admin.css"/>
+		<script src="../js/jquery-3.7.1.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@600&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<form>
@@ -39,6 +45,9 @@ if(loginVO == null)
 				<a name="top"></a>
 				<tr>
 					<td class="nav">
+						<div>
+							<a href="adminnews.jsp"><h1>건강소식</h1></a>
+						</div> 
 						<div>
 							<a href="admincategory.jsp"><h1>카테고리</h1></a>
 						</div> 
@@ -61,5 +70,5 @@ if(loginVO == null)
 					<div class="admin">
 						<a href="member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
-					<table border="1" width="910px" align="center">
+					<table border="0" width="910px" align="center">
 						<!-- 여기까찌 -->
