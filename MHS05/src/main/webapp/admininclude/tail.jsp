@@ -6,6 +6,11 @@
 			</tr>
 			<tr>
 				<td height="80px">
+					<div><a href="adminnews.jsp"><h1>건강소식</h1></a></div> 
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
 					<div><a href="admincategory.jsp"><h1>카테고리</h1></a></div> 
 				</td>
 			</tr>
