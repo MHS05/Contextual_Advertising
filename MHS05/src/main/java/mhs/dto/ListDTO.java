@@ -549,4 +549,52 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
+	
+	//게시물의 목록을 얻는다.
+		//type : F, TY, TE, SY, SE 
+		//keyword : 검색 키워드	
+		public ArrayList<AdVO> GetadList(int pageNo,String type,String keyword)
+		{
+			ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
+			
+			this.DBOpen();
+			
+			String sql = "";
+			
+			sql  = "select no,title,date(wdate) as wdate,hit,image,";
+			sql += "(select name from user where id = community.id) as name, ";
+			sql += "(select nickname from user where id = community.id) as nickname, ";
+			sql += "(select uno from user where id = community.id) as uno, ";
+			sql += "(select count(*) from reply where no = community.no) as count ";
+			sql += "from community ";
+			sql += "where type = '" + type + "' ";
+			//제목에서 검색
+			if( !keyword.equals("") )
+			{
+				sql += "and title like '%" + _R(keyword) + "%' ";
+			}	
+			//작성일 내림차순
+			sql += "order by no desc ";
+			int startno = 10 * (pageNo - 1);
+			sql += "limit " + startno + ",10 ";		
+			this.RunSelect(sql);
+			while( this.GetNext() == true)
+			{
+				CommunityVO vo = new CommunityVO();
+				vo.setNo(this.GetValue("no"));
+				vo.setUno(this.GetValue("uno"));
+				vo.setTitle(this.GetValue("title"));
+				vo.setWdate(this.GetValue("wdate"));
+				vo.setHit(this.GetValue("hit"));
+				vo.setImage(this.GetValue("image"));
+				vo.setName(this.GetValue("name"));
+				vo.setNickname(this.GetValue("nickname"));
+				vo.setRecount(this.GetValue("count"));
+				
+				list.add(vo);
+			}		
+			this.DBClose();
+			
+			return list;		
+		}
 }

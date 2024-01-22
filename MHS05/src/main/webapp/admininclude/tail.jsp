@@ -37,6 +37,7 @@
 					<a href="adminclist.jsp"><h1>Ä¿¹Â´ÏÆ¼</h1></a>
 				</td>
 			</tr>
+			<tr>
 				<td valign="top">
 					<div style="width: 220px; height: 300px; box-shadow: 3px 3px 3px 3px lightgray;">
 						<table border="0" align="left" width="200px" height="50px">
@@ -57,6 +58,11 @@
 							</tr>
 						</table>
 					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="adlist.jsp"><h1>±¤°í°ü¸®</h1></a>
 				</td>
 			</tr>
 		</table>

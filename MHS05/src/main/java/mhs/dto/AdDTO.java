@@ -15,8 +15,8 @@ public class AdDTO extends DBManager
 
 	
 		sql += "insert into ad ";
-		sql += "(adno, keywords, link, fimage, pimage, ";
-		sql += "type, name, date_start, date_end) ";
+		sql += "(adno, keywords, link, fimage, pimage, type";
+		sql += "name, date_start, date_end) ";
 		sql += "values (";
 		sql += "'" + vo.getAdno()        + "',";
 		sql += "'" + vo.getKeywords()    + "',";
