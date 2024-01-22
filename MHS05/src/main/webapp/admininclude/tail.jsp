@@ -6,11 +6,6 @@
 			</tr>
 			<tr>
 				<td height="80px">
-					<div><a href="adminnews.jsp"><h1>건강소식</h1></a></div> 
-				</td>
-			</tr>
-			<tr>
-				<td height="80px">
 					<div><a href="admincategory.jsp"><h1>카테고리</h1></a></div> 
 				</td>
 			</tr>
@@ -42,7 +37,6 @@
 					<a href="adminclist.jsp"><h1>커뮤니티</h1></a>
 				</td>
 			</tr>
-			<tr>
 				<td valign="top">
 					<div style="width: 220px; height: 300px; box-shadow: 3px 3px 3px 3px lightgray;">
 						<table border="0" align="left" width="200px" height="50px">
@@ -63,11 +57,6 @@
 							</tr>
 						</table>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td height="80px">
-					<a href="adlist.jsp"><h1>광고관리</h1></a>
 				</td>
 			</tr>
 		</table>
