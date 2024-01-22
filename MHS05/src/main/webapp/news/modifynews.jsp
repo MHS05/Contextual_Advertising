@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="../include/head.jsp" %>
+<%@ include file="../admininclude/newshead.jsp" %>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -18,7 +18,7 @@
 		margin-right     : 15px;
 		box-shadow       : 1px 3px 5px 3px lightgray;
 	}
-	.category
+	.head
 	{
 		position : absolute;
 		top      : 220px;
@@ -29,7 +29,7 @@
 		position      : absolute;
 		top           : 310px;
 		left          : 600px;
-		border-bottom :3px solid lightgray;
+		border-bottom : 3px solid lightgray;
 		width         : 950px;
 	}
 	.title
@@ -52,12 +52,12 @@
 	}
 	.btn-upload
 	{
-		position      : absolute;
-		top           : 475px;
-		left          : 780px;
-		padding       : 0px 0px;
-		border        : 1px solid black;
-		border-radius : 10px;
+		position         : absolute;
+		top              : 465px;
+		left             : 780px;
+		padding          : 10px 10px;
+		border-radius    : 10px;
+		background-color : #4dd5b0;
 	}
 	.upload
 	{
@@ -78,42 +78,42 @@
 	.image_container
 	{
 		position : absolute;
-		top      : 550px;
+		top      : 570px;
 		left     : 600px;
 		height   : 300px;
-		width    : 800px;
+		width    : 950px;
 		border   : 1px solid black;
 	}
 	.note
 	{
 		position : absolute;
-		top      : 840px;
+		top      : 880px;
 		left     : 600px;
 	}
 	.noteinput
 	{
 		position : absolute;
-		top      : 900px;
+		top      : 950px;
 		left     : 600px;
-		width    : 800px;
+		width    : 960px;
 	}
 	.submit
 	{
 		position         : absolute;
-		top              : 1300px;
+		top              : 1630px;
 		left             : 900px;
 		background-color : #4dd5b0;
-		padding          : 10px 15px;
+		padding          : 10px 50px;
 		border           : 1px solid #4dd5b0;
 		border-radius    : 10px;
 	}
 	.cancel
 	{
 		position         : absolute;
-		top              : 1300px;
-		left             : 1050px;
+		top              : 1630px;
+		left             : 1150px;
 		background-color : lightgrey;
-		padding          : 10px 15px;
+		padding          : 10px 50px;
 		border           : 1px solid lightgrey;
 		border-radius    : 10px;
 	}
@@ -126,11 +126,14 @@
 		$("#").submit();
 	}
 	function setThumbnail(event) {
+		$("#viewimage").css("display","none");
+		$("#image_container").html("");
+		
         var reader = new FileReader();
 
         reader.onload = function(event) {
           var img = document.createElement("img");
-          img.style.width  = "800px";
+          img.style.width  = "950px";
           img.style.height = "300px";
           img.setAttribute("src", event.target.result);
           document.querySelector("div#image_container").appendChild(img);
@@ -138,7 +141,7 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
-	<table border="0" align="center" width="1200px" height="1300px">
+	<table border="0" align="center" width="1200px" height="1600px">
 		<tr>
 			<td rowspan="3" width="200px" valign="top" >		
 				<div><a href="news.jsp"><h1><u>건강소식</u></h1></a></div> 	
@@ -171,11 +174,11 @@
 		</tr>
 		<tr>
 			<td valign="top" colspan="2">
-				<div class="category"><h1>건강소식</h1></div>
+				<div class="head"><h1>건강소식</h1></div>
 				<div class="line"></div>
 				<div class="title">
 					<h2>제목 : 
-						<input id=" title" type="text" style="width:500px;" value="임신하면 원래 어질어질?...이럴 땐 위험 신호">
+						<input id=" title" type="text" style="width:870px;height:30px;" value="임신하면 원래 어질어질?...이럴 땐 위험 신호">
 					</h2>
 				</div>
 				<div class="mainyn" id="mainyn">
@@ -195,11 +198,11 @@
 				</div>
 				<div class="displayi"><h2>이미지 나오는 곳 : </h2></div>
 				<div class="image_container" id="image_container">
-					<img src="../image/ad.jpg" style="width:800px; height:300px;">
+					<img src="../image/ad.jpg" id="viewimage" style="width:950px; height:300px;">
 				</div>
 				<div class="note"><h2>내용 : </h2></div>
 				<div class="noteinput" id="noteinput">
-					<textarea name="ir1" id="ir1" rows="10" cols="100">
+					<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:950px;height:500px;">
 						흔히 임신을 하면 입덧, 요통, 다리나 발 부종, 그리고 어지럼증 등의 증상을 겪는다. 하지만 임신이 이유라고 생각한 어지럼증은 사실은 더 큰 질환을 알리는 신호일 수 있어 주의가 필요하다.
 						‘미국 심장협회(AHA)’는 임신을 하면, 특히 임신 초기 어지럼증은 호르몬 변화에 따른 혈압 감소, 낮은 혈당 수치 등으로 인한 자연스러운 증상이지만 그렇다고 당연하게 여기면 안 된다고 강조했다. 어지럼증이 갑자기 나타나거나 평소와 상태가 많이 다르다고 느껴지면 증상을 잘 관찰하고 수시로 의료진을 찾아 진료를 받아야 한다. 여기다 임신 단계별 어지럼증의 원인에 무엇이 있는지 알아두면 산모와 태아 모두를 지키는 데 큰 도움이 될 수 있다.
 						
@@ -228,9 +231,9 @@
 						});
 					</script>
 				</div>
-				<span class="submit" id="submit">수정완료</span>
-				<span class="cancel" id="cancel">취소</span>
+				<span class="submit" id="submit"><a href="viewnews.jsp">수정완료</a></span>
+				<span class="cancel" id="cancel"><a href="viewnews.jsp">취소</a></span>
 			</td>
 		</tr>
 	</table>
-<%@ include file="../include/tail.jsp" %>
+<%@ include file="../admininclude/newstail.jsp" %>
