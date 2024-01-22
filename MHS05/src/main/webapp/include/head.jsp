@@ -14,6 +14,12 @@ UserVO loginVO = (UserVO)session.getAttribute("login");
 		<meta charset="EUC-KR">
 		<title>나만의 건강 쇼핑몰</title>		
 		<script src="../js/jquery-3.7.1.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@600&display=swap" rel="stylesheet">
 	</head>
 	<body>
 	<style>
@@ -159,6 +165,9 @@ UserVO loginVO = (UserVO)session.getAttribute("login");
 				<a name="top"></a>
 				<tr>
 					<td class="nav">
+						<div>
+							<a href="../news/news.jsp"><h1>건강소식</h1></a>
+						</div>
 						<div>
 							<a href="../category/category.jsp?kind=V"><h1>카테고리</h1></a>
 						</div> 
