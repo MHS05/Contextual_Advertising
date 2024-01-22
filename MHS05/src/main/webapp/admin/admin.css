@@ -1,0 +1,106 @@
+@charset "EUC-KR";
+
+	.button
+	{
+		background-color: lightgray;
+		text-align: center;
+		vertical-align : middle;
+		padding-top : 4px;
+		height: 25px;
+		width : 80px;
+		float:right;
+		border-radius: 15px;
+	}
+
+	.nav
+	{
+		background-color: #4dd5b0;
+
+	}
+	.nav div
+	{
+		float:left; 
+		margin-left: 60px;
+
+	}
+	a, .nav div a, .month 
+	{
+		text-decoration: none;
+		color: black;
+	}
+	
+	.community
+	{
+		margin-left: 30px;
+		margin-top: 20px;
+		width: 910px;
+		height: 300px; 
+        background-color: white;
+        box-shadow: 2px 2px 2px 2px lightgray;
+      		overFlow : auto
+        
+	}
+	.category, .member
+	{
+		margin-left: 30px;
+		margin-top: 10px;
+		width: 440px;
+		height: 300px; 
+        background-color: white;
+        box-shadow: 2px 2px 2px 2px lightgray;
+      		overFlow : auto;
+		float: left;
+	}
+	
+	.admin
+	{
+		margin-left: 30px;
+		width: 910px;
+	}
+	
+	.dbutton
+	{
+		background-color: lightgray; 
+		width: 70px; 
+		height: 22px;
+		float: right;
+		margin-top: 42px;
+		margin-right: 5px;
+		font-size: small;
+		text-align: center;
+		padding-top: 5px;
+		border-radius: 5px;
+	}
+	
+	.abutton
+	{
+		background-color: lightgray; 
+		width: 70px; 
+		height: 22px;
+		margin-right: 5px;
+		font-size: small;
+		text-align: center;
+		padding-top: 5px;
+		border-radius: 5px;
+		float: left;
+	}
+	
+		#span1
+	{
+	
+		padding: 7px 30px;
+		background-color : #66FFCC;
+		border-radius: 5px;
+		text-align: center;
+	}
+	
+	#span2
+	{
+		padding: 7px 30px;
+		background-color : #4dd5b0;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+	
+
+		
