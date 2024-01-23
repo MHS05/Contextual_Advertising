@@ -29,7 +29,7 @@
 								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>남성건강</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnews.jsp"><b>여성건강</b></td>
+								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>여성건강</b></td>
 							</tr>
 						</table>
 					</div>
