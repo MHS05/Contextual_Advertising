@@ -70,20 +70,20 @@ function doSearch()
 
 </script>
 <style>
-	.submenu
-	{
-		font-size: 20px;
-	}
-	
-	#fixed 
-	{
-		position: fixed;
-		bottom: 10px;
-		right: 10px;
-		width: 100px;
-		padding: 5px;
-		color: white;
-	}
+.submenu
+{
+	font-size: 20px;
+}
+
+#fixed 
+{
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 100px;
+	padding: 5px;
+	color: white;
+}
 </style>
 <div id="fixed" style="width:50px; height: 50px;">
 	<a href="#top"><img style="width:50px; height: 50px;" src="../image/topbutton.png"></a>

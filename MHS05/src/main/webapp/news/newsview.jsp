@@ -36,7 +36,20 @@
 	border-radius: 12px;
 	cursor: pointer;
 }
+
+#fixed 
+{
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 100px;
+	padding: 5px;
+	color: white;
+}
 </style>
+<div id="fixed" style="width:50px; height: 50px;">
+	<a href="#top"><img style="width:50px; height: 50px;" src="../image/topbutton.png"></a>
+</div>
 <table border="0" align="center" width="1200px">
 	<tr>
 		<td width="200px" valign="top" >		

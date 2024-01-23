@@ -111,7 +111,7 @@
 		</div>
 		<div style="height: 20px"></div>
 		<div style="text-align: center;">
-			<div id="listbutton">목록</div>
+			<a href="adminnewslist.jsp"><div id="listbutton">목록</div></a>
 		</div>
 	</td>
 </tr>
