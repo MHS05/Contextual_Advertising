@@ -43,13 +43,13 @@
 <tr>
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>남성건강</h2>
-			<div align="center" id="delbutton">등록</div>
+			<div align="center" id="delbutton"><a href="writenews.jsp">등록</a></div>
 		</div>
 		<div style="border-bottom: 1px solid lightgray; position: relative;">
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="">[한컷건강]고독사 50대 가장 많아&#8230;5명 중 3명 술 취해 사망</a></h2>
+						<h2><a href="../admin/adminnewsview.jsp">[한컷건강]고독사 50대 가장 많아&#8230;5명 중 3명 술 취해 사망</a></h2>
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;

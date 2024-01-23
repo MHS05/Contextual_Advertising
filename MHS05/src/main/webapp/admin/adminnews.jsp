@@ -41,7 +41,7 @@
 							{
 								%>
 									<tr height="40px">
-										<td style="font-size: 20px;"><a href="category.jsp"><b><%= i %>번째 뉴스</a><br><hr></td>
+										<td style="font-size: 20px;"><a href="../admin/adminnewsview.jsp"><b><%= i %>번째 뉴스</a><br><hr></td>
 									</tr>
 								<%
 							}
@@ -79,7 +79,7 @@
 					<table border="0" width="700px" height="300px" align="center">
 						<tr>
 							<td>
-								<a href="newsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>첫번째 부가 기사 제목입니다.</a><br>
+								<a href="../admin/adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>첫번째 부가 기사 제목입니다.</a><br>
 								<span style="color:gray">1시간 전</span>
 							</td>
 							<td></td>

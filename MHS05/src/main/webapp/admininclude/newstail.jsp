@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td height="80px">
-					<a href="adlist.jsp"><h1>堡绊包府</h1></a>
+					<a href="../ad/adlist.jsp"><h1>堡绊包府</h1></a>
 				</td>
 			</tr>
 			<tr>

@@ -46,29 +46,29 @@ if(loginVO == null)
 				<tr>
 					<td class="nav">
 						<div>
-							<a href="adminnews.jsp"><h1>건강소식</h1></a>
+							<a href="../admin/adminnews.jsp"><h1>건강소식</h1></a>
 						</div> 
 						<div>
-							<a href="admincategory.jsp"><h1>카테고리</h1></a>
+							<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>
 						</div> 
 						<div>
-							<a href="adminclist.jsp?type=F""><h1>커뮤니티</h1></a>
+							<a href="../admin/adminclist.jsp?type=F""><h1>커뮤니티</h1></a>
 						</div> 
 						<div>
-							<a href="adminnlist.jsp"><h1>공지사항</h1></a>
+							<a href="../admin/adminnlist.jsp"><h1>공지사항</h1></a>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</form>
-		<table border="0" align="center" width="1200px">
+		<table border="0" align="center" width="1200px" height="1500px">
 			<tr>
-				<td height="100px">
-					<a href="member.jsp"><h1>사용자관리</h1></a> 
+				<td height="10px">
+					<a href="../admin/member.jsp"><h1>사용자관리</h1></a> 
 				</td>
-				<td rowspan="0" valign="top">
+				<td rowspan="50" valign="top" height="30px" height="30px">
 					<div class="admin">
-						<a href="member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
+						<a href="../adminmember.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
 					<table border="0" width="910px" align="center">
 						<!-- 여기까찌 -->

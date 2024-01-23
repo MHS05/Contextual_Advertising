@@ -1,66 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="../admininclude/newshead.jsp" %>
+<%@ include file="../admininclude/head.jsp" %> 
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<%
+if( loginVO == null)
+{	
+	//로그인 하지 않은 경우 처리
+	response.sendRedirect("../main/index.jsp");
+	return;
+}
+%>
+<script>
+	function check() 
+	{	
+		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
+		//스마트 에디터 값을 텍스트컨텐츠로 전달
+		$("#").submit();
+	}
+	function setThumbnail(event) 
+	{
+		$("#image_container").html("");
+		
+	    var reader = new FileReader();
+	
+	    reader.onload = function(event)
+	    {
+	      var img = document.createElement("img");
+	      img.style.width  = "900px";
+	      img.style.height = "300px";
+	      img.setAttribute("src", event.target.result);
+	      document.querySelector("div#image_container").appendChild(img);
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
 <style>
-	#type
-	{
-		width            : 100px;
-		text-align       : center;
-		padding-top      : 30px;
-		padding-bottom   : 30px;
-		background-color : white;
-		border-radius    : 15px;
-		cursor           : pointer;
-		float            : left;
-		margin-right     : 15px;
-		box-shadow       : 1px 3px 5px 3px lightgray;
-	}
-	.head
-	{
-		position : absolute;
-		top      : 220px;
-		left     : 600px;
-	}
-	.line
-	{
-		position      : absolute;
-		top           : 310px;
-		left          : 600px;
-		border-bottom : 3px solid lightgray;
-		width         : 950px;
-	}
 	.title
 	{
 		position : absolute;
-		top      : 330px;
-		left     : 600px;
+		top      : 400px;
+		left     : 620px;
 	}
 	.type
 	{
 		position : absolute;
-		top      : 390px;
-		left     : 600px;
+		top      : 450px;
+		left     : 620px;
 	}
 	.mainyn
 	{
 		position : absolute;
-		top      : 450px;
-		left     : 600px;
+		top      : 500px;
+		left     : 620px;
 	}
 	.image
 	{
 		position : absolute;
-		top      : 510px;
-		left     : 600px;
+		top      : 550px;
+		left     : 620px;
 	}
-	.btn-upload
-	{
+	.btn-upload 
+	{	
 		position         : absolute;
-		top              : 525px;
-		left             : 780px;
+		top              : 560px;
+		left             : 750px;
 		padding          : 10px 10px;
 		border-radius    : 10px;
 		background-color : #4dd5b0;
@@ -68,45 +73,46 @@
 	.upload
 	{
 		position : absolute;
-		top      : 500px;
-		left     : 920px;
+		top      : 600px;
+		left     : 620px;
 	}
-	#image 
-	{
-		display : none;
+	#image {
+	  display: none;
 	}
 	.displayi
 	{	
 		position : absolute;
-		top      : 565px;
-		left     : 600px;
+		top      : 600px;
+		left     : 620px;
 	}
 	.image_container
 	{
-		position : absolute;
-		top      : 630px;
-		left     : 600px;
-		height   : 300px;
-		width    : 950px;
-		border   : 1px solid black;
+		position    : absolute;
+		top         : 650px;
+		left        : 620px;
+		height      : 300px;
+		width       : 900px;
+		border      : 1px solid black;
+		text-align  : center;
+		line-height : 300px;
 	}
 	.note
 	{
 		position : absolute;
-		top      : 930px;
-		left     : 600px;
+		top      : 950px;
+		left     : 620px;
 	}
 	.noteinput
 	{
 		position : absolute;
-		top      : 1000px;
-		left     : 600px;
+		top      : 1020px;
+		left     : 620px;
 		width    : 960px;
 	}
 	.submit
 	{
 		position         : absolute;
-		top              : 1630px;
+		top              : 1600px;
 		left             : 900px;
 		background-color : #4dd5b0;
 		padding          : 10px 50px;
@@ -116,7 +122,7 @@
 	.cancel
 	{
 		position         : absolute;
-		top              : 1630px;
+		top              : 1600px;
 		left             : 1150px;
 		background-color : lightgrey;
 		padding          : 10px 50px;
@@ -125,119 +131,112 @@
 	}
 </style>
 <script>
-	function check() 
-	{	
-		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
-		//스마트 에디터 값을 텍스트컨텐츠로 전달
-		$("#").submit();
-	}
-	function setThumbnail(event) {
-		$("#viewimage").css("display","none");
-		$("#image_container").html("");
+window.onload=function()
+{
+	target=document.getElementById('image'); // file 아이디 선언
+	target.addEventListener('change',function(){ // change 함수
 		
-        var reader = new FileReader();
-
-        reader.onload = function(event) {
-          var img = document.createElement("img");
-          img.style.width  = "950px";
-          img.style.height = "300px";
-          img.setAttribute("src", event.target.result);
-          document.querySelector("div#image_container").appendChild(img);
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
+		if(target.value.length){ // 파일 첨부인 상태일경우 파일명 출력
+			$('#originName').html("<ins>"+target.files[0].name+"</ins>");
+		}else{ //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게
+			$('#originName').html("");
+		}
+		
+	});
+}
 </script>
-	<table border="0" align="center" width="1200px" height="1600px">
+	<form name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
-			<td rowspan="3" width="200px" valign="top" >		
-				<div><a href="news.jsp"><h1><u>건강소식</u></h1></a></div> 	
-				<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
-					<table border="0" align="left" width="200px" height="50px">
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b>다이어트</b></a></td>
-						</tr>
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b><u>음식</u></b></a></td>
-						</tr>
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b>운동</b></td>
-						</tr>
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b>영양제</b></td>
-						</tr>
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b>남성건강</b></td>
-						</tr>
-						<tr height="50px">
-							<td style="font-size: 20px;"><a href="category.jsp"><b>여성건강</b></td>
-						</tr>
-						<tr height="50px">
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</td>	
+			<td colspan="12"><h2><b>건강뉴스</b></h2><hr></td>
 		</tr>
 		<tr>
-			<td valign="top" colspan="2">
-				<div class="head"><h1>건강소식</h1></div>
-				<div class="line"></div>
+			<td height="50px"></td>
+		</tr>
+		<tr>
+			<td>
 				<div class="title">
-					<h2>제목 : 
-						<input id=" title" type="text" style="width:870px;height:30px;" value="임신하면 원래 어질어질?...이럴 땐 위험 신호">
-					</h2>
+					<h4>제목 : 
+						<input id=" title" type="text" style="width:700px;height:20px;" placeholder="“당장 일어나세요”… 심장 혈관 망가지는 최악의 습관은?">
+					</h4>
 				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<div class="type">
-					<h2>카테고리 : 
+					<h4>카테고리 : 
 						<select style="width:100px;">
-							<option value="다이어트">다이어트</option>
-							<option value="음식" selected>음식</option>
+							<option value="선택">선택</option>
+							<option value="다이어트" selected>다이어트</option>
+							<option value="음식">음식</option>
 							<option value="운동">운동</option>
 							<option value="영양제">영양제</option>
 							<option value="남성건강">남성건강</option>
 							<option value="여성건강">여성건강</option>
 						</select>
-					</h2>
+					</h4>
 				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<div class="mainyn" id="mainyn">
-					<h2>메인여부 : 
-						<label><input type="radio" name="main" value="Y" checked>Y</label>
-						<label><input type="radio" name="main" value="N">N</label>
-					</h2>
+					<h4>메인여부 : 
+						<label><input type="radio" name="main" value="Y">Y</label>
+						<label><input type="radio" name="main" value="N" checked>N</label>
+					</h4>
 				</div>
-				<div class="image"><h2>이미지 업로드 : </h2></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="image"><h4>이미지 업로드 : </h4></div>
 				<div class="uploadbutton" id="uploadbutton">
 					<label for="image">
 						<span class="btn-upload" id="btn-upload">이미지 업로드</span>
 					</label>
 				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<div class="upload" id="upload">
 					<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
 				</div>
-				<div class="displayi"><h2>이미지 나오는 곳 : </h2></div>
-				<div class="image_container" id="image_container">
-					<img src="../image/ad.jpg" id="viewimage" style="width:950px; height:300px;">
-				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="displayi"><h4>이미지 나오는 곳 : </h4></div>
+				<div class="image_container" id="image_container"><img src="../image/diet.jpg" width="900px" height="300px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<div class="note"><h2>내용 : </h2></div>
 				<div class="noteinput" id="noteinput">
-					<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:950px;height:500px;">
-						흔히 임신을 하면 입덧, 요통, 다리나 발 부종, 그리고 어지럼증 등의 증상을 겪는다. 하지만 임신이 이유라고 생각한 어지럼증은 사실은 더 큰 질환을 알리는 신호일 수 있어 주의가 필요하다.
-						‘미국 심장협회(AHA)’는 임신을 하면, 특히 임신 초기 어지럼증은 호르몬 변화에 따른 혈압 감소, 낮은 혈당 수치 등으로 인한 자연스러운 증상이지만 그렇다고 당연하게 여기면 안 된다고 강조했다. 어지럼증이 갑자기 나타나거나 평소와 상태가 많이 다르다고 느껴지면 증상을 잘 관찰하고 수시로 의료진을 찾아 진료를 받아야 한다. 여기다 임신 단계별 어지럼증의 원인에 무엇이 있는지 알아두면 산모와 태아 모두를 지키는 데 큰 도움이 될 수 있다.
+					<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:900px;height:500px;">
+						심장병이 있으면 일상생활에서 어려움이 참 많다. 특히 심장 혈관이 막히는 심근경색증은 돌연사 위험도 있다. 추위에 혈관이 수축하는 요즘엔 더욱 조심해야 한다. 심혈관 질환을 예방-관리하기 위해선 혈압-고지혈증 조절, 금연, 식사 관리 등이 필요하지만 몸도 자주 움직여야 한다. 꼭 운동을 하라는 얘기가 아니다. 일상에서 몸을 사용하라는 것이다.
+
+						오래 앉아 있는 습관 지속했더니… 심혈관 질환 사망 위험 34% 높다
 						
-						임신 초기: 임신 초기는 ‘입덧’이라고 부르는 메스꺼움, 구토 등으로 탈수가 생길 수 있고 이에 따른 어지럼증이 있을 수 있다. 일단은 수분을 충분히 섭취하고 일어날 때는 되도록 천천히 일어나보자. 식사를 잘 하지 못하고 계속 구토를 할 경우 전해질 보충을 위해 가끔은 스포츠 음료를 마시고 혈액 순환을 위해 압박 양말을 신는 것도 도움이 된다.
+						미국의사협회의 국제 학술지(JAMA Network Open)에 장시간 앉아서 일하는 사람은 모든 원인에 의한 사망 위험이 16% 높고, 심혈관 질환으로 인한 사망 위험은 34% 높다는 논문이 실렸다. 직장인 48만여 명을 13년 동안 추적 관찰해 신체 활동과 건강 위험의 상관성을 살핀 것이다.
 						
-						충분한 수분을 섭취하고 푹 쉬었는데도 여전히 어지럽거나 숨이 가쁜 증상이 있다면 이상 신호로 여기고 병원을 찾아야 한다. 잠이 들었는데 숨이 차서 깼거나 숨이 가빠 몸을 침대에 완전히 뉘일 수 없는 경우도 심혈관 질환의 신호일 수 있다. 갑자기 정신을 잃었다면 무조건 병원행이다. 2019년 《미국 심장학회지(Journal of the American Heart Association)》에 실린 연구에 따르면 임신 초기 실신은 조산이나 난산을 겪을 위험을 높이고 심장 관련 기저질환이 원인일 가능성이 있다.
+						세계보건기구(WHO)에 따르면 건강에 좋은 신체 활동은 운동 외에도 일어서서 전화 통화, 물건 옮기기, 청소 등 몸을 움직이는 다양한 활동을 말한다. 집에서도 오래 앉아 있는 습관이 지속되면 혈관병, 대장암 등 여러 질병 위험이 높아진다. 일상에서 움직여야 건강을 지킬 수 있다.
 						
-						임신 2기(14~27주): 보통 안정기인 2기에 접어들면 입덧이 사라지면서 식욕이 늘고 기운도 나기 시작한다. 이에 따라 어지럼증도 자연스럽게 사라지므로 여전히 어지럽다면 병원을 찾는 것이 좋다. 보통은 신경학적인 이유로 현기증이 생기거나 자궁이 커짐에 따라 산모의 혈관이 눌려 혈액순환이 잘 되지 않는 것이 원인일 수 있다.
+						“귀찮아서”… “지금 당장 일어나 거실이라도 걸으세요”
 						
-						임신 3기(28~40주): 임신 후반부인 3기에 생기는 어지럼증은 흔히 임신중독증으로 알고 있는 자간전증이나 고혈압 관련 장애가 원인일 수 있어 세심한 주의가 필요하다. 자간전증은 임신에 영향을 미칠 수 있는 위험한 질환으로 보통 임신 20주 이후에 생길 수 있다.
+						정식 운동을 하려먼 복장, 기구, 이동 거리 등이 필요하다. 무척 번거롭고 날씨도 춥다. 이럴 때 집에서 몸을 움직여보자. 소파에 누워 있지 말고 일어서서 스마트폰이나 TV를 보는 것이다. 거실 끝과 끝을 왕복하거나 발뒤꿈치를 들어 올리는 종아리 근력 운동도 좋다. 무릎이 괜찮으면 스쿼트를 통해 허벅지 근력을 단련해보자. 집안 청소는 훌륭한 신체 활동이다. 비싼 헬스 클럽 운동만 할 게 아니다.
 						
-						산모 혈압이 높아지면 태아에게로 흘러가는 혈액량이 줄어 부정적인 영향을 줄 수 있다. AHA 2021년 보고서에 따르면 자간전증으로 인해 조산을 하거나 아이가 임신 주수에 비해 작게 태어날 가능성이 있다. 산모의 경우 출산 후 심혈관 질환 등의 발병 위험이 커지고 심하면 사망에 이르기도 한다.
+						몸의 경고 신호… 혈압-혈당 관리, 금연, 싱겁게 먹기 등
 						
-						따라서 이 시기 어지럼증이 있다면 수시로 혈압을 체크하고 소변에 이상은 없는지, 혹은 다른 증상은 없는지 유심히 살펴야 한다. 보통 고혈압이 지속돼 소변 단백질 수치가 늘거나 혈소판이 감소하고 간이나 신장 문제, 폐에 물이 차거나 신경학적 문제가 생기면 자간전증으로 진단한다.
+						교통사고처럼 어느 날 갑자기 심혈관 질환이 생기는 것이 아니다. 높은 혈압-혈당, 고지혈증(이상지질혈증), 비만, 흡연, 짜게 먹는 식습관, 운동 부족 등이 출발점이다. 건강 검진에서 나쁜 성적표를 받았는데도 몸 관리를 하지 않으면 혈관병 위험이 높다. 심근경색증까지 가면 일상생활이 험난하다. 심장병 예방도 혈압-혈당, 고지혈증 관리가 기본이다. 당연히 담배를 끊고 덜 짜게 먹는 등 음식도 조심해야 한다.
 						
+						자녀의 건강에도 영향… 나쁜 습관 공유하지 않도록 해야
 						
-						출산 후: 출산을 했다고 해도 끝이 아니다. 매우 드문 경우이기는 하지만 출산 후 심근병증으로 산모가 심부전을 일으키는 경우도 있다. 심근병증은 심장 근육이 손상되고 약해져 제대로 일을 하지 못하는 상태를 말한다. 대표적인 증상이 현기증과 호흡 곤란으로 출산을 했다고 해도 어지럼증이 지속되고 숨이 가쁘다면 바로 의료진을 찾아 원인이 무엇인지 확인해야 한다.
+						심장병도 가족력이 있다. 하지만 같은 식단을 공유하는 등 일상의 습관이 더 큰 영향을 미친다. 움직이기 싫어하고 짠 음식을 좋아하는 경우 어린 자녀들도 닮는다. 가족 중에 고혈압, 심장병 환자가 많이 나오는 이유다.
+						
+						지금 중년 이상의 나이라면 혈관병 예방-관리에 집중해야 한다. 병치레를 오래 하면 생업에 바쁜 자녀들에게 엄청난 부담을 준다. 내 건강을 지켜야 아들, 딸이 편하다. 간병비 때문에 고민하는 일이 없도록 해야 한다.
 					</textarea>
 					<script id="smart" type="text/javascript">
 						var oEditors = [];
@@ -249,9 +248,13 @@
 						});
 					</script>
 				</div>
-				<span class="submit" id="submit"><a href="viewnews.jsp">수정완료</a></span>
-				<span class="cancel" id="cancel"><a href="viewnews.jsp">취소</a></span>
 			</td>
 		</tr>
-	</table>
-<%@ include file="../admininclude/newstail.jsp" %>
+		<tr>
+			<td>
+				<span class="submit" id="submit"><a href="adminnewsview.jsp">등록</a></span>
+				<span class="cancel" id="cancel"><a href="adminnewsview.jsp">취소</a></span>
+			</td>
+		</tr>
+	</form>
+<%@ include file="../admininclude/tail.jsp" %> 
