@@ -14,11 +14,11 @@ import javax.mail.internet.MimeMessage;
 public class smtp 
 {
 
-	// ±¸±Û ÀÌ¸ŞÀÏ
+	// êµ¬ê¸€ ì´ë©”ì¼
 	static final String user_email 	= "ckksa111@gmail.com";
-	// ±¸±Û ºñ¹ø
+	// êµ¬ê¸€ ë¹„ë²ˆ
 	static final String user_pw 	= "ijij hhsx szex tohg";
-	// G-mail »ç¿ë
+	// G-mail ì‚¬ìš©
 	static final String smtp_host 	= "smtp.gmail.com";
 	static final int smtp_port = 465; // TLS : 587, SSL : 465
 
@@ -36,17 +36,17 @@ public class smtp
 			}
 		});
 		
-		Random random = new Random();		//·£´ı ÇÔ¼ö ¼±¾ğ
-		int createNum = 0;  				//1ÀÚ¸® ³­¼ö
-		String ranNum = ""; 				//1ÀÚ¸® ³­¼ö Çüº¯È¯ º¯¼ö
-        int letter    = 6;					//³­¼ö ÀÚ¸´¼ö:6
-		String resultNum = "";  			//°á°ú ³­¼ö
+		Random random = new Random();		//ëœë¤ í•¨ìˆ˜ ì„ ì–¸
+		int createNum = 0;  				//1ìë¦¬ ë‚œìˆ˜
+		String ranNum = ""; 				//1ìë¦¬ ë‚œìˆ˜ í˜•ë³€í™˜ ë³€ìˆ˜
+        int letter    = 6;					//ë‚œìˆ˜ ìë¦¿ìˆ˜:6
+		String resultNum = "";  			//ê²°ê³¼ ë‚œìˆ˜
 		
 		for (int i=0; i < letter; i++) { 
             		
-			createNum = random.nextInt(9);			//0ºÎÅÍ 9±îÁö ¿Ã ¼ö ÀÖ´Â 1ÀÚ¸® ³­¼ö »ı¼º
-			ranNum =  Integer.toString(createNum);  //1ÀÚ¸® ³­¼ö¸¦ StringÀ¸·Î Çüº¯È¯
-			resultNum += ranNum;					//»ı¼ºµÈ ³­¼ö(¹®ÀÚ¿­)À» ¿øÇÏ´Â ¼ö(letter)¸¸Å­ ´õÇÏ¸ç ³ª¿­
+			createNum = random.nextInt(9);			//0ë¶€í„° 9ê¹Œì§€ ì˜¬ ìˆ˜ ìˆëŠ” 1ìë¦¬ ë‚œìˆ˜ ìƒì„±
+			ranNum =  Integer.toString(createNum);  //1ìë¦¬ ë‚œìˆ˜ë¥¼ Stringìœ¼ë¡œ í˜•ë³€í™˜
+			resultNum += ranNum;					//ìƒì„±ëœ ë‚œìˆ˜(ë¬¸ìì—´)ì„ ì›í•˜ëŠ” ìˆ˜(letter)ë§Œí¼ ë”í•˜ë©° ë‚˜ì—´
 		}
 
 		try {
@@ -54,16 +54,16 @@ public class smtp
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user_email));
 
-			// ¹Ş´Â ÀÌ¸ŞÀÏ
+			// ë°›ëŠ” ì´ë©”ì¼
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
-			// Á¦¸ñ
-			message.setSubject("MHS ÀÎÁõ¹øÈ£");
+			// ì œëª©
+			message.setSubject("MHS ì¸ì¦ë²ˆí˜¸");
 
-			// ³»¿ë ÀÎÁõ¹øÈ£
+			// ë‚´ìš© ì¸ì¦ë²ˆí˜¸
 			message.setText(resultNum);
 
-			// ¹ß¼Û
+			// ë°œì†¡
 			Transport.send(message);
 			
 			return resultNum;
