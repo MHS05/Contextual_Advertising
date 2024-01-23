@@ -1,19 +1,19 @@
-//´ñ±Û Á¤º¸ Å¬·¡½º
+//ëŒ“ê¸€ ì •ë³´ í´ë˜ìŠ¤
 package mhs.vo;
 
 public class ReplyVO 
 {
-	private String rno;    	 //´ñ±Û¹øÈ£
-	private String no;    	 //°Ô½Ã¹°¹øÈ£
-	private String uno;   	 //È¸¿ø¹øÈ£
-	private String id;    	 //È¸¿ø¾ÆÀÌµğ
-	private String rnote; 	 //´ñ±Û³»¿ë
-	private String rdate;  	 //ÀÛ¼ºÀÏ
+	private String rno;    	 //ëŒ“ê¸€ë²ˆí˜¸
+	private String no;    	 //ê²Œì‹œë¬¼ë²ˆí˜¸
+	private String uno;   	 //íšŒì›ë²ˆí˜¸
+	private String id;    	 //íšŒì›ì•„ì´ë””
+	private String rnote; 	 //ëŒ“ê¸€ë‚´ìš©
+	private String rdate;  	 //ì‘ì„±ì¼
 	
-	//Ãß°¡ º¯¼ö ¼³Á¤
-	private String name;     //È¸¿øÀÌ¸§	
-	private String nickname; //È¸¿ø´Ğ³×ÀÓ	
-	private String title;    //±ÛÁ¦¸ñ	
+	//ì¶”ê°€ ë³€ìˆ˜ ì„¤ì •
+	private String name;     //íšŒì›ì´ë¦„	
+	private String nickname; //íšŒì›ë‹‰ë„¤ì„	
+	private String title;    //ê¸€ì œëª©	
 	
 	
 	public ReplyVO()

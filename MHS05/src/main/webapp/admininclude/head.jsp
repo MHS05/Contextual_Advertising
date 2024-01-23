@@ -46,7 +46,7 @@ if(loginVO == null)
 				<tr>
 					<td class="nav">
 						<div>
-							<a href="adminnews.jsp"><h1>건강소식</h1></a>
+							<a href="../admin/adminnews.jsp"><h1>건강소식</h1></a>
 						</div> 
 						<div>
 							<a href="admincategory.jsp"><h1>카테고리</h1></a>

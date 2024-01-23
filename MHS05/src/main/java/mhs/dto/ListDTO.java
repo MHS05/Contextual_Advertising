@@ -1,4 +1,4 @@
-//�Խù��� ����� ��ȸ�ϴ� Ŭ����
+//게시물의 목록을 조회하는 클래스
 package mhs.dto;
 
 import java.util.*;
@@ -7,11 +7,11 @@ import mhs.vo.*;
 
 public class ListDTO extends DBManager
 {
-	//��ü �Խù��� ������ ��´�.
+	//전체 게시물의 갯수를 얻는다.
 	//type : N, F, TY, TE, SY, SE 
-	//type : J �Ǵ� H 
+	//type : J 또는 H 
 	//type : F, TY, TE, SY, SE 
-	//keyword : �˻� Ű����
+	//keyword : 검색 키워드
 	public int GetTotal(String type,String keyword)
 	{
 		this.DBOpen();
@@ -28,15 +28,15 @@ public class ListDTO extends DBManager
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//�Խù��� ����� ��´�.
+	//게시물의 목록을 얻는다.
 	//type : F, TY, TE, SY, SE 
-	//keyword : �˻� Ű����	
+	//keyword : 검색 키워드	
 	public ArrayList<CommunityVO> GetList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -52,12 +52,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//���񿡼� �˻�
+		//제목에서 검색
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by no desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -113,15 +113,15 @@ public class ListDTO extends DBManager
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//�Խù��� ����� ��´�.
+	//게시물의 목록을 얻는다.
 	//type : F, TY, TE, SY, SE 
-	//keyword : �˻� Ű����	
+	//keyword : 검색 키워드	
 	public ArrayList<UserVO> GetuList(int pageNo,String isretire,String keyword, String newest, String gender)
 	{
 		ArrayList<UserVO> list = new ArrayList<UserVO>();
@@ -132,7 +132,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select uno,id,date(joindate) as joindate,name,nickname,gender,birth,con,isretire ";
 		sql += "from user ";
-		//Ż�𿩺�
+		//탈퇴여부
 		if(!isretire.equals(""))
 		{ 
 			sql += "where isretire = '" + isretire + "' ";
@@ -145,7 +145,7 @@ public class ListDTO extends DBManager
 		{
 			sql += "and gender = '" + gender +"' ";
 		}
-		//id���� �˻�
+		//id에서 검색
 		if((!isretire.equals("") || !gender.equals("")) && !keyword.equals("") )
 		{
 			sql += "and nickname like '%" + _R(keyword) + "%' ";
@@ -154,7 +154,7 @@ public class ListDTO extends DBManager
 		{
 			sql += "where nickname like '%" + _R(keyword) + "%' ";
 		}
-		//������ȣ��
+		//유저번호순
 		if(newest.equals("newest"))
 		{
 			sql += "order by uno desc ";
@@ -185,7 +185,7 @@ public class ListDTO extends DBManager
 		return list;
 	}
 	
-	//��ȸ�� ���������� ����Ʈ �̱�
+	//조회수 높은순으로 리스트 뽑기
 	public ArrayList<CommunityVO> GetHighHitList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -200,12 +200,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//���񿡼� �˻�
+		//제목에서 검색
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by hit desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -228,7 +228,7 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
-	//��ȸ�� ���������� ����Ʈ �̱�
+	//조회수 높은순으로 리스트 뽑기
 	public ArrayList<CommunityVO> GetLowHitList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -243,12 +243,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//���񿡼� �˻�
+		//제목에서 검색
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by hit ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -280,7 +280,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from category ";
-		//����(J-JAVA,H-HTML,C-CSS)
+		//구분(J-JAVA,H-HTML,C-CSS)
 		sql += "where ptype = '" + type + "' ";
 		if( !keyword.equals("") )
 		{
@@ -301,14 +301,14 @@ public class ListDTO extends DBManager
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
 	}
 	
 	
-	//ȸ����ü �� ���� ���ϱ�
+	//회원전체 글 갯수 구하기
 	public int GetUserCTotal(String uno)
 	{
 		this.DBOpen();
@@ -317,12 +317,12 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from community ";
-		//����(J-JAVA,H-HTML,C-CSS)
+		//구분(J-JAVA,H-HTML,C-CSS)
 		sql += "where uno = '" + uno + "' ";
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
@@ -336,18 +336,18 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from reply ";
-		//����(J-JAVA,H-HTML,C-CSS)
+		//구분(J-JAVA,H-HTML,C-CSS)
 		sql += "where uno = '" + uno + "' ";
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//ȸ���ۼ��� ����Ʈ�� ���
+	//회원작성글 리스트에 담기
 	public ArrayList<CommunityVO> GetUserCList(int pageNo,String uno)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -362,7 +362,7 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where uno = '" + uno + "' ";
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by no desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -385,7 +385,7 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
-	//ȸ���ۼ� ��� ����Ʈ�� ���
+	//회원작성 댓글 리스트에 담기
 		public ArrayList<ReplyVO> GetUserRList(int pageNo,String uno)
 		{
 			ArrayList<ReplyVO> list = new ArrayList<ReplyVO>();
@@ -400,7 +400,7 @@ public class ListDTO extends DBManager
 			sql += "(select title from community where no = reply.no) as title ";
 			sql += "from reply ";
 			sql += "where uno = '" + uno + "' ";
-			//�ۼ��� ��������
+			//작성일 내림차순
 			sql += "order by rno desc ";
 			int startno = 10 * (pageNo - 1);
 			sql += "limit " + startno + ",10 ";		
@@ -424,9 +424,9 @@ public class ListDTO extends DBManager
 			return list;		
 		}
 	
-	//�Խù��� ����� ��´�.
-	//type : J �Ǵ� H 
-	//keyword : �˻� Ű����	
+	//게시물의 목록을 얻는다.
+	//type : J 또는 H 
+	//keyword : 검색 키워드	
 	public ArrayList<CategoryVO> GetcList(int pageNo,String ptype,String keyword, String tag_age, String tag_pgender, String tag_pcon)
 	{
 		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
@@ -437,9 +437,9 @@ public class ListDTO extends DBManager
 		
 		sql  = "select pno,pname,age,ppimage,pfimage,age,pgender,pcon,tag_age,tag_pgender,tag_pcon,month_start,month_end ";
 		sql += "from category ";
-		//����(J-JAVA,H-HTML,C-CSS)
+		//구분(J-JAVA,H-HTML,C-CSS)
 		sql += "where ptype = '" + ptype + "' ";
-		//���񿡼� �˻�
+		//제목에서 검색
 		if( !keyword.equals("") )
 		{
 			sql += "and pname like '%" + _R(keyword) + "%' ";
@@ -450,14 +450,14 @@ public class ListDTO extends DBManager
 		}	
 		if( !tag_pgender.equals("") )
 		{
-			sql += "and (tag_pgender = '" + tag_pgender + "' or tag_pgender = '����ҹ�') ";
+			sql += "and (tag_pgender = '" + tag_pgender + "' or tag_pgender = '남녀불문') ";
 		}	
 		if( !tag_pcon.equals("") )
 		{
 			sql += "and tag_pcon = '" + tag_pcon + "' ";
 		}	
 		
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by pno desc ";
 		int startno = 6 * (pageNo - 1);
 		sql += "limit " + startno + ",6 ";		
@@ -493,7 +493,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from category ";
-		//����(J-JAVA,H-HTML,C-CSS)
+		//구분(J-JAVA,H-HTML,C-CSS)
 		sql += "where (month_start <= month_end";
 		sql += " and " + month + " between month_start and month_end) ";
 		sql += " or (month_start > month_end";
@@ -502,7 +502,7 @@ public class ListDTO extends DBManager
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //��ü ������ ����
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
 		
 		this.DBClose();
 		return total;
@@ -525,7 +525,7 @@ public class ListDTO extends DBManager
 		sql += " and (" + month + "  between month_start AND 12";
 		sql += " OR " + month + " between 1 AND month_end))";
 		
-		//�ۼ��� ��������
+		//작성일 내림차순
 		sql += "order by pno desc ";
 		int startno = listNum * (pageNo - 1);
 		sql += "limit " + startno + "," + listNum;		
@@ -550,12 +550,12 @@ public class ListDTO extends DBManager
 	}
 	
 	
-	//�Խù��� ����� ��´�.
+	//게시물의 목록을 얻는다.
 		//type : F, TY, TE, SY, SE 
-		//keyword : �˻� Ű����	
+		//keyword : 검색 키워드	
 		public ArrayList<AdVO> GetadList(int pageNo,String type,String keyword)
 		{
-			ArrayList<AdVO> list = new ArrayList<AdVO>();
+			ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
 			
 			this.DBOpen();
 			
@@ -568,20 +568,20 @@ public class ListDTO extends DBManager
 			sql += "(select count(*) from reply where no = community.no) as count ";
 			sql += "from community ";
 			sql += "where type = '" + type + "' ";
-			//���񿡼� �˻�
+			//제목에서 검색
 			if( !keyword.equals("") )
 			{
 				sql += "and title like '%" + _R(keyword) + "%' ";
 			}	
-			//�ۼ��� ��������
+			//작성일 내림차순
 			sql += "order by no desc ";
 			int startno = 10 * (pageNo - 1);
 			sql += "limit " + startno + ",10 ";		
 			this.RunSelect(sql);
 			while( this.GetNext() == true)
 			{
-				AdVO vo = new AdVO();
-				vo.setAdno(this.GetValue("no"));
+				CommunityVO vo = new CommunityVO();
+				vo.setNo(this.GetValue("no"));
 				vo.setUno(this.GetValue("uno"));
 				vo.setTitle(this.GetValue("title"));
 				vo.setWdate(this.GetValue("wdate"));

@@ -12,9 +12,9 @@ public class DBManager
 	private Statement  stmt;
 	private ResultSet  rs;
 	
-	private String     host;   //DB¿¬°áÁ¤º¸
-	private String     userid; //DB »ç¿ëÀÚ ID
-	private String     userpw; //DB »ç¿ëÀÚ ¾ÏÈ£ 
+	private String     host;   //DBì—°ê²°ì •ë³´
+	private String     userid; //DB ì‚¬ìš©ì ID
+	private String     userpw; //DB ì‚¬ìš©ì ì•”í˜¸ 
 	
 	public DBManager()
 	{
@@ -41,11 +41,11 @@ public class DBManager
 		this.userpw = userpw;
 	}
 
-	//DB¿¡ ¿¬°áÇÑ´Ù.
-	//¸®ÅÏ°ª : true-¿¬°á¼º°ø, false-¿¬°á½ÇÆĞ
+	//DBì— ì—°ê²°í•œë‹¤.
+	//ë¦¬í„´ê°’ : true-ì—°ê²°ì„±ê³µ, false-ì—°ê²°ì‹¤íŒ¨
 	public boolean DBOpen()
 	{
-		//jdbc ¶óÀÌºê·¯¸® ·Îµù
+		//jdbc ë¼ì´ë¸ŒëŸ¬ë¦¬ ë¡œë”©
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -54,7 +54,7 @@ public class DBManager
 			e.printStackTrace();
 			return false;
 		}		
-		//µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°áÇÑ´Ù.	
+		//ë°ì´í„°ë² ì´ìŠ¤ì— ì—°ê²°í•œë‹¤.	
 		try 
 		{
 			conn =  DriverManager.getConnection(host,userid,userpw);
@@ -66,7 +66,7 @@ public class DBManager
 		return true;
 	}
 		
-	//DB ¿¬°áÀ» Á¾·áÇÑ´Ù.
+	//DB ì—°ê²°ì„ ì¢…ë£Œí•œë‹¤.
 	public void DBClose()
 	{
 		try 
@@ -78,7 +78,7 @@ public class DBManager
 		}		
 	}
 	
-	//CUD(Insert,Delete,Update) ±¸¹®À» ½ÇÇà
+	//CUD(Insert,Delete,Update) êµ¬ë¬¸ì„ ì‹¤í–‰
 	public boolean RunCommand(String sql)
 	{
 		try
@@ -94,7 +94,7 @@ public class DBManager
 		return true;
 	}
 	
-	//R(Select) ±¸¹®À» ½ÇÇàÇÑ´Ù. 
+	//R(Select) êµ¬ë¬¸ì„ ì‹¤í–‰í•œë‹¤. 
 	public boolean RunSelect(String sql)
 	{
 		try
@@ -110,7 +110,7 @@ public class DBManager
 		return true;
 	}	
 	
-	//ResultSetÀÇ next() È£Ãâ
+	//ResultSetì˜ next() í˜¸ì¶œ
 	public boolean GetNext()
 	{
 		try 
@@ -123,7 +123,7 @@ public class DBManager
 		}		
 	}	
 	
-	//ResultSetÀÇ getString() È£Ãâ
+	//ResultSetì˜ getString() í˜¸ì¶œ
 	public String GetValue(String colname)
 	{
 		try 
@@ -135,7 +135,7 @@ public class DBManager
 			return null;
 		}				
 	}	
-	//ÀÛÀº µû¿ÈÇ¥ 1°³¸¦ 2°³·Î º¯È¯
+	//ì‘ì€ ë”°ì˜´í‘œ 1ê°œë¥¼ 2ê°œë¡œ ë³€í™˜
 	public String _R(String value)
 	{
 		return value.replace("'", "''");
