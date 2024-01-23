@@ -38,28 +38,22 @@
 		top      : 330px;
 		left     : 600px;
 	}
-	.type
+	.mainyn
 	{
 		position : absolute;
 		top      : 390px;
 		left     : 600px;
 	}
-	.mainyn
+	.image
 	{
 		position : absolute;
 		top      : 450px;
 		left     : 600px;
 	}
-	.image
-	{
-		position : absolute;
-		top      : 510px;
-		left     : 600px;
-	}
 	.btn-upload
 	{
 		position         : absolute;
-		top              : 525px;
+		top              : 465px;
 		left             : 780px;
 		padding          : 10px 10px;
 		border-radius    : 10px;
@@ -68,7 +62,7 @@
 	.upload
 	{
 		position : absolute;
-		top      : 500px;
+		top      : 480px;
 		left     : 920px;
 	}
 	#image 
@@ -78,13 +72,13 @@
 	.displayi
 	{	
 		position : absolute;
-		top      : 565px;
+		top      : 500px;
 		left     : 600px;
 	}
 	.image_container
 	{
 		position    : absolute;
-		top         : 630px;
+		top         : 570px;
 		left        : 600px;
 		height      : 300px;
 		width       : 950px;
@@ -95,13 +89,13 @@
 	.note
 	{
 		position : absolute;
-		top      : 930px;
+		top      : 880px;
 		left     : 600px;
 	}
 	.noteinput
 	{
 		position : absolute;
-		top      : 1000px;
+		top      : 950px;
 		left     : 600px;
 		width    : 960px;
 	}
@@ -186,18 +180,6 @@
 				<div class="title">
 					<h2>제목 : 
 						<input id=" title" type="text" style="width:870px;height:30px;" placeholder="제목을 입력해주세요.">
-					</h2>
-				</div>
-				<div class="type">
-					<h2>카테고리 : 
-						<select style="width:100px;">
-							<option value="다이어트">다이어트</option>
-							<option value="음식" selected>음식</option>
-							<option value="운동">운동</option>
-							<option value="영양제">영양제</option>
-							<option value="남성건강">남성건강</option>
-							<option value="여성건강">여성건강</option>
-						</select>
 					</h2>
 				</div>
 				<div class="mainyn" id="mainyn">
