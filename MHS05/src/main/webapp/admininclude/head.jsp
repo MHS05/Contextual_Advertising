@@ -61,7 +61,7 @@ if(loginVO == null)
 				</tr>
 			</table>
 		</form>
-		<table border="1" align="center" width="1200px">
+		<table border="0" align="center" width="1200px">
 			<tr>
 				<td height="100px">
 					<a href="member.jsp"><h1>사용자관리</h1></a> 
@@ -70,5 +70,5 @@ if(loginVO == null)
 					<div class="admin">
 						<a href="member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
-					<table border="1" width="910px" align="center">
+					<table border="0" width="910px" align="center">
 						<!-- 여기까찌 -->

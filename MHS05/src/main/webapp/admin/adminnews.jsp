@@ -26,7 +26,7 @@
 </style>
 <tr>
 	<td width="100%">
-		<table border="1" align="center" width="100%" height="800px" >
+		<table border="0" align="center" width="100%" height="800px" >
 			<tr align="center">
 				<td colspan="3" width="700px" height="500px"><a href="adminnewsview.jsp"><img style="width:100%px; height:100%px "src="../image/news1.jpg"></a></td>
 				<td rowspan="2" valign="top" width="220px" align="right">
