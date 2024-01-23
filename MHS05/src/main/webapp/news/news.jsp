@@ -32,22 +32,22 @@
 					<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
 						<table border="0" align="left" width="200px" height="50px">
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>다이어트</b></a></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=D"><b>다이어트</b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b><u>음식</u></b></a></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=F"><b><u>음식</u></b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>운동</b></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=E"><b>운동</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>영양제</b></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=N"><b>영양제</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>남성건강</b></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=M"><b>남성건강</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>여성건강</b></td>
+								<td style="font-size: 20px;"><a href="newslist.jsp?category=F"><b>여성건강</b></td>
 							</tr>
 							<tr height="50px">
 								<td></td>
@@ -69,36 +69,15 @@
 												<div><font size="5"><b><u>TOP 10<br>News</u></b></font><br>2024-01-03 10:55 기준</div> 
 											</td>
 										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>1번째 뉴스</a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>2번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>3번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>4번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>5번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>6번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>7번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>8번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>9번째 뉴스</b></a><br><hr></td>
-										</tr>
-										<tr height="40px">
-											<td style="font-size: 20px;"><a href="category.jsp"><b>10번째 뉴스</b></a><br><hr></td>
-										</tr>
+										<%for(int i = 1; i <= 10; i++)
+										{
+											%>
+												<tr height="40px">
+													<td style="font-size: 20px;"><a href="newsview.jsp"><b><%= i %>번째 뉴스</a><br><hr></td>
+												</tr>
+											<%
+										}
+										%>
 									</table>
 								</div>							
 							</td>
@@ -106,10 +85,10 @@
 						<tr>
 							<td colspan="3" height="150px" valign="top">
 								<span id="headline">Headline News</span><br>
-								<font style="font-family: 'Black Han Sans', sans-serif;
+								<a href="newsview.jsp"><font style="font-family: 'Black Han Sans', sans-serif;
 										     font-family: 'Noto Sans KR', sans-serif;
 										     font-size: xx-large;
-										     ">“아침 꼭 드세요”… 달걀·양배추·귀리 먹으면 체중에 변...</font>
+										     ">“아침 꼭 드세요”… 달걀·양배추·귀리 먹으면 체중에 변...</font></a> 
 							</td>
 						</tr>
 						<tr>

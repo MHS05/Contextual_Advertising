@@ -37,36 +37,15 @@
 									<div><font size="5"><b><u>TOP 10<br>News</u></b></font><br>2024-01-03 10:55 기준</div> 
 								</td>
 							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>1번째 뉴스</a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>2번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>3번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>4번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>5번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>6번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>7번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>8번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>9번째 뉴스</b></a><br><hr></td>
-							</tr>
-							<tr height="40px">
-								<td style="font-size: 20px;"><a href="category.jsp"><b>10번째 뉴스</b></a><br><hr></td>
-							</tr>
+							<%for(int i = 1; i <= 10; i++)
+							{
+								%>
+									<tr height="40px">
+										<td style="font-size: 20px;"><a href="category.jsp"><b><%= i %>번째 뉴스</a><br><hr></td>
+									</tr>
+								<%
+							}
+							%>
 						</table>
 					</div>							
 				</td>
