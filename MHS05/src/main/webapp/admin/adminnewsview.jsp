@@ -68,7 +68,7 @@
 <tr>
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>다이어트</h2>
-			<div align="center" id="modbutton">수정</div>
+			<div align="center" id="modbutton"><a href="../admin/modifynews.jsp">수정</a></div>
 			<div align="center" id="delbutton">삭제</div>
 		</div>
 		<div id="newstitle"><h2>“당장 일어나세요”… 심장 혈관 망가지는 최악의 습관은?</h2>

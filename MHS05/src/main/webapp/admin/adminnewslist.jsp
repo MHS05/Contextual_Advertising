@@ -42,19 +42,23 @@
 </style>
 <tr>
 	<td valign="top">
-		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>³²¼º°Ç°­</h2>
-			<a href="writenews.jsp"><div align="center" id="delbutton">µî·Ï</div></a>
+		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>ë‚¨ì„±ê±´ê°•</h2>
+
+			<div align="center" id="delbutton"><a href="writenews.jsp">ë“±ë¡</a></div>
 		</div>
 		<div style="border-bottom: 1px solid lightgray; position: relative;">
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
-						<a href="adminnewsview.jsp">
+
+						<h2><a href="../admin/adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
+
+					
+
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -71,12 +75,12 @@
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
+						<h2><a href="adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
 						<a href="adminnewsview.jsp">
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -93,12 +97,12 @@
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
+						<h2><a href="adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
 						<a href="adminnewsview.jsp">
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -115,12 +119,12 @@
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
+						<h2><a href="adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
 						<a href="adminnewsview.jsp">
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -137,12 +141,12 @@
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
+						<h2><a href="adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
 						<a href="adminnewsview.jsp">
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -159,12 +163,12 @@
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="adminnewsview.jsp">[ÇÑÄÆ°Ç°­]°íµ¶»ç 50´ë °¡Àå ¸¹¾Æ&#8230;5¸í Áß 3¸í ¼ú ÃëÇØ »ç¸Á</a></h2>
+						<h2><a href="adminnewsview.jsp">[í•œì»·ê±´ê°•]ê³ ë…ì‚¬ 50ëŒ€ ê°€ìž¥ ë§Žì•„&#8230;5ëª… ì¤‘ 3ëª… ìˆ  ì·¨í•´ ì‚¬ë§</a></h2>
 						<a href="adminnewsview.jsp">
 						<div style="
 							 color: #999999; font-size: 16px;
                           		 margin: 10px 0px 0px;
-                          		 padding: 0px 0px 10px">È¥¹äÈ¥¼úÈ¥»ìÈ¥Á× ½Ã´ë, È¥ÀÚ ¹ä¸Ô°í È¥ÀÚ ¼ú¸¶½Ã°í È¥ÀÚ ¿Ü·Ó°Ô »ì´Ù È¥ÀÚ ¾µ¾µÈ÷ Á×¾î°¡´Â °ÍÀ» ÀÏÄÃÀ½ 59¼¼ ¹Ú¸ð¾¾¿Í 46¼¼ ±è¸ð¾¾´Â °¢±â ´Ù¸¥ ½Ã°£¿¡ ´Ù¸¥ °÷¿¡¼­ »ç¸Á...</div></a>
+                          		 padding: 0px 0px 10px">í˜¼ë°¥í˜¼ìˆ í˜¼ì‚´í˜¼ì£½ ì‹œëŒ€, í˜¼ìž ë°¥ë¨¹ê³  í˜¼ìž ìˆ ë§ˆì‹œê³  í˜¼ìž ì™¸ë¡­ê²Œ ì‚´ë‹¤ í˜¼ìž ì“¸ì“¸ížˆ ì£½ì–´ê°€ëŠ” ê²ƒì„ ì¼ì»¬ìŒ 59ì„¸ ë°•ëª¨ì”¨ì™€ 46ì„¸ ê¹€ëª¨ì”¨ëŠ” ê°ê¸° ë‹¤ë¥¸ ì‹œê°„ì— ë‹¤ë¥¸ ê³³ì—ì„œ ì‚¬ë§...</div></a>
                         <div style="padding: 20px 0px 0px;
                       		 font-size: 12px;
                       		 color: #777777;">
@@ -181,7 +185,7 @@
 </tr>
 <tr>
 	<td align="center">
-		<br>¢¸ 1 2 3 4 5 6 7 8 9 ¢º
+		<br>â—€ 1 2 3 4 5 6 7 8 9 â–¶
 	</td>
 </tr>
 <%@ include file="../admininclude/newstail.jsp" %>
