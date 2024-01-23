@@ -6,7 +6,7 @@
 			</tr>
 			<tr>
 				<td height="80px">
-					<div><a href="adminnews.jsp"><h1>건강소식</h1></a></div> 
+					<div><a href="../admin/adminnews.jsp"><h1>건강소식</h1></a></div> 
 				</td>
 			</tr>
 			<tr height="310px">
@@ -14,22 +14,22 @@
 					<div style="width: 220px; height: 310px; box-shadow: 3px 3px 3px 3px lightgray;">
 						<table border="0" width="200px" height="50px">
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>다이어트</b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>다이어트</b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>음식</b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>운동</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>운동</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>영양제</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>영양제</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnewslist.jsp"><b>남성건강</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>남성건강</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="adminnews.jsp"><b>여성건강</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>여성건강</b></td>
 							</tr>
 						</table>
 					</div>
@@ -37,12 +37,12 @@
 			</tr>
 			<tr>
 				<td height="80px">
-					<a href="admincategory.jsp"><h1>카테고리</h1></a>
+					<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>
 				</td>
 			</tr>
 			<tr>
 				<td height="80px">
-					<a href="adminclist.jsp"><h1>커뮤니티</h1></a>
+					<a href="../admin/adminclist.jsp"><h1>커뮤니티</h1></a>
 				</td>
 			</tr>
 			<tr>
