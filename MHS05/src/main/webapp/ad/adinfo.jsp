@@ -5,13 +5,13 @@
 		<td colspan="2"><h1>오마이바디</h1></td>
 	</tr>
 	<tr>
-		<td height="50px" align="right">
-			<a href="admodify.jsp"><span id="span1" style="background-color: #4dd5b0;">수정</span></a>
-			<a href="addelete.jsp"><span id="span1" style="background-color: lightgray;">삭제</span></a>
-		</td>
+		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
-		<td colspan="2"><hr></td>
+		<td colspan="2" align="right">
+			<a href="admodify.jsp"><span id="span3" style="background-color: #4dd5b0;">수정</span></a>
+			<a href="addelete.jsp"><span id="span3" style="background-color: lightgray;">삭제</span></a>
+		</td>
 	</tr>
 	<tr>
 		<td height="50px"></td>
@@ -37,7 +37,7 @@
 	</tr>
 	<tr>
 		<td>
-			<table border="1" width="800px" height="100px" align="center">
+			<table border="1" style="border-collapse: collapse; width:800px; height:100px; text-align:center" align="center">
 				<tr>
 					<td></td>
 					<td>날짜</td>

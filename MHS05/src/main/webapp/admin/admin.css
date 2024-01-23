@@ -85,7 +85,7 @@
 		float: left;
 	}
 	
-		#span1
+	#span1
 	{
 	
 		padding: 7px 30px;
@@ -100,6 +100,17 @@
 		background-color : #4dd5b0;
 		border-radius: 15px;
 		cursor: pointer;
+	}
+	
+	#span3
+	{
+	
+		position : relative;
+		bottom : 70px;
+		padding: 7px 30px;
+		background-color : #66FFCC;
+		border-radius: 5px;
+		text-align: center;
 	}
 	
 

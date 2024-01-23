@@ -79,22 +79,11 @@ function Dodelete()
 		<td align="center" width="10px">
 			<input type="checkbox" name="delNo" id="delNo"  value="selectall" onclick='selectAll(this)'>
 		</td>
-		<td align="center" width="30px">번호</td>
-		<td align="center" width="30px">
-			<select name="tag_age" id="tag_age" style="width:80px; height:30px;" onchange="doSearch();">
-	           <option value="">카테고리</option>
-	           <option value="다어이트">다이어트</option>
-	           <option value="음식">음식</option>
-	           <option value="운동">운동</option>
-	           <option value="영양제">영양제</option>
-	           <option value="남성건강">남성건강</option>
-	           <option value="여성건강">여성건강</option>
-    		</select>
-		</td>
+		<td align="center" width="50px">번호</td>
 		<td align="center" width="100px">상품이름</td>
-		<td align="center" width="50px">키워드</td>
-		<td align="center" width="50px">작성일</td>
-		<td align="center" width="50px">노출횟수</td>
+		<td align="center" width="200px">키워드</td>
+		<td align="center" width="100px">작성일</td>
+		<td align="center" width="100px">노출횟수</td>
 	</tr>
 	<tr>
 		<td colspan="7"><hr></td>
@@ -110,9 +99,8 @@ function Dodelete()
 			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getNo() %>" onclick='getCheckedCnt()'>
 		</td>
 		<td align="center"><%= SeqNo-- %></td>
-		<td align="center">카테고리</td>
 		<td align="center"><a href="adinfo.jsp">"ㅇㅇㅇ" 광고입니다.</a></td>
-		<td align="center">키워드</td>
+		<td align="center">키워드1, 키워드2, 키워드3</td>
 		<td align="center">2024-01-22</td>
 		<td align="center">9회</td>
 	</tr>

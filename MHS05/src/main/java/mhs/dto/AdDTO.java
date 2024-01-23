@@ -13,7 +13,6 @@ public class AdDTO extends DBManager
 		
 		String sql = "";
 
-	
 		sql += "insert into ad ";
 		sql += "(adno, name, keywords, fimage, pimage)";
 		sql += "values (";
@@ -46,13 +45,8 @@ public class AdDTO extends DBManager
 		{
 			sql += "fimage='"     + _R(vo.getFimage())     + "', ";
 			sql += "pimage='"     + _R(vo.getPimage())     + "', ";
-		}
-		sql += "link='"           + vo.getLink()           + "', ";
-		sql += "type='"           + vo.getType()           + "', ";
-		sql += "name='" 		  + _R(vo.getName())       + "', ";
-		sql += "date_start='"     + vo.getDate_start()     + "', ";
-		sql += "date_end='"       + vo.getDate_end()       + "' ";
-		
+		}		
+		sql += "name='" 		  + _R(vo.getName())       + "' ";
 		
 		sql += "where adno = "  + vo.getAdno();
 		this.RunCommand(sql);
@@ -95,16 +89,11 @@ public class AdDTO extends DBManager
 		AdVO vo = new AdVO();
 		vo.setAdno(adno);
 		vo.setKeywords(this.GetValue("keywords"));
-		vo.setLink(this.GetValue("link"));
 		vo.setFimage(this.GetValue("fimage"));
 		vo.setPimage(this.GetValue("pimage"));
-		vo.setType(this.GetValue("type"));
 		vo.setName(this.GetValue("name"));
-		vo.setDate_start(this.GetValue("date_start"));
-		vo.setDate_end(this.GetValue("date_end"));
 	
 		this.DBClose();
 		return vo;
 	}	
 }
-//
