@@ -121,7 +121,7 @@ window.onload=function()
 </script>
 	<form name="upload" method="post" action="admodifyok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
-			<td colspan="12"><h2><b>광고수정</b></h2><hr></td>
+			<td colspan="12"><h2><b>광고 수정</b></h2><hr></td>
 		</tr>
 		<tr>
 			<td height="50px"></td>
