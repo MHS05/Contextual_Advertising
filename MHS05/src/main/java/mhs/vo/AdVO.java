@@ -5,7 +5,7 @@ import java.util.List;
 public class AdVO 
 {
 	public String adno;		   	    //광고번호
-	public List<String> keywords;   //키워드 리스트
+	public String keywords;  	    //키워드
 	public String link;			    //링크
 	public String fimage;			//이미지_논리
 	public String pimage;			//이미지_물리
@@ -20,7 +20,7 @@ public class AdVO
 	{
 		
 		adno        = "";
-		keywords    = null;
+		keywords    = "";
 		link 	    = "";
 		fimage 	    = "";
 		pimage      = "";
@@ -34,7 +34,7 @@ public class AdVO
 	
 	//getter
 	public String getAdno() 		  {	return adno;		}
-	public List<String> getKeywords() {	return keywords;	}
+	public String getKeywords() 	  {	return keywords;	}
 	public String getLink() 		  {	return link;		}
 	public String getFimage() 		  {	return fimage;		}
 	public String getPimage() 		  {	return pimage;		}
@@ -46,7 +46,7 @@ public class AdVO
 	
 	//setter
 	public void setAdno(String adno) 			   {	this.adno = adno;				}
-	public void setKeywords(List<String> keywords) {	this.keywords = keywords;		}
+	public void setKeywords(String keywords) 	   {	this.keywords = keywords;		}
 	public void setLink(String link) 			   {	this.link = link;				}
 	public void setFimage(String fimage)		   {	this.fimage = fimage;			}
 	public void setPimage(String pimage)		   {	this.pimage = pimage;			}

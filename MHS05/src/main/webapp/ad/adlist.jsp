@@ -64,7 +64,7 @@ function Dodelete()
 	}
 }
 </script>
-<form id="nlistForm" method="get" action="adminnndelete.jsp">
+<form id="nlistForm" method="get" action="addelete.jsp">
 	<tr>
 		<td colspan="7">
 			<a href="javascript:Dodelete();"><div class="dbutton" style="background-color:#FD7064;">선택삭제</div></a>
@@ -155,7 +155,6 @@ function Dodelete()
 				%><a href="adminnlist.jsp?kind=<%= kind %>&page=<%= i %>"><%= i %></a>&nbsp;<%
 			}
 		}
-		
 		//다음 블럭 표시하기
 		if(endBlock < totalPage)
 		{

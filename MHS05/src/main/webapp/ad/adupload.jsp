@@ -121,7 +121,7 @@ window.onload=function()
 </script>
 	<form name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
-			<td colspan="12"><h2><b>±¤°íµî·Ï</b></h2><hr></td>
+			<td colspan="12"><h2><b>±¤°í µî·Ï</b></h2><hr></td>
 		</tr>
 		<tr>
 			<td height="50px"></td>

@@ -3,23 +3,23 @@
 <%@ include file="../admininclude/head.jsp" %> 
 
 <%
-String pno = request.getParameter("adno");
+String adno = request.getParameter("adno");
 if( loginVO == null || adno == null || adno.equals("") )
 {
-	response.sendRedirect("admincategory.jsp");
+	response.sendRedirect("adlist.jsp");
 	return;
 }
-CategoryDTO dto = new CategoryDTO();
+AdDTO dto = new AdDTO();
 AdVO  vo  = dto.Read(adno);
 if( vo == null)
 {
-	response.sendRedirect("admincategory.jsp");
+	response.sendRedirect("adlist.jsp");
 	return;
 }
 
 if(loginVO.getId().equals("admin"))
 {   //包府磊老版快
-	dto.Delete(pno);
+	dto.Delete(adno);
 } 
 
 response.sendRedirect("admincategory.jsp");
