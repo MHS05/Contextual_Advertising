@@ -12,15 +12,15 @@ public class AdDTO extends DBManager
 		String sql = "";
 
 		sql += "insert into ad ";
-		sql += "(name, fimage, pimage) ";
+		sql += "(adname, image, phyimage) ";
 		sql += "values (";
-		sql += "'" + _R(vo.getName())    + "',";
-		sql += "'" + vo.getFimage()      + "',";
-		sql += "'" + vo.getPimage()      + "'";
+		sql += "'" + _R(vo.getAdname())  + "',";
+		sql += "'" + vo.getImage()       + "',";
+		sql += "'" + vo.getPhyimage()    + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
-		sql = "select last_insert_name() as adno ";
+		sql = "select last_insert_id() as adno ";
 		this.RunSelect(sql);
 		this.GetNext();
 		vo.setAdno(this.GetValue("adno"));
@@ -36,12 +36,12 @@ public class AdDTO extends DBManager
 		String sql = "";
 		sql  = "update ad set ";
 		sql += "adno='"           + vo.getAdno()           + "', ";
-		if(!vo.getFimage().equals(""))
+		if(!vo.getImage().equals(""))
 		{
-			sql += "fimage='"     + _R(vo.getFimage())     + "', ";
-			sql += "pimage='"     + _R(vo.getPimage())     + "', ";
+			sql += "image='"     + _R(vo.getImage())     + "', ";
+			sql += "phyimage='"     + _R(vo.getPhyimage())     + "', ";
 		}
-		sql += "name='" 		  + _R(vo.getName())       + "' ";
+		sql += "adname='" 		  + _R(vo.getAdname())       + "' ";
 		
 		
 		sql += "where adno = "  + vo.getAdno();
@@ -72,7 +72,7 @@ public class AdDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select adno, fimage, pimage ";
+		sql  = "select adno, image, phyimage ";
 		sql += "from ad ";
 		sql += "where adno = " + adno;
 		this.RunSelect(sql);
@@ -83,9 +83,9 @@ public class AdDTO extends DBManager
 		}
 		AdVO vo = new AdVO();
 		vo.setAdno(adno);
-		vo.setFimage(this.GetValue("fimage"));
-		vo.setPimage(this.GetValue("pimage"));
-		vo.setName(this.GetValue("name"));
+		vo.setImage(this.GetValue("image"));
+		vo.setPhyimage(this.GetValue("phyimage"));
+		vo.setAdname(this.GetValue("name"));
 	
 		this.DBClose();
 		return vo;

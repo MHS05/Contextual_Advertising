@@ -9,8 +9,8 @@ public class NewsVO
 	public String note;      //내용
 	public String writer;    //작성자
 	public String wdate;     //작성일
-	public String fimage;    //이미지_논리
-	public String pimage;    //이미지_물리
+	public String image;    //이미지_논리
+	public String phyimage;    //이미지_물리
 	public String emotion;   //긍부정
 	
 	public NewsVO() 
@@ -21,8 +21,8 @@ public class NewsVO
 		note     = "";
 		writer   = "";
 		wdate    = "";
-		fimage   = "";
-		pimage   = "";
+		image    = "";
+		phyimage = "";
 		emotion  = "";
 	}
 	
@@ -33,8 +33,8 @@ public class NewsVO
 	public String getNote() 	{	return note;	 }
 	public String getWriter()   {	return writer;	 }
 	public String getWdate()    {	return wdate;	 }
-	public String getFimage()   {	return fimage;	 }
-	public String getPimage()   {	return pimage;	 }
+	public String getImage()    {	return image;	 }
+	public String getPhyimage() {	return phyimage; }
 	public String getEmotion()  {	return emotion;	 }
 	
 	
@@ -45,8 +45,8 @@ public class NewsVO
 	public void setNote(String note) 		  {	 this.note = note;		   }
 	public void setWriter(String writer) 	  {	 this.writer = writer;	   }
 	public void setWdate(String wdate)		  {	 this.wdate = wdate;	   }
-	public void setFimage(String fimage) 	  {	 this.fimage = fimage;	   }
-	public void setPimage(String pimage)  	  {	 this.pimage = pimage;	   }
+	public void setImage(String image) 	      {	 this.image = image;	   }
+	public void setPhyimage(String phyimage)  {	 this.phyimage = phyimage; }
 	public void setEmotion(String emotion) 	  {	 this.emotion = emotion;   }
 	
 }

@@ -34,7 +34,7 @@
 						<table style="margin-left: 10px" border="0" align="left" width="210px" height="50px">
 							<tr>
 								<td height="120px">
-									<div><font size="5"><b><u>TOP 10<br>News</u></b></font><br>2024-01-03 10:55 기준</div> 
+									<div><font size="5"><b><u>TOP 10<br>News</u></b></font><br>2024-01-03 10:55 ����</div> 
 								</td>
 							</tr>
 							<%for(int i = 1; i <= 10; i++)
@@ -42,7 +42,7 @@
 								%>
 									<tr height="40px">
 
-										<td style="font-size: 20px;"><a href="../admin/adminnewsview.jsp"><b><%= i %>번째 뉴스</a><br><hr></td>
+										<td style="font-size: 20px;"><a href="../admin/adminnewsview.jsp"><b><%= i %>��° ����</a><br><hr></td>
 
 									</tr>
 								<%
@@ -58,7 +58,7 @@
 					<a href="adminnewsview.jsp"><font style="font-family: 'Black Han Sans', sans-serif;
 							     font-family: 'Noto Sans KR', sans-serif;
 							     font-size: xx-large;
-							     ">“아침 꼭 드세요”… 달걀·양배추·귀리 먹으면 체중에 변...</font></a>
+							     ">����ħ �� �弼�䡱�� �ް�������ߡ��͸� ������ ü�߿� ��...</font></a>
 				</td>
 			</tr>
 			<tr>
@@ -68,12 +68,12 @@
 			</tr>
 			<tr>
 				<td colspan="4" height="120px" align="center">
-					<a href="adminnewslist.jsp"><div id="type" style="margin-left: 125px">다이어트</div></a>
-					<a href="adminnewslist.jsp"><div id="type">음식</div></a>
-					<a href="adminnewslist.jsp"><div id="type">운동</div></a>
-					<a href="adminnewslist.jsp"><div id="type">영양제</div></a>
-					<a href="adminnewslist.jsp"><div id="type">남성건강</div></a>
-					<a href="adminnewslist.jsp"><div id="type">여성건강</div></a>
+					<a href="adminnewslist.jsp"><div id="type" style="margin-left: 125px">���̾�Ʈ</div></a>
+					<a href="adminnewslist.jsp"><div id="type">����</div></a>
+					<a href="adminnewslist.jsp"><div id="type">�</div></a>
+					<a href="adminnewslist.jsp"><div id="type">������</div></a>
+					<a href="adminnewslist.jsp"><div id="type">�����ǰ�</div></a>
+					<a href="adminnewslist.jsp"><div id="type">�����ǰ�</div></a>
 				</td>
 			</tr>
 			<tr>
@@ -82,19 +82,19 @@
 						<tr>
 							<td>
 
-								<a href="../admin/adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>첫번째 부가 기사 제목입니다.</a><br>
+								<a href="../admin/adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>ù��° �ΰ� ��� �����Դϴ�.</a><br>
 
-								<span style="color:gray">1시간 전</span>
+								<span style="color:gray">1�ð� ��</span>
 							</td>
 							<td></td>
 							<td>
-								<a href="adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>첫번째 부가 기사 제목입니다.</a><br>
-								<span style="color:gray">1시간 전</span>
+								<a href="adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>ù��° �ΰ� ��� �����Դϴ�.</a><br>
+								<span style="color:gray">1�ð� ��</span>
 							</td>
 							<td></td>
 							<td>
-								<a href="adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>첫번째 부가 기사 제목입니다.</a><br>
-								<span style="color:gray">1시간 전</span>
+								<a href="adminnewsview.jsp"><img style="width:250px; height:150px" src="../image/news1.jpg"><br>ù��° �ΰ� ��� �����Դϴ�.</a><br>
+								<span style="color:gray">1�ð� ��</span>
 							</td>		
 						</tr>
 						<tr>
@@ -104,12 +104,12 @@
 							<td colspan="5">
 								<table border="0" width="800px" height="100px" align="center">
 									<tr>
-										<td><a href="adminnewsview.jsp">첫번째 부가 기사 제목입니다.</a><br>
-										<span style="color:gray">1시간 전</span></td>
+										<td><a href="adminnewsview.jsp">ù��° �ΰ� ��� �����Դϴ�.</a><br>
+										<span style="color:gray">1�ð� ��</span></td>
 										<td><a href="adminnewsview.jsp"><img style="width:100px; height:60px" src="../image/news1.jpg"></a></td>
 										<td></td>
-										<td><a href="adminnewsview.jsp">첫번째 부가 기사 제목입니다.</a><br>
-										<span style="color:gray">1시간 전</span></td>
+										<td><a href="adminnewsview.jsp">ù��° �ΰ� ��� �����Դϴ�.</a><br>
+										<span style="color:gray">1�ð� ��</span></td>
 										<td><a href="adminnewsview.jsp"><img style="width:100px; height:60px" src="../image/news1.jpg"></a></td>
 									</tr>
 									<tr>
@@ -118,12 +118,12 @@
 										<td colspan="2"><hr></td>
 									</tr>
 									<tr>
-										<td><a href="adminnewsview.jsp">첫번째 부가 기사 제목입니다.</a><br>
-										<span style="color:gray">1시간 전</span></td>
+										<td><a href="adminnewsview.jsp">ù��° �ΰ� ��� �����Դϴ�.</a><br>
+										<span style="color:gray">1�ð� ��</span></td>
 										<td><a href="adminnewsview.jsp"><img style="width:100px; height:60px" src="../image/news1.jpg"></a></td>
 										<td></td>
-										<td><a href="adminnewsview.jsp">첫번째 부가 기사 제목입니다.</a><br>
-										<span style="color:gray">1시간 전</span></td>
+										<td><a href="adminnewsview.jsp">ù��° �ΰ� ��� �����Դϴ�.</a><br>
+										<span style="color:gray">1�ð� ��</span></td>
 										<td><a href="adminnewsview.jsp"><img style="width:100px; height:60px" src="../image/news1.jpg"></a></td>
 									</tr>
 									<tr>
