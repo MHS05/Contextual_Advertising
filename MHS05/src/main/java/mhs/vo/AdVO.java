@@ -2,31 +2,31 @@ package mhs.vo;
 
 public class AdVO 
 {
-	public String adno;		   	    //ê´‘ê³ ë²ˆí˜¸
-	public String name;				//ìƒí’ˆëª…
-	public String fimage;			//ì´ë¯¸ì§€_ë…¼ë¦¬
-	public String pimage;			//ì´ë¯¸ì§€_ë¬¼ë¦¬
+	public String adno;		   	 //±¤°í¹øÈ£
+	public String adname;		 //»óÇ°ÀÌ¸§
+	public String image;		 //ÀÌ¹ÌÁö_³í¸®
+	public String phyimage;		 //ÀÌ¹ÌÁö_¹°¸®
 	
     
 	public AdVO()
 	{
 		
 		adno        = "";
-		fimage 	    = "";
-		pimage      = "";
-		name   	    = "";
+		image 	    = "";
+		phyimage      = "";
+		adname   	    = "";
 	}
 	
 	//getter
 	public String getAdno() 		  {	return adno;		}
-	public String getFimage() 		  {	return fimage;		}
-	public String getPimage() 		  {	return pimage;		}
-	public String getName() 		  {	return name;		}
+	public String getImage() 		  {	return image;		}
+	public String getPhyimage() 	  {	return phyimage;	}
+	public String getAdname() 		  {	return adname;		}
 	
 	//setter
-	public void setAdno(String adno) 			   {	this.adno = adno;				}
-	public void setFimage(String fimage)		   {	this.fimage = fimage;			}
-	public void setPimage(String pimage)		   {	this.pimage = pimage;			}
-	public void setName(String name) 			   {	this.name = name;				}
+	public void setAdno(String adno) 			  {		this.adno = adno;			}
+	public void setImage(String image)		   	  {		this.image = image;			}
+	public void setPhyimage(String phyimage)	  {		this.phyimage = phyimage;	}
+	public void setAdname(String adname) 		  {		this.adname = adname;		}
 	
 }

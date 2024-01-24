@@ -13,10 +13,8 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String adno       = multi.getParameter("adno");
-String type       = multi.getParameter("type");
 String name       = multi.getParameter("name");
-String date_end   = multi.getParameter("date_end");
+String keyword    = multi.getParameter("keywords");
 String fimage     = (String)multi.getFilesystemName("image");
 String pimage     = "";
 
@@ -38,24 +36,4 @@ if (fimage != null)
 	out.println("¹Ù²ï ÆÄÀÏ¸í : " + newPimage + "<br>");
 }
 
-AdVO vo = new AdVO();
-
-vo.setAdno(adno);
-vo.setName(name);
-
-if(fimage != null)
-{	
-	vo.setPimage(pimage);
-	vo.setFimage(fimage);
-}
-
-AdDTO dto = new AdDTO();
-
-
-dto.Update(vo);
-
-
-response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
 %>
-
-

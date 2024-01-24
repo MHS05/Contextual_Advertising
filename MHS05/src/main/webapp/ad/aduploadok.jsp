@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    
+<%@ page import="mhs.vo.*" %>    
 <%@ page import="java.util.*" %>    
 <%@ page import="java.io.*" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
@@ -13,10 +15,8 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String adno       = multi.getParameter("adno");
-String type       = multi.getParameter("type");
 String name       = multi.getParameter("name");
-String date_end   = multi.getParameter("date_end");
+String keyword    = multi.getParameter("keywords");
 String fimage     = (String)multi.getFilesystemName("image");
 String pimage     = "";
 
@@ -38,26 +38,35 @@ if (fimage != null)
 	out.println("¹Ù²ï ÆÄÀÏ¸í : " + newPimage + "<br>");
 }
 
-AdVO vo = new AdVO();
+String keywords[] = keyword.split(",");
 
-vo.setAdno(adno);
-vo.setType(type);
-vo.setName(name);
-vo.setDate_end(date_end);
+
+
+AdVO vo = new AdVO();
+AdKeywordVO avo = new AdKeywordVO(); 
+
+vo.setAdname(name);
 
 if(fimage != null)
 {	
-	vo.setPimage(pimage);
-	vo.setFimage(fimage);
+	vo.setPhyimage(pimage);
+	vo.setImage(fimage);
 }
 
 AdDTO dto = new AdDTO();
-
-
 dto.Insert(vo);
 
+String ano = vo.getAdno();
+AdKeywordDTO adto = new AdKeywordDTO();
+
+for(String key : keywords)
+{
+	avo.setAdkey(key);
+	avo.setAdno(ano);
+	adto.Insert(avo);
+}
 
 response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
-%>
 
+%>
 

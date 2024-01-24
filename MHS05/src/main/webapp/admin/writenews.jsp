@@ -37,7 +37,7 @@ if( loginVO == null)
 	}
 </script>
 <style>
-	.title
+	.title1
 	{
 		position : absolute;
 		top      : 400px;
@@ -143,9 +143,32 @@ window.onload=function()
 		}
 		
 	});
+	
+}
+function DoWrite()
+{	
+	if($("#title").val() == "")
+	{
+		alert("제목을 입력하세요.")
+		$("#title").focus();
+		return false;
+	}
+	
+	if($("#note").val() == "내용 : ")
+	{
+		alert("내용을 입력하세요.")
+		$("#note").focus();
+		return false;
+	}
+	
+	if(confirm("게시물을 등록하시겠습니까?") == 0)
+	{
+		return false;
+	}
+	return true;
 }
 </script>
-	<form name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+	<form name="wirtenewsok" method="post" action="wirtenewsok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
 			<td colspan="12"><h2><b>건강뉴스</b></h2><hr></td>
 		</tr>
@@ -154,16 +177,16 @@ window.onload=function()
 		</tr>
 		<tr>
 			<td>
-				<div class="title">
+				<div class="title1">
 					<h4>제목 : 
-						<input id=" title" type="text" style="width:700px;height:20px;" placeholder="제목을 입력해주세요.">
+						<input id="title" type="text" style="width:700px;height:20px;" placeholder="제목을 입력해주세요.">
 					</h4>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div class="type">
+				<div id="type" class="type">
 					<h4>카테고리 : 
 						<select style="width:100px;">
 							<option value="선택">선택</option>
@@ -230,7 +253,7 @@ window.onload=function()
 		</tr>
 		<tr>
 			<td>
-				<span class="submit" id="submit"><a href="adminnewsview.jsp">등록</a></span>
+				<span class="submit" id="submit"><input type="submit" id="submitbutton" value="등록"></span>
 				<span class="cancel" id="cancel"><a href="adminnewsview.jsp">취소</a></span>
 			</td>
 		</tr>

@@ -16,145 +16,146 @@ drop table ad;
 
 create table user
 (
-	uno int not null auto_increment primary key comment 'íšŒì›ë²ˆí˜¸',
-	id varchar(50) comment 'ì•„ì´ë””',
-	pw varchar(100) comment 'ë¹„ë°€ë²ˆí˜¸',
-	name varchar(50) comment 'ì´ë¦„',
-	nickname varchar(50) comment 'ë‹‰ë„¤ì„',
-	gender varchar(2) comment 'ì„±ë³„',
-	birth varchar(6) comment 'ìƒë…„ì›”ì¼',
-	email varchar(50) comment 'ì´ë©”ì¼',
-	con varchar(10) comment 'ì²´ì§ˆ',
-	joindate datetime default now() comment 'ê°€ì…ì¼ì',
-	isretire varchar(2) default 'N' comment 'íƒˆí‡´ì—¬ë¶€',
-	cocount int comment 'ì‘ì„±ê¸€ìˆ˜',
-	recount int comment 'ì‘ì„±ëŒ“ê¸€ìˆ˜'
-) comment 'ìœ ì €';
+	uno int not null auto_increment primary key comment 'È¸¿ø¹øÈ£',
+	id varchar(50) comment '¾ÆÀÌµğ',
+	pw varchar(100) comment 'ºñ¹Ğ¹øÈ£',
+	name varchar(50) comment 'ÀÌ¸§',
+	nickname varchar(50) comment '´Ğ³×ÀÓ',
+	gender varchar(2) comment '¼ºº°',
+	birth varchar(6) comment '»ı³â¿ùÀÏ',
+	email varchar(50) comment 'ÀÌ¸ŞÀÏ',
+	con varchar(10) comment 'Ã¼Áú',
+	joindate datetime default now() comment '°¡ÀÔÀÏÀÚ',
+	isretire varchar(2) default 'N' comment 'Å»Åğ¿©ºÎ',
+	cocount int comment 'ÀÛ¼º±Û¼ö',
+	recount int comment 'ÀÛ¼º´ñ±Û¼ö'
+) comment 'À¯Àú';
 
 create table category
 (
-	pno int auto_increment primary key comment 'ìƒí’ˆë²ˆí˜¸',
-	ptype varchar(10) comment 'ìƒí’ˆêµ¬ë¶„',
-	pname varchar(50) comment 'ìƒí’ˆëª…',
-	pfimage varchar(100) comment 'ìƒí’ˆì´ë¯¸ì§€_ë…¼ë¦¬',
-	ppimage varchar(100) comment 'ìƒí’ˆì´ë¯¸ì§€_ë¬¼ë¦¬',
-	age varchar(10) comment 'ì—°ë ¹',
-	pgender varchar(5) comment 'ì„±ë³„',
-	pcon varchar(10) comment 'ì²´ì§ˆ',
-	link varchar(100) comment 'ë§í¬',
-	tag_age varchar(10) comment 'íƒœê·¸_ì—°ë ¹',
-	tag_pgender varchar(10) comment 'íƒœê·¸_ì„±ë³„',
-	tag_pcon varchar(20) comment 'íƒœê·¸_ì²´ì§ˆ',
-	month_start varchar(10) comment 'ì›”_ì‹œì‘',
-	month_end varchar(10) comment 'ì›”_ë',
-	info text comment 'ê¸°ë³¸ì •ë³´ë°íš¨ëŠ¥',
-	takeinfo text comment 'ì„­ì·¨ì •ë³´'
-) comment 'ì¹´í…Œê³ ë¦¬';
+	pno int auto_increment primary key comment '»óÇ°¹øÈ£',
+	ptype varchar(10) comment '»óÇ°±¸ºĞ',
+	pname varchar(50) comment '»óÇ°¸í',
+	pfimage varchar(100) comment '»óÇ°ÀÌ¹ÌÁö_³í¸®',
+	ppimage varchar(100) comment '»óÇ°ÀÌ¹ÌÁö_¹°¸®',
+	age varchar(10) comment '¿¬·É',
+	pgender varchar(5) comment '¼ºº°',
+	pcon varchar(10) comment 'Ã¼Áú',
+	link varchar(100) comment '¸µÅ©',
+	tag_age varchar(10) comment 'ÅÂ±×_¿¬·É',
+	tag_pgender varchar(10) comment 'ÅÂ±×_¼ºº°',
+	tag_pcon varchar(20) comment 'ÅÂ±×_Ã¼Áú',
+	month_start varchar(10) comment '¿ù_½ÃÀÛ',
+	month_end varchar(10) comment '¿ù_³¡',
+	info text comment '±âº»Á¤º¸¹×È¿´É',
+	takeinfo text comment '¼·ÃëÁ¤º¸'
+) comment 'Ä«Å×°í¸®';
 
 
 create table community
 (
-	no int auto_increment primary key comment 'ê²Œì‹œë¬¼ë²ˆí˜¸',
-	uno int comment 'íšŒì›ë²ˆí˜¸',
-	id varchar(50) comment 'ì•„ì´ë””',
-	title varchar(200) comment 'ì œëª©',
-	type varchar(2) comment 'êµ¬ë¶„',
-	note text comment 'ë‚´ìš©',
-	phyname varchar(100) comment 'ì²¨ë¶€íŒŒì¼_ë¬¼ë¦¬ëª…',
-	fname varchar(100) comment 'ì²¨ë¶€íŒŒì¼_ë…¼ë¦¬ëª…',
-	wdate datetime default now() comment 'ì‘ì„±ì¼',
-	hit int default 0 comment 'ì¡°íšŒìˆ˜',
-	image varchar(100) comment 'ì´ë¯¸ì§€_ë…¼ë¦¬',
-	phyimage varchar(100) comment 'ì´ë¯¸ì§€_ë¬¼ë¦¬',
-	name varchar(100) comment 'íšŒì›ì´ë¦„',
-	nickname varchar(100) comment 'íšŒì›ë‹‰ë„¤ì„',
-	recount int comment 'ëŒ“ê¸€ê°œìˆ˜'
+	no int auto_increment primary key comment '°Ô½Ã¹°¹øÈ£',
+	uno int comment 'È¸¿ø¹øÈ£',
+	id varchar(50) comment '¾ÆÀÌµğ',
+	title varchar(200) comment 'Á¦¸ñ',
+	type varchar(2) comment '±¸ºĞ',
+	note text comment '³»¿ë',
+	phyname varchar(100) comment 'Ã·ºÎÆÄÀÏ_¹°¸®¸í',
+	fname varchar(100) comment 'Ã·ºÎÆÄÀÏ_³í¸®¸í',
+	wdate datetime default now() comment 'ÀÛ¼ºÀÏ',
+	hit int default 0 comment 'Á¶È¸¼ö',
+	image varchar(100) comment 'ÀÌ¹ÌÁö_³í¸®',
+	phyimage varchar(100) comment 'ÀÌ¹ÌÁö_¹°¸®',
+	name varchar(100) comment 'È¸¿øÀÌ¸§',
+	nickname varchar(100) comment 'È¸¿ø´Ğ³×ÀÓ',
+	recount int comment '´ñ±Û°³¼ö'
 	foreign key(uno) references user(uno)
-) comment 'ê²Œì‹œíŒ';
+) comment '°Ô½ÃÆÇ';
 
 create table reply
 (
-	rno int auto_increment primary key comment 'ëŒ“ê¸€ë²ˆí˜¸',
-	no int comment 'ê²Œì‹œë¬¼ë²ˆí˜¸',
-	uno int comment 'íšŒì›ë²ˆí˜¸',
-	id varchar(50) comment 'íšŒì›ì•„ì´ë””',
-	rnote text comment 'ëŒ“ê¸€ë‚´ìš©',
-	rdate datetime default now() comment 'ì‘ì„±ì¼',
-	name varchar(50) comment 'ì´ë¦„',
-	nickname varchar(50) comment 'ë‹‰ë„¤ì„',
-	title varchar(200) comment 'ê¸€ì œëª©',
+	rno int auto_increment primary key comment '´ñ±Û¹øÈ£',
+	no int comment '°Ô½Ã¹°¹øÈ£',
+	uno int comment 'È¸¿ø¹øÈ£',
+	id varchar(50) comment 'È¸¿ø¾ÆÀÌµğ',
+	rnote text comment '´ñ±Û³»¿ë',
+	rdate datetime default now() comment 'ÀÛ¼ºÀÏ',
+	name varchar(50) comment 'ÀÌ¸§',
+	nickname varchar(50) comment '´Ğ³×ÀÓ',
+	title varchar(200) comment '±ÛÁ¦¸ñ',
 	foreign key(no) references community(no),
 	foreign key(uno) references user(uno)
-) comment 'ëŒ“ê¸€';
+) comment '´ñ±Û';
 
 create table ad
 (
-	adno int auto_increment primary key comment 'ê´‘ê³ ë²ˆí˜¸',
-	adname varchar(200) comment 'ìƒí’ˆì´ë¦„',
-	image varchar(100) comment 'ì´ë¯¸ì§€_ë…¼ë¦¬',
-	phyimage varchar(100) comment 'ì´ë¯¸ì§€_ë¬¼ë¦¬'
-) comment 'ê´‘ê³ ';
+	adno int auto_increment primary key comment '±¤°í¹øÈ£',
+	adname varchar(200) comment '»óÇ°ÀÌ¸§',
+	image varchar(100) comment 'ÀÌ¹ÌÁö_³í¸®',
+	phyimage varchar(100) comment 'ÀÌ¹ÌÁö_¹°¸®'
+) comment '±¤°í';
 
 create table adkeyword
 (
-	adkeyno int auto_increment primary key comment 'ê´‘ê³ í‚¤ì›Œë“œê´€ë¦¬ë²ˆí˜¸',
-	adno int comment 'ê´‘ê³ ë²ˆí˜¸',
-	adkey varchar(10) comment 'ê´‘ê³ í‚¤ì›Œë“œ',
+	adkeyno int auto_increment primary key comment '±¤°íÅ°¿öµå°ü¸®¹øÈ£',
+	adno int comment '±¤°í¹øÈ£',
+	adkey varchar(10) comment '±¤°íÅ°¿öµå',
 	foreign key(adno) references ad(adno)
-) comment 'ê´‘ê³ í‚¤ì›Œë“œ';
+) comment '±¤°íÅ°¿öµå';
 
 create table clickad
 (
-	clickadno int auto_increment primary key comment 'ë…¸ì¶œì •ë³´ê´€ë¦¬ë²ˆí˜¸',
-	adno int comment 'ê´‘ê³ ë²ˆí˜¸',
-	cdate datetime comment 'ë…¸ì¶œì¼',
-	cnews int comment 'ë…¸ì¶œê²Œì‹œë¬¼ë²ˆí˜¸',
+	clickadno int auto_increment primary key comment '³ëÃâÁ¤º¸°ü¸®¹øÈ£',
+	adno int comment '±¤°í¹øÈ£',
+	cdate datetime comment '³ëÃâÀÏ',
+	cnews int comment '³ëÃâ°Ô½Ã¹°¹øÈ£',
 	foreign key(adno) references ad(adno)
-) comment 'ê´‘ê³ ë…¸ì¶œì •ë³´';
+) comment '±¤°í³ëÃâÁ¤º¸';
 
 create table news
 (
-	nno int auto_increment primary key comment 'ë‰´ìŠ¤ë²ˆí˜¸',
-	category varchar(2) comment 'ì¹´ë°ê³ ë¦¬',
-	title varchar(200) comment 'ì œëª©',
-	note text comment 'ë‚´ìš©',
-	writer varchar(10) comment 'ì‘ì„±ì',
-	wdate datetime default now() comment 'ì‘ì„±ì¼',
-	image varchar(100) comment 'ì´ë¯¸ì§€_ë…¼ë¦¬',
-	phyimage varchar(100) comment 'ì´ë¯¸ì§€_ë¬¼ë¦¬',
-	emotion varchar(5) comment 'ê¸ë¶€ì •',
-	adno int comment 'ê´‘ê³ ë²ˆí˜¸',
+	nno int auto_increment primary key comment '´º½º¹øÈ£',
+	category varchar(2) comment 'Ä«µ¥°í¸®',
+	title varchar(200) comment 'Á¦¸ñ',
+	note text comment '³»¿ë',
+	writer varchar(10) comment 'ÀÛ¼ºÀÚ',
+	wdate datetime default now() comment 'ÀÛ¼ºÀÏ',
+	image varchar(100) comment 'ÀÌ¹ÌÁö_³í¸®',
+	phyimage varchar(100) comment 'ÀÌ¹ÌÁö_¹°¸®',
+	emotion varchar(5) comment '±àºÎÁ¤',
+	adno int comment '±¤°í¹øÈ£',
 	foreign key(adno) references ad(adno)
-) comment 'ê±´ê°•ì†Œì‹';
+) comment '°Ç°­¼Ò½Ä';
 
 create table newskeyword
 (
-	nkeyno int auto_increment primary key comment 'ë‰´ìŠ¤í‚¤ì›Œë“œê´€ë¦¬ë²ˆí˜¸',
-	nno int comment 'ë‰´ìŠ¤ë²ˆí˜¸',
-	nkey varchar(10) comment 'ë‰´ìŠ¤í‚¤ì›Œë“œ',
-	nkeynum int comment 'í‚¤ì›Œë“œë¹ˆë„ìˆ˜',
+	nkeyno int auto_increment primary key comment '´º½ºÅ°¿öµå°ü¸®¹øÈ£',
+	nno int comment '´º½º¹øÈ£',
+	nkey varchar(10) comment '´º½ºÅ°¿öµå',
+	nkeynum int comment 'Å°¿öµåºóµµ¼ö',
 	foreign key(nno) references news(nno)
-) comment 'ë‰´ìŠ¤í‚¤ì›Œë“œ';
+) comment '´º½ºÅ°¿öµå';
 
 create table semotion
 (
-	senno int auto_increment primary key comment 'ë¬¸ì¥ë³„ê´€ë¦¬ë²ˆí˜¸',
-	nno int comment 'ë‰´ìŠ¤ë²ˆí˜¸',
-	sentance varchar(100) comment 'ë¬¸ì¥',
-	emotion varchar(10) comment 'ê¸ë¶€ì •ì—¬ë¶€',
-	score varchar(10) comment 'ê¸ë¶€ì •ì ìˆ˜',
+	senno int auto_increment primary key comment '¹®Àåº°°ü¸®¹øÈ£',
+	nno int comment '´º½º¹øÈ£',
+	sentance varchar(100) comment '¹®Àå',
+	emotion varchar(10) comment '±àºÎÁ¤¿©ºÎ',
+	score varchar(10) comment '±àºÎÁ¤Á¡¼ö',
 	foreign key(nno) references news(nno)
-) comment 'ë¬¸ì¥ë³„ê¸ë¶€ì •ì ìˆ˜';
+) comment '¹®Àåº°±àºÎÁ¤Á¡¼ö';
 
 create table similarity
 (
-	sno int auto_increment primary key comment 'ìœ ì‚¬ë„ê´€ë¦¬ë²ˆí˜¸',
-	adkeyno int comment 'ê´‘ê³ í‚¤ì›Œë“œê´€ë¦¬ë²ˆí˜¸',
-	nkeyno int comment 'ë‰´ìŠ¤í‚¤ì›Œë“œê´€ë¦¬ë²ˆí˜¸',
-	nkey varchar(10) comment 'ë‰´ìŠ¤í‚¤ì›Œë“œ',
-	adkey varchar(10) comment 'ê´‘ê³ í‚¤ì›Œë“œ',
-	adno int comment 'ê´‘ê³ ë²ˆí˜¸',
-	nno int comment 'ë‰´ìŠ¤í‚¤ì›Œë“œ',
+	sno int auto_increment primary key comment 'À¯»çµµ°ü¸®¹øÈ£',
+	adkeyno int comment '±¤°íÅ°¿öµå°ü¸®¹øÈ£',
+	nkeyno int comment '´º½ºÅ°¿öµå°ü¸®¹øÈ£',
+	nkey varchar(10) comment '´º½ºÅ°¿öµå',
+	adkey varchar(10) comment '±¤°íÅ°¿öµå',
+	similary varchar(10) comment 'À¯»çµµ',
+	adno int comment '±¤°í¹øÈ£',
+	nno int comment '´º½ºÅ°¿öµå',
 	foreign key(adkeyno) references adkeyword(adkeyno),
 	foreign key(nkeyno) references newskeyword(nkeyno)
-) comment 'ìœ ì‚¬ë„';
+) comment 'À¯»çµµ';
