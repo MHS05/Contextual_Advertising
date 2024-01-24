@@ -3,8 +3,6 @@ package mhs.dto;
 import mhs.dao.*;
 import mhs.vo.*;
 
-import java.util.List;
-
 public class AdDTO extends DBManager
 {
 	public boolean Insert(AdVO vo)
@@ -13,15 +11,12 @@ public class AdDTO extends DBManager
 		
 		String sql = "";
 
-	
 		sql += "insert into ad ";
-		sql += "(adno, name, keywords, fimage, pimage)";
+		sql += "(name, fimage, pimage) ";
 		sql += "values (";
-		sql += "'" + vo.getAdno()        + "',";
 		sql += "'" + _R(vo.getName())    + "',";
-		sql += "'" + vo.getKeywords()    + "',";
 		sql += "'" + vo.getFimage()      + "',";
-		sql += "'" + vo.getPimage()      + "',";
+		sql += "'" + vo.getPimage()      + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
@@ -30,7 +25,7 @@ public class AdDTO extends DBManager
 		this.GetNext();
 		vo.setAdno(this.GetValue("adno"));
 		this.DBClose();
-		return true;		
+		return true;
 
 	}
 	
@@ -41,17 +36,12 @@ public class AdDTO extends DBManager
 		String sql = "";
 		sql  = "update ad set ";
 		sql += "adno='"           + vo.getAdno()           + "', ";
-		sql += "keywords='"       + vo.getKeywords()       + "', ";
 		if(!vo.getFimage().equals(""))
 		{
 			sql += "fimage='"     + _R(vo.getFimage())     + "', ";
 			sql += "pimage='"     + _R(vo.getPimage())     + "', ";
 		}
-		sql += "link='"           + vo.getLink()           + "', ";
-		sql += "type='"           + vo.getType()           + "', ";
-		sql += "name='" 		  + _R(vo.getName())       + "', ";
-		sql += "date_start='"     + vo.getDate_start()     + "', ";
-		sql += "date_end='"       + vo.getDate_end()       + "' ";
+		sql += "name='" 		  + _R(vo.getName())       + "' ";
 		
 		
 		sql += "where adno = "  + vo.getAdno();
@@ -82,8 +72,7 @@ public class AdDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select adno, keywords, link, fimage, pimage, ";
-		sql	+= "type, name, date_start, date_end ";
+		sql  = "select adno, fimage, pimage ";
 		sql += "from ad ";
 		sql += "where adno = " + adno;
 		this.RunSelect(sql);
@@ -94,17 +83,11 @@ public class AdDTO extends DBManager
 		}
 		AdVO vo = new AdVO();
 		vo.setAdno(adno);
-		vo.setKeywords(this.GetValue("keywords"));
-		vo.setLink(this.GetValue("link"));
 		vo.setFimage(this.GetValue("fimage"));
 		vo.setPimage(this.GetValue("pimage"));
-		vo.setType(this.GetValue("type"));
 		vo.setName(this.GetValue("name"));
-		vo.setDate_start(this.GetValue("date_start"));
-		vo.setDate_end(this.GetValue("date_end"));
 	
 		this.DBClose();
 		return vo;
 	}	
 }
-//
