@@ -4,37 +4,59 @@
 	position: absolute;
 	top:250px;
 	height:500px;
+	left:400px;
 }
 #keywords
 {
 	position: absolute;
-	top:500px;
-	left:650px;
-	width:500px;
+	top:250px;
+	height:500px;
+	left:450px;
 }
-.pnarea
+#button_next
+{	
+	border: 0;
+	border-radius : 30px;
+	top: 150px;
+	left:1500px;
+	position: absolute;
+}
+#button_back
+{	
+	border: 0;
+	border-radius : 30px;
+	top: 150px;
+	left: 300px;
+	position: absolute;
+}
+.title
 {
-	top:90px;
-	left:220px;
+	left:770px;
+	position: absolute;
+}
+.subtitle1
+{
+	top:120px;
+	left:820px;
 	position: absolute;
 }
 .pnratio
 {
-	top:750px;
-	left:130px;
+	top:1050px;
+	left:750px;
 	position: absolute;
 }
 .percent
 {
-	top:740px;
-	left:280px;
+	top:1040px;
+	left:900px;
 	position: absolute;
 }
-.correlationarea
+.subtitle2
 {
-	top:75px;
-	left:850px;
-	position: absolute;		
+	top:120px;
+	left:780px;
+	position: absolute;	
 }
 .representkey
 {
@@ -44,75 +66,76 @@
 }
 .keyword1
 {
-	top:185px;
+	top:1500px;
 	left:700px;
 	position: absolute;
 }
 .keyword2
 {
-	top:220px;
-	left:700px;
+	top:1500px;
+	left:750px;
 	position: absolute;
 }
 .keyword3
 {
-	top:255px;
-	left:700px;
+	top:1500px;
+	left:800px;
 	position: absolute;
 }
 .keyword4
 {
-	top:295px;
-	left:700px;
+	top:1500px;
+	left:850px;
 	position: absolute;
 }
 .keyword5
 {
-	top:330px;
-	left:700px;
+	top:1500px;
+	left:900px;
 	position: absolute;
 }
 
-.choicead
+.subtitle3
 {
-	top:70px;
-	left:1500px;
+	top:120px;
+	left:810px;
 	position: absolute;
 }
 .ad
 {
-	top:150px;
-	left:1250px;
-	position: absolute;	
+	position: absolute;
+	top:250px;
+	height:500px;
+	left:400px;	
 }
 .bkeyword1
 {
-	top:700px;
-	left:1300px;
-	position: absolute;	
-}
-.akeyword1
-{
-	top:700px;
-	left:1700px;
+	top:280px;
+	left:1100px;
 	position: absolute;	
 }
 .bkeyword2
 {
-	top:730px;
+	top:350px;
+	left:1100px;
+	position: absolute;	
+}
+.akeyword1
+{
+	top:280px;
 	left:1350px;
 	position: absolute;	
 }
 .akeyword2
 {
-	top:730px;
-	left:1725px;
+	top:350px;
+	left:1350px;
 	position: absolute;	
 }
 .similarity
 {
-	top:820px;
-	left:1500px;
+	top:620px;
+	left:1250px;
 	position: absolute;			
 }
 .stick1
