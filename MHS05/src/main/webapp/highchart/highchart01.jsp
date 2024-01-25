@@ -9,12 +9,12 @@
 			<script src="https://code.highcharts.com/modules/export-data.js"></script>
 			<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 			<script src="./js/jquery-3.7.1.js"></script>
-			<link rel="stylesheet" type="text/css" href="../highchart/highchart_main.css">
+			<link rel="stylesheet" type="text/css" href="../highchart/highchart.css">
 		<title>광고 선정 이유</title>
 	</head>
 	<body>
-		<div class="title"><h1>*광고 선정 이유*</h1></div>
-		<span class="subtitle1"><h2>[ 감성 분석 ]</h2></span>
+		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
+		<span class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></span>
 	<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
 		<span id="emotion" style="display:inline-block; width:1000px; height:800px"></span>
 <script>
@@ -32,39 +32,44 @@ Highcharts.chart('emotion', {
         			'21번째 문장', '22번째 문장', '23번째 문장', '24번째 문장', '25번째 문장'
         			]
     },
-    credits: {    enabled: false },
-    plotOptions: 
-    {
-        column: { 	borderRadius: '25%'   }
+    credits: {  enabled: false },
+    plotOptions: {
+        column: {
+            borderRadius: '25%',
+            pointPadding: 0.1, // 열 간 간격을 조절합니다.
+            groupPadding: 0.1 // 그룹 간 간격을 조절합니다.
+        }
+    },
+    tooltip: {
+        style: {
+            fontSize: '60px' // 툴팁 글자 크기
+        }
     },
     series: 
     [{
         name: '긍정',
         data: 
         	[
-        	15, "", "", 17, "",
-        	"", 23, "", 17, 12, 
-        	"", 23, "", 17, 12,
-        	"", 23, "", 17, 12, 
-        	"", 14, "", 12, 15
+        	15, null, null, 17, null,
+        	null, 23, null, 17, 12, 
+        	null, 23, null, 17, 12,
+        	null, 23, null, 17, 12, 
+        	null, 14, null, 12, 15
         	]
     }, 
     {
         name: '부정',
         data: 
         	[
-        	"", -10, -14, "", -12,
-        	-15, "", -14, "", "",
-        	-15, "", -14, "", "",
-        	-15, "", -14, "", "",
-        	-15, "", -14, -17, ""
+        	null, -10, -14, null, -12,
+        	-15, null, -14, null, null,
+        	-15, null, -14, null, null,
+        	-15, null, -14, null, null,
+        	-15, null, -14, -17, null
         	]
     }]
 });
 //JS 여기까지
-</script>
-		<span class="pnratio"><h2>긍부정 비율 : </h2></span>
-		<span class="percent"><font color='red'><h1>긍정 53%</h1></font></span>
 </script>
 		<a href="../highchart/highchart02.jsp">
 			<span id="button_next"><input type="button" value="Next >"></span>
