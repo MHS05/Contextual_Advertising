@@ -93,7 +93,7 @@
 				<img src="../image/diet.jpg">
 			</div>
 			<div id="adimage">
-				<a href="../highchart/highchart_main.jsp" target="_blanck"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
+				<a href="../highchart/highchart01.jsp" target="_blanck"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
 			</div>
 			<div style="height:50px"></div>
 			<div id="newsmain" style="">
