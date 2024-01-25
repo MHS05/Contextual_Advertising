@@ -90,31 +90,16 @@ create table reply
 create table ad
 (
 	adno int auto_increment primary key comment '광고번호',
-	adname varchar(200) comment '상품이름',
+	adname varchar(50) comment '상품이름',
+	adkey varchar(50) comment '광고키워드_리스트',
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리'
 ) comment '광고';
 
-create table adkeyword
-(
-	adkeyno int auto_increment primary key comment '광고키워드관리번호',
-	adno int comment '광고번호',
-	adkey varchar(10) comment '광고키워드',
-	foreign key(adno) references ad(adno)
-) comment '광고키워드';
-
-create table clickad
-(
-	clickadno int auto_increment primary key comment '노출정보관리번호',
-	adno int comment '광고번호',
-	cdate datetime comment '노출일',
-	cnews int comment '노출게시물번호',
-	foreign key(adno) references ad(adno)
-) comment '광고노출정보';
-
 create table news
 (
 	nno int auto_increment primary key comment '뉴스번호',
+	adno int comment '광고번호',
 	category varchar(2) comment '카데고리',
 	title varchar(200) comment '제목',
 	note text comment '내용',
@@ -123,7 +108,7 @@ create table news
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리',
 	emotion varchar(5) comment '긍부정',
-	adno int comment '광고번호',
+	mian varchar(2) comment '메인여부',
 	foreign key(adno) references ad(adno)
 ) comment '건강소식';
 
@@ -131,7 +116,7 @@ create table newskeyword
 (
 	nkeyno int auto_increment primary key comment '뉴스키워드관리번호',
 	nno int comment '뉴스번호',
-	nkey varchar(10) comment '뉴스키워드',
+	nkey varchar(50) comment '뉴스키워드',
 	nkeynum int comment '키워드빈도수',
 	foreign key(nno) references news(nno)
 ) comment '뉴스키워드';
@@ -149,13 +134,21 @@ create table semotion
 create table similarity
 (
 	sno int auto_increment primary key comment '유사도관리번호',
-	adkeyno int comment '광고키워드관리번호',
-	nkeyno int comment '뉴스키워드관리번호',
-	nkey varchar(10) comment '뉴스키워드',
-	adkey varchar(10) comment '광고키워드',
-	similary varchar(10) comment '유사도',
 	adno int comment '광고번호',
-	nno int comment '뉴스키워드',
-	foreign key(adkeyno) references adkeyword(adkeyno),
-	foreign key(nkeyno) references newskeyword(nkeyno)
+	nno int comment '뉴스번호',
+	nkeylist varchar(50) comment '뉴스키워드_리스트',
+	adkey varchar(50) comment '광고키워드_리스트',
+	similary varchar(10) comment '유사도',
+	foreign key(adno) references ad(nno),
+	foreign key(nno) references news(nno)
 ) comment '유사도';
+
+create table clickad
+(
+	clickadno int auto_increment primary key comment '노출정보관리번호',
+	adno int comment '광고번호',
+	nno int comment '뉴스번호',
+	cdate datetime comment '노출일'
+	foreign key(adno) references ad(adno)
+	foreign key(nno) references news(nno)
+) comment '광고노출정보';
