@@ -100,15 +100,15 @@ create table news
 (
 	nno int auto_increment primary key comment '뉴스번호',
 	adno int comment '광고번호',
-	category varchar(2) comment '카데고리',
+	id varchar(50) comment '작성자',
+	category varchar(2) comment '카테고리',
 	title varchar(200) comment '제목',
 	note text comment '내용',
-	writer varchar(10) comment '작성자',
 	wdate datetime default now() comment '작성일',
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리',
 	emotion varchar(5) comment '긍부정',
-	mian varchar(2) comment '메인여부',
+	mainyn varchar(2) comment '메인여부',
 	foreign key(adno) references ad(adno)
 ) comment '건강소식';
 

@@ -11,30 +11,11 @@ if( loginVO == null)
 	response.sendRedirect("../main/index.jsp");
 	return;
 }
+String category = request.getParameter("category");
+if(category == null) category = "D";
 %>
 <script>
-	function check() 
-	{	
-		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
-		//스마트 에디터 값을 텍스트컨텐츠로 전달
-		$("#").submit();
-	}
-	function setThumbnail(event) 
-	{
-		$("#image_container").html("");
-		
-	    var reader = new FileReader();
 	
-	    reader.onload = function(event)
-	    {
-	      var img = document.createElement("img");
-	      img.style.width  = "900px";
-	      img.style.height = "300px";
-	      img.setAttribute("src", event.target.result);
-	      document.querySelector("div#image_container").appendChild(img);
-	    };
-	    reader.readAsDataURL(event.target.files[0]);
-	}
 </script>
 <style>
 	.title1
@@ -167,8 +148,32 @@ function DoWrite()
 	}
 	return true;
 }
+
+function check() 
+{	
+	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
+	//스마트 에디터 값을 텍스트컨텐츠로 전달
+	$("#ir1").value = $("#ir1").value.replace(/<br><table><div><span><p>$/, "");
+	$("#write").submit();
+}
+function setThumbnail(event) 
+{
+	$("#image_container").html("");
+	
+    var reader = new FileReader();
+
+    reader.onload = function(event)
+    {
+      var img = document.createElement("img");
+      img.style.width  = "900px";
+      img.style.height = "300px";
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>
-	<form name="wirtenewsok" method="post" action="wirtenewsok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+	<form id="write" name="wirtenewsok" method="post" action="wirtenewsok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
 			<td colspan="12"><h2><b>건강뉴스</b></h2><hr></td>
 		</tr>
@@ -179,7 +184,7 @@ function DoWrite()
 			<td>
 				<div class="title1">
 					<h4>제목 : 
-						<input id="title" type="text" style="width:700px;height:20px;" placeholder="제목을 입력해주세요.">
+						<input id="title" name="title" type="text" style="width:700px;height:20px;" placeholder="제목을 입력해주세요.">
 					</h4>
 				</div>
 			</td>
@@ -188,14 +193,13 @@ function DoWrite()
 			<td>
 				<div id="type" class="type">
 					<h4>카테고리 : 
-						<select style="width:100px;">
-							<option value="선택">선택</option>
-							<option value="다이어트">다이어트</option>
-							<option value="음식">음식</option>
-							<option value="운동">운동</option>
-							<option value="영양제">영양제</option>
-							<option value="남성건강">남성건강</option>
-							<option value="여성건강">여성건강</option>
+						<select style="width:100px;" name="category">
+							<option id="category" name="category" value="D"  <%= category.equals("D") ? "selected" : "" %>>다이어트</option>
+							<option id="category" name="category" value="F"  <%= category.equals("F") ? "selected" : "" %>>음식</option>
+							<option id="category" name="category" value="E"  <%= category.equals("E") ? "selected" : "" %>>운동</option>
+							<option id="category" name="category" value="N"  <%= category.equals("N") ? "selected" : "" %>>영양제</option>
+							<option id="category" name="category" value="M"  <%= category.equals("M") ? "selected" : "" %>>남성건강</option>
+							<option id="category" name="category" value="F"  <%= category.equals("F") ? "selected" : "" %>>여성건강</option>
 						</select>
 					</h4>
 				</div>
@@ -253,9 +257,122 @@ function DoWrite()
 		</tr>
 		<tr>
 			<td>
-				<span class="submit" id="submit"><input type="submit" id="submitbutton" value="등록"></span>
+				<span class="submit" id="submit"><input type="submit" id="submitbutton" value="등록" onclick="check();"></span>
 				<span class="cancel" id="cancel"><a href="adminnewsview.jsp">취소</a></span>
 			</td>
 		</tr>
 	</form>
-<%@ include file="../admininclude/tail.jsp" %> 
+	</table>	
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<div><a href="../admin/adminnews.jsp"><h1>건강소식</h1></a></div> 
+				</td>
+			</tr>
+			<tr height="310px">
+				<td width="20%" valign="top">
+					<div style="width: 220px; height: 310px; box-shadow: 3px 3px 3px 3px lightgray;">
+						<table border="0" width="200px" height="50px">
+							<tr height="50px">
+							<%
+							if(category.equals("D"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b><u>다이어트</u></b></a></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>다이어트</b></a></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>운동</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>영양제</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>남성건강</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>여성건강</b></td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/adminclist.jsp"><h1>커뮤니티</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../ad/adlist.jsp"><h1>광고관리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table border="0" width="1200px" align="center" height="150px">
+				<tr>
+					<td rowspan="5" width="250px" align="center">
+						<img style="width:100px; height: 100px;" src="../image/market.png">
+					</td>
+					<td rowspan="5" width="10px">
+					</td>
+					<td colspan="2" height="15px" align="right">
+						<hr>
+					</td>
+				</tr>
+				<tr>
+					<td width="450px">
+						상담가능시간
+					</td>
+					<td>
+						회사정보
+					</td>
+				</tr>
+				<tr>
+					<td>
+						평일 : 오전 09:00 ~ 오후 06:00
+					</td>
+					<td>
+						회사이름 : ezen  |  전화번호 : 010-0000-0000
+					</td>
+				</tr>
+				<tr>
+					<td>
+						점심시간 : 오후 12:00 ~ 오후 01:00
+					</td>
+					<td>
+						이메일 : asdf@naver.com  |  대한민국 전주시
+					</td>
+				</tr>
+				<tr>
+					<td>
+						주말 휴무
+					</td>
+					<td>
+						팩스 : 00-000-0000
+					</td>
+				</tr>
+			</table>
+	</body>
+</html>

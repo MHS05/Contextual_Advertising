@@ -13,20 +13,22 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String name       = multi.getParameter("name");
-String keyword    = multi.getParameter("keywords");
-String fimage     = (String)multi.getFilesystemName("image");
-String pimage     = "";
+String category   = multi.getParameter("category");
+String title      = multi.getParameter("title");
+String note       = multi.getParameter("ir1");
+String mainyn     = multi.getParameter("main");
+String image      = (String)multi.getFilesystemName("image");
+String phyimage     = "";
 
 
-if (fimage != null)
+if (image != null)
 {
 	//논리명을 물리명 이름으로 변경한다.
-	pimage = UUID.randomUUID().toString();
+	phyimage = UUID.randomUUID().toString();
 	
 	//파일 이름 변경
-	String orgPimage = uploadPath + "\\" + fimage;
-	String newPimage = uploadPath + "\\" + pimage;
+	String orgPimage = uploadPath + "\\" + image;
+	String newPimage = uploadPath + "\\" + phyimage;
 	
 	File srcFile    = new File(orgPimage);
 	File targetFile = new File(newPimage);
@@ -35,5 +37,22 @@ if (fimage != null)
 	out.println("원래 파일명 : " + orgPimage + "<br>");
 	out.println("바뀐 파일명 : " + newPimage + "<br>");
 }
+
+NewsVO vo = new NewsVO();
+vo.setId(loginVO.getId());
+vo.setCategory(category);
+vo.setTitle(title);
+vo.setNote(note);
+vo.setMainyn(mainyn);
+if(image != null)
+{
+	vo.setImage(image);
+	vo.setPhyimage(phyimage);
+}
+
+NewsDTO dto = new NewsDTO();
+dto.Insert(vo);
+
+response.sendRedirect("adminnewsview.jsp?nno=" +vo.getNno() + "&category=" + vo.getCategory());
 
 %>

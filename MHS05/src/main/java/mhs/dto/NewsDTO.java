@@ -13,22 +13,23 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into news (category,title,note,writer,image,phyimage) ";
+		sql += "insert into news (id,category,title,note,image,phyimage,mainyn) ";
 		sql += "values (";
-		sql += "'" + vo.getCategory()    + "',";
-		sql += "'" + _R(vo.getTitle())   + "',";
-		sql += "'" + _R(vo.getNote())    + "',";
-		sql += "'" + vo.getWriter()      + "',";
-		sql += "'" + _R(vo.getImage())  + "',";
-		sql += "'" + _R(vo.getPhyimage())  + "'";
+		sql += "'" + _R(vo.getId())        + "',";
+		sql += "'" + _R(vo.getCategory())  + "',";
+		sql += "'" + _R(vo.getTitle())     + "',";
+		sql += "'" + _R(vo.getNote())      + "',";
+		sql += "'" + _R(vo.getImage())     + "',";
+		sql += "'" + _R(vo.getPhyimage())  + "',";
+		sql += "'" + _R(vo.getMainyn())    + "'";
 		sql += ")";
 		this.RunCommand(sql);		
 
-		//등록된 게시물 번호를 얻는다.
-		sql = "select last_insert_id() as no ";
+		//등록된 뉴스 번호를 얻는다.
+		sql = "select last_insert_id() as nno ";
 		this.RunSelect(sql);
 		this.GetNext();
-		vo.setNno(this.GetValue("no"));
+		vo.setNno(this.GetValue("nno"));
 		
 		this.DBClose();
 		return true;		

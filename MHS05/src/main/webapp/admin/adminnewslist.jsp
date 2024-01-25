@@ -44,7 +44,7 @@
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>남성건강</h2>
 
-			<div align="center" id="delbutton"><a href="writenews.jsp">등록</a></div>
+			<div align="center" id="delbutton"><a href="writenews.jsp?catergory=D">등록</a></div>
 		</div>
 		<div style="border-bottom: 1px solid lightgray; position: relative;">
 			<div style="width: 650px;" >
