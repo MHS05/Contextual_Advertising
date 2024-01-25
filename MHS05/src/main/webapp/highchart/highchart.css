@@ -1,0 +1,192 @@
+@charset "EUC-KR";
+#keywords 
+{
+    height: 400px;
+}
+#emotion
+{
+	position: absolute;
+	top:250px;
+	height:500px;
+	left:400px;
+}
+#similarity
+{
+	position: absolute;
+	top:200px;
+	height:500px;
+	left:450px;
+}
+#keywords
+{
+	position: absolute;
+	top:250px;
+	height:500px;
+	left:450px;
+}
+.title
+{
+	left:770px;
+	position: absolute;
+}
+.subtitle1
+{
+	top:120px;
+	left:820px;
+	position: absolute;
+}
+#button_next
+{	
+	border: 0;
+	border-radius : 30px;
+	top: 150px;
+	left:1500px;
+	position: absolute;
+}
+#button_back
+{	
+	border: 0;
+	border-radius : 30px;
+	top: 150px;
+	left: 300px;
+	position: absolute;
+}
+.board_keywords
+{
+	top:480px;
+	left:700px;
+	position: absolute;
+}
+.ad_keywords
+{
+	top:650px;
+	left:700px;
+	position: absolute;
+}
+.emotion_ratio
+{
+	top:480px;
+	left:370px;
+	position: absolute;
+}
+.emotion_percent
+{
+	top:580px;
+	left:370px;
+	position: absolute;
+}
+.subtitle2
+{
+	top:120px;
+	left:780px;
+	position: absolute;	
+}
+
+.ad
+{
+	position: absolute;
+	top:200px;
+	left:500px;	
+}
+.select_ad
+{
+	top:120px;
+	left:800px;
+	position: absolute;	
+}
+.analyze_emotion
+{
+	top:360px;
+	left:370px;
+	position: absolute;	
+}
+
+.analyze_similarity
+{
+	top:360px;
+	left:1300px;
+	position: absolute;	
+}
+.analyze_similarity1
+{
+	top:480px;
+	left:1350px;
+	position: absolute;	
+}
+.analyze_similarity2
+{
+	top:580px;
+	left:1370px;
+	position: absolute;	
+}
+.analyze_keywords
+{
+	top:360px;
+	left:770px;
+	position: absolute;	
+}
+.board_keywords1
+{
+	top:530px;
+	left:700px;
+	position: absolute;	
+}
+
+.adkeyword1
+{
+	top:500px;
+	left:800px;
+	position: absolute;	
+}
+.ad_keywords1
+{
+	top:690px;
+	left:700px;
+	position: absolute;	
+}
+.similarity
+{
+	top:620px;
+	left:1250px;
+	position: absolute;			
+}
+.line1
+{
+	border-left:3px solid black;
+	height:400px;
+	margin-left:600px;
+	margin-top:410px;
+	position:absolute;
+}
+.line2
+{
+	border-left:3px solid black;
+	height:400px;
+	margin-left:1200px;
+	margin-top:410px;
+	position:absolute;
+}
+.line4
+{
+	border-left:3px solid black;
+	height:50px;
+	margin-left:1150px;
+	margin-top:550px;
+	position: absolute;
+}
+.line5
+{
+	border-bottom:3px solid black;
+	width:323px;
+	margin-left:1150px;
+	margin-top:600px;
+	position: absolute;
+}
+.line6
+{
+	border-left:3px solid black;
+	height:50px;
+	margin-left:1470px;
+	margin-top:550px;
+	position: absolute;
+}

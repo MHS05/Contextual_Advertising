@@ -99,8 +99,8 @@ window.onload = function()
 </script>
 	<body>
 		<!-- HTML figure -->
-	<figure class="keywords">
-	    <div id="keywords"></div>
-	</figure>
+		<figure class="keywords">
+		    <div id="keywords"></div>
+		</figure>
 	</body>
 </html>

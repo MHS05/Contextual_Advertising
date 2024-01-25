@@ -56,9 +56,9 @@ window.onload = function()
 </script>
 	<body>
 		<!-- HTML figure 여기부터 -->
-	<figure class="emotion">
-	    <div id="emotion"></div>
-	</figure>
+		<figure class="emotion">
+		    <div id="emotion"></div>
+		</figure>
 		<!-- HTML figure 여기까지 -->
 	</body>
 </html>

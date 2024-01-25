@@ -9,12 +9,12 @@
 			<script src="https://code.highcharts.com/modules/export-data.js"></script>
 			<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 			<script src="./js/jquery-3.7.1.js"></script>
-			<link rel="stylesheet" type="text/css" href="../highchart/highchart_main.css">
+			<link rel="stylesheet" type="text/css" href="../highchart/highchart.css">
 		<title>광고 선정 이유</title>
 	</head>
 	<body>
-		<div class="title"><h1>*광고 선정 이유*</h1></div>
-		<span class="subtitle2"><h2>[ 키워드 빈도 분석 ]</h2></span>
+		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
+		<span class="subtitle2"><h2>&lt; 키워드 빈도 분석 &gt;</h2></span>
 <!-- 2. 키워드 빈도 차트 highchart_keywords.jsp -->
 	<span id="keywords" style="display:inline-block; width:900px; height:700px"></span>
 <script>
@@ -42,7 +42,12 @@ Highcharts.chart('keywords', {
     },
     legend: { enabled: false },
     tooltip: {
-        pointFormat: '키워드: <b>{point.y} 회</b>'
+        formatter: function() {
+            return '키워드: <b>' + this.y + ' 회</b>';
+        },
+        style: {
+            fontSize: '60px'
+        }
     },
     series: [{
         name: '빈도수',
@@ -77,6 +82,7 @@ Highcharts.chart('keywords', {
             ['사아', 13],
             ['자차', 13]
         ],
+        credits: {  enabled: false },
         dataLabels: {
             enabled: true,
             rotation: -90,
