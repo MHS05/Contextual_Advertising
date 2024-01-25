@@ -1,4 +1,4 @@
-//ê²Œì‹œë¬¼ì˜ ëª©ë¡ì„ ì¡°íšŒí•˜ëŠ” í´ë˜ìŠ¤
+//°Ô½Ã¹°ÀÇ ¸ñ·ÏÀ» Á¶È¸ÇÏ´Â Å¬·¡½º
 package mhs.dto;
 
 import java.util.*;
@@ -7,11 +7,67 @@ import mhs.vo.*;
 
 public class ListDTO extends DBManager
 {
-	//ì „ì²´ ê²Œì‹œë¬¼ì˜ ê°¯ìˆ˜ë¥¼ ì–»ëŠ”ë‹¤.
+	
+	public ArrayList<NewsVO> getnewslist(int pageNo,String category,String keyword)
+	{
+		ArrayList<NewsVO> list = new ArrayList<NewsVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from news ";
+		sql += "where category = '" + category + "' ";
+		if( !keyword.equals("") )
+		{
+			sql += "and title like '%" + _R(keyword) + "%' ";
+		}	
+		sql += "order by nno desc ";
+		int startno = 10 * (pageNo - 1);
+		sql += "limit " + startno + ",10 ";		
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			NewsVO vo = new NewsVO();
+			vo.setNno(this.GetValue("nno"));
+			vo.setTitle(this.GetValue("title"));
+			vo.setWdate(this.GetValue("wdate"));
+			vo.setImage(this.GetValue("image"));
+			
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
+	
+	public int getnewstotal(String category,String keyword)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select count(*) as total ";
+		sql += "from news ";
+		sql += "where category = '" + category + "' ";
+		if( !keyword.equals("") )
+		{
+			sql += "and title like '%" + _R(keyword) + "%' ";
+		}
+
+		this.RunSelect(sql);
+		this.GetNext();				
+		int total = Integer.parseInt(this.GetValue("total")); 
+		
+		this.DBClose();
+		return total;
+	}
+	
+	//ÀüÃ¼ °Ô½Ã¹°ÀÇ °¹¼ö¸¦ ¾ò´Â´Ù.
 	//type : N, F, TY, TE, SY, SE 
-	//type : J ë˜ëŠ” H 
+	//type : J ¶Ç´Â H 
 	//type : F, TY, TE, SY, SE 
-	//keyword : ê²€ìƒ‰ í‚¤ì›Œë“œ
+	//keyword : °Ë»ö Å°¿öµå
 	public int GetTotal(String type,String keyword)
 	{
 		this.DBOpen();
@@ -28,15 +84,15 @@ public class ListDTO extends DBManager
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//ê²Œì‹œë¬¼ì˜ ëª©ë¡ì„ ì–»ëŠ”ë‹¤.
+	//°Ô½Ã¹°ÀÇ ¸ñ·ÏÀ» ¾ò´Â´Ù.
 	//type : F, TY, TE, SY, SE 
-	//keyword : ê²€ìƒ‰ í‚¤ì›Œë“œ	
+	//keyword : °Ë»ö Å°¿öµå	
 	public ArrayList<CommunityVO> GetList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -52,12 +108,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//ì œëª©ì—ì„œ ê²€ìƒ‰
+		//Á¦¸ñ¿¡¼­ °Ë»ö
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by no desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -113,15 +169,15 @@ public class ListDTO extends DBManager
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//ê²Œì‹œë¬¼ì˜ ëª©ë¡ì„ ì–»ëŠ”ë‹¤.
+	//°Ô½Ã¹°ÀÇ ¸ñ·ÏÀ» ¾ò´Â´Ù.
 	//type : F, TY, TE, SY, SE 
-	//keyword : ê²€ìƒ‰ í‚¤ì›Œë“œ	
+	//keyword : °Ë»ö Å°¿öµå	
 	public ArrayList<UserVO> GetuList(int pageNo,String isretire,String keyword, String newest, String gender)
 	{
 		ArrayList<UserVO> list = new ArrayList<UserVO>();
@@ -132,7 +188,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select uno,id,date(joindate) as joindate,name,nickname,gender,birth,con,isretire ";
 		sql += "from user ";
-		//íƒˆí‡´ì—¬ë¶€
+		//Å»Åğ¿©ºÎ
 		if(!isretire.equals(""))
 		{ 
 			sql += "where isretire = '" + isretire + "' ";
@@ -145,7 +201,7 @@ public class ListDTO extends DBManager
 		{
 			sql += "and gender = '" + gender +"' ";
 		}
-		//idì—ì„œ ê²€ìƒ‰
+		//id¿¡¼­ °Ë»ö
 		if((!isretire.equals("") || !gender.equals("")) && !keyword.equals("") )
 		{
 			sql += "and nickname like '%" + _R(keyword) + "%' ";
@@ -154,7 +210,7 @@ public class ListDTO extends DBManager
 		{
 			sql += "where nickname like '%" + _R(keyword) + "%' ";
 		}
-		//ìœ ì €ë²ˆí˜¸ìˆœ
+		//À¯Àú¹øÈ£¼ø
 		if(newest.equals("newest"))
 		{
 			sql += "order by uno desc ";
@@ -185,7 +241,7 @@ public class ListDTO extends DBManager
 		return list;
 	}
 	
-	//ì¡°íšŒìˆ˜ ë†’ì€ìˆœìœ¼ë¡œ ë¦¬ìŠ¤íŠ¸ ë½‘ê¸°
+	//Á¶È¸¼ö ³ôÀº¼øÀ¸·Î ¸®½ºÆ® »Ì±â
 	public ArrayList<CommunityVO> GetHighHitList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -200,12 +256,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//ì œëª©ì—ì„œ ê²€ìƒ‰
+		//Á¦¸ñ¿¡¼­ °Ë»ö
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by hit desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -228,7 +284,7 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
-	//ì¡°íšŒìˆ˜ ë†’ì€ìˆœìœ¼ë¡œ ë¦¬ìŠ¤íŠ¸ ë½‘ê¸°
+	//Á¶È¸¼ö ³ôÀº¼øÀ¸·Î ¸®½ºÆ® »Ì±â
 	public ArrayList<CommunityVO> GetLowHitList(int pageNo,String type,String keyword)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -243,12 +299,12 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where type = '" + type + "' ";
-		//ì œëª©ì—ì„œ ê²€ìƒ‰
+		//Á¦¸ñ¿¡¼­ °Ë»ö
 		if( !keyword.equals("") )
 		{
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}	
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by hit ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -280,7 +336,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from category ";
-		//êµ¬ë¶„(J-JAVA,H-HTML,C-CSS)
+		//±¸ºĞ(J-JAVA,H-HTML,C-CSS)
 		sql += "where ptype = '" + type + "' ";
 		if( !keyword.equals("") )
 		{
@@ -301,14 +357,14 @@ public class ListDTO extends DBManager
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
 	}
 	
 	
-	//íšŒì›ì „ì²´ ê¸€ ê°¯ìˆ˜ êµ¬í•˜ê¸°
+	//È¸¿øÀüÃ¼ ±Û °¹¼ö ±¸ÇÏ±â
 	public int GetUserCTotal(String uno)
 	{
 		this.DBOpen();
@@ -317,12 +373,12 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from community ";
-		//êµ¬ë¶„(J-JAVA,H-HTML,C-CSS)
+		//±¸ºĞ(J-JAVA,H-HTML,C-CSS)
 		sql += "where uno = '" + uno + "' ";
 
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
@@ -336,18 +392,18 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from reply ";
-		//êµ¬ë¶„(J-JAVA,H-HTML,C-CSS)
+		//±¸ºĞ(J-JAVA,H-HTML,C-CSS)
 		sql += "where uno = '" + uno + "' ";
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
 	}
 	
-	//íšŒì›ì‘ì„±ê¸€ ë¦¬ìŠ¤íŠ¸ì— ë‹´ê¸°
+	//È¸¿øÀÛ¼º±Û ¸®½ºÆ®¿¡ ´ã±â
 	public ArrayList<CommunityVO> GetUserCList(int pageNo,String uno)
 	{
 		ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
@@ -362,7 +418,7 @@ public class ListDTO extends DBManager
 		sql += "(select count(*) from reply where no = community.no) as count ";
 		sql += "from community ";
 		sql += "where uno = '" + uno + "' ";
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by no desc ";
 		int startno = 10 * (pageNo - 1);
 		sql += "limit " + startno + ",10 ";		
@@ -385,7 +441,7 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
-	//íšŒì›ì‘ì„± ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ì— ë‹´ê¸°
+	//È¸¿øÀÛ¼º ´ñ±Û ¸®½ºÆ®¿¡ ´ã±â
 		public ArrayList<ReplyVO> GetUserRList(int pageNo,String uno)
 		{
 			ArrayList<ReplyVO> list = new ArrayList<ReplyVO>();
@@ -400,7 +456,7 @@ public class ListDTO extends DBManager
 			sql += "(select title from community where no = reply.no) as title ";
 			sql += "from reply ";
 			sql += "where uno = '" + uno + "' ";
-			//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+			//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 			sql += "order by rno desc ";
 			int startno = 10 * (pageNo - 1);
 			sql += "limit " + startno + ",10 ";		
@@ -424,9 +480,9 @@ public class ListDTO extends DBManager
 			return list;		
 		}
 	
-	//ê²Œì‹œë¬¼ì˜ ëª©ë¡ì„ ì–»ëŠ”ë‹¤.
-	//type : J ë˜ëŠ” H 
-	//keyword : ê²€ìƒ‰ í‚¤ì›Œë“œ	
+	//°Ô½Ã¹°ÀÇ ¸ñ·ÏÀ» ¾ò´Â´Ù.
+	//type : J ¶Ç´Â H 
+	//keyword : °Ë»ö Å°¿öµå	
 	public ArrayList<CategoryVO> GetcList(int pageNo,String ptype,String keyword, String tag_age, String tag_pgender, String tag_pcon)
 	{
 		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
@@ -437,9 +493,9 @@ public class ListDTO extends DBManager
 		
 		sql  = "select pno,pname,age,ppimage,pfimage,age,pgender,pcon,tag_age,tag_pgender,tag_pcon,month_start,month_end ";
 		sql += "from category ";
-		//êµ¬ë¶„(J-JAVA,H-HTML,C-CSS)
+		//±¸ºĞ(J-JAVA,H-HTML,C-CSS)
 		sql += "where ptype = '" + ptype + "' ";
-		//ì œëª©ì—ì„œ ê²€ìƒ‰
+		//Á¦¸ñ¿¡¼­ °Ë»ö
 		if( !keyword.equals("") )
 		{
 			sql += "and pname like '%" + _R(keyword) + "%' ";
@@ -450,14 +506,14 @@ public class ListDTO extends DBManager
 		}	
 		if( !tag_pgender.equals("") )
 		{
-			sql += "and (tag_pgender = '" + tag_pgender + "' or tag_pgender = 'ë‚¨ë…€ë¶ˆë¬¸') ";
+			sql += "and (tag_pgender = '" + tag_pgender + "' or tag_pgender = '³²³àºÒ¹®') ";
 		}	
 		if( !tag_pcon.equals("") )
 		{
 			sql += "and tag_pcon = '" + tag_pcon + "' ";
 		}	
 		
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by pno desc ";
 		int startno = 6 * (pageNo - 1);
 		sql += "limit " + startno + ",6 ";		
@@ -493,7 +549,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select count(*) as total  ";
 		sql += "from category ";
-		//êµ¬ë¶„(J-JAVA,H-HTML,C-CSS)
+		//±¸ºĞ(J-JAVA,H-HTML,C-CSS)
 		sql += "where (month_start <= month_end";
 		sql += " and " + month + " between month_start and month_end) ";
 		sql += " or (month_start > month_end";
@@ -502,7 +558,7 @@ public class ListDTO extends DBManager
 		
 		this.RunSelect(sql);
 		this.GetNext();				
-		int total = Integer.parseInt(this.GetValue("total")); //ì „ì²´ ë°ì´í„° ê°¯ìˆ˜
+		int total = Integer.parseInt(this.GetValue("total")); //ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
 		
 		this.DBClose();
 		return total;
@@ -525,7 +581,7 @@ public class ListDTO extends DBManager
 		sql += " and (" + month + "  between month_start AND 12";
 		sql += " OR " + month + " between 1 AND month_end))";
 		
-		//ì‘ì„±ì¼ ë‚´ë¦¼ì°¨ìˆœ
+		//ÀÛ¼ºÀÏ ³»¸²Â÷¼ø
 		sql += "order by pno desc ";
 		int startno = listNum * (pageNo - 1);
 		sql += "limit " + startno + "," + listNum;		
