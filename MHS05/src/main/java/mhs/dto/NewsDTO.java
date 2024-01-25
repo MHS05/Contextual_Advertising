@@ -35,4 +35,36 @@ public class NewsDTO extends DBManager
 		return true;		
 	}
 	
+	//뉴스 1개의 정보를 조회한다.
+	//nno : 뉴스 번호
+	//false - 게시물 정보만 조회
+	public NewsVO Read(String nno)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+
+		sql  = "select * ";
+		sql += "from news where nno = " + nno;
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			//해당 게시물 없음.
+			this.DBClose();
+			return null;
+		}
+		NewsVO vo = new NewsVO();
+		vo.setNno(nno);
+		vo.setId(this.GetValue("id"));
+		vo.setTitle(this.GetValue("title"));
+		vo.setCategory(this.GetValue("category"));
+		vo.setNote(this.GetValue("note"));
+		vo.setImage(this.GetValue("image"));
+		vo.setPhyimage(this.GetValue("Phyimage"));
+		vo.setWdate(this.GetValue("wdate"));
+		
+		this.DBClose();
+		return vo;
+	}
+	
 }
