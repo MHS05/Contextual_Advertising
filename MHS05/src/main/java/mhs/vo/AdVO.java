@@ -1,59 +1,51 @@
 package mhs.vo;
 
-import java.util.List;
-
 public class AdVO 
 {
-	public String adno;		   	    //ê´‘ê³ ë²ˆí˜¸
-	public List<String> keywords;   //í‚¤ì›Œë“œ ë¦¬ìŠ¤íŠ¸
-	public String link;			    //ë§í¬
-	public String fimage;			//ì´ë¯¸ì§€_ë…¼ë¦¬
-	public String pimage;			//ì´ë¯¸ì§€_ë¬¼ë¦¬
-	public String type;				//ìƒí’ˆíƒ€ì…
-	public String name;				//ìƒí’ˆëª…
-	public String date_start;		//ë“±ë¡ì¼
-	public String date_end;	    	//ë§Œê¸°ì¼
-	public String modify_time;		//ìˆ˜ì •ì¼
+	public String id;	         //µî·ÏÀÚ
+	public String adno;		   	 //±¤°í¹øÈ£
+	public String adname;		 //»óÇ°ÀÌ¸§
+	public String adkey;		 //»óÇ°ÀÌ¸§
+	public String image;		 //ÀÌ¹ÌÁö_³í¸®
+	public String phyimage;		 //ÀÌ¹ÌÁö_¹°¸®
 	
     
 	public AdVO()
 	{
-		
+		id          = "";        
 		adno        = "";
-		keywords    = null;
-		link 	    = "";
-		fimage 	    = "";
-		pimage      = "";
-		type        = "";
-		name   	    = "";
-		link        = "";
-		date_start  = "";
-		date_end    = "";	
-		modify_time = "";
+		image 	    = "";
+		phyimage    = "";
+		adname   	= "";
+		adkey   	= "";
 	}
 	
 	//getter
 	public String getAdno() 		  {	return adno;		}
-	public List<String> getKeywords() {	return keywords;	}
-	public String getLink() 		  {	return link;		}
-	public String getFimage() 		  {	return fimage;		}
-	public String getPimage() 		  {	return pimage;		}
-	public String getType() 		  {	return type;		}
-	public String getName() 		  {	return name;		}
-	public String getDate_start() 	  {	return date_start;	}
-	public String getDate_end() 	  { return date_end;	}
-	public String getModify_time() 	  {	return modify_time;	}
+	public String getImage() 		  {	return image;		}
+	public String getPhyimage() 	  {	return phyimage;	}
+	public String getAdname() 		  {	return adname;		}
 	
 	//setter
-	public void setAdno(String adno) 			   {	this.adno = adno;				}
-	public void setKeywords(List<String> keywords) {	this.keywords = keywords;		}
-	public void setLink(String link) 			   {	this.link = link;				}
-	public void setFimage(String fimage)		   {	this.fimage = fimage;			}
-	public void setPimage(String pimage)		   {	this.pimage = pimage;			}
-	public void setType(String type) 			   {	this.type = type;				}
-	public void setName(String name) 			   {	this.name = name;				}
-	public void setDate_start(String date_start)   {	this.date_start = date_start;	}
-	public void setDate_end(String date_end) 	   {	this.date_end = date_end;		}	
-	public void setModify_time(String modify_time) {	this.modify_time = modify_time;	}	
+	public void setAdno(String adno) 			  {		this.adno = adno;			}
+	public void setImage(String image)		   	  {		this.image = image;			}
+	public void setPhyimage(String phyimage)	  {		this.phyimage = phyimage;	}
+	public void setAdname(String adname) 		  {		this.adname = adname;		}
+
+	public String getAdkey() {
+		return adkey;
+	}
+
+	public void setAdkey(String adkey) {
+		this.adkey = adkey;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 }

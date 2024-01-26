@@ -9,18 +9,18 @@ import mhs.vo.*;
 
 public class ReplyDTO extends DBManager
 {
-	//´ñ±ÛÀ» µî·ÏÇÑ´Ù.
+	//ëŒ“ê¸€ì„ ë“±ë¡í•œë‹¤.
 	public boolean Insert(ReplyVO vo)
 	{
 		this.DBOpen();
 
-		//´ñ±ÛÀ» Insert ÇÑ´Ù.
+		//ëŒ“ê¸€ì„ Insert í•œë‹¤.
 		String sql = "";
 		sql += "insert into reply (no,uno,id,rnote) values ";
 		sql += "('" + vo.getNo() + "','" + vo.getUno() + "','" + vo.getId() + "','" +_R(vo.getRnote()) + "') ";
 		this.RunCommand(sql);		
 		
-		//µî·ÏµÈ ´ñ±ÛÀÇ ¹øÈ£¸¦ ¾ò´Â´Ù.
+		//ë“±ë¡ëœ ëŒ“ê¸€ì˜ ë²ˆí˜¸ë¥¼ ì–»ëŠ”ë‹¤.
 		sql = "select last_insert_id() as no ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -34,14 +34,14 @@ public class ReplyDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//´ñ±ÛÀ» Insert ÇÑ´Ù.
+		//ëŒ“ê¸€ì„ Insert í•œë‹¤.
 		String sql = "";
 		sql += "update reply ";
 		sql += "set rnote = '" + _R(vo.getRnote()) + "' ";
 		sql += "where no=" + vo.getNo() + " and rno=" + vo.getRno();
 		this.RunCommand(sql);		
 		
-		//µî·ÏµÈ ´ñ±ÛÀÇ ¹øÈ£¸¦ ¾ò´Â´Ù.
+		//ë“±ë¡ëœ ëŒ“ê¸€ì˜ ë²ˆí˜¸ë¥¼ ì–»ëŠ”ë‹¤.
 		sql = "select last_insert_id() as no ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -51,7 +51,7 @@ public class ReplyDTO extends DBManager
 		return true;
 	}
 	
-	//´ñ±ÛÀ» »èÁ¦ÇÑ´Ù.
+	//ëŒ“ê¸€ì„ ì‚­ì œí•œë‹¤.
 	public boolean Delete(String rno)
 	{
 		this.DBOpen();
@@ -66,7 +66,7 @@ public class ReplyDTO extends DBManager
 		return true;		
 	}
 		
-	//´ñ±ÛÀÇ ¸ñ·ÏÀ» Á¶È¸ÇÑ´Ù.
+	//ëŒ“ê¸€ì˜ ëª©ë¡ì„ ì¡°íšŒí•œë‹¤.
 	public ArrayList<ReplyVO> GetList(String no)
 	{
 		ArrayList<ReplyVO> list = new ArrayList<ReplyVO>();

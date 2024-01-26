@@ -41,9 +41,7 @@ if (fimage != null)
 AdVO vo = new AdVO();
 
 vo.setAdno(adno);
-vo.setType(type);
 vo.setName(name);
-vo.setDate_end(date_end);
 
 if(fimage != null)
 {	

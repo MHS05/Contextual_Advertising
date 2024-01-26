@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="mhs.vo.*" %>    
 <%@ page import="java.util.*" %>    
 <%@ page import="java.io.*" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
@@ -13,10 +14,8 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String adno       = multi.getParameter("adno");
-String type       = multi.getParameter("type");
 String name       = multi.getParameter("name");
-String date_end   = multi.getParameter("date_end");
+String keyword    = multi.getParameter("keywords");
 String fimage     = (String)multi.getFilesystemName("image");
 String pimage     = "";
 
@@ -27,7 +26,7 @@ if (fimage != null)
 	pimage = UUID.randomUUID().toString();
 	
 	//파일 이름 변경
-	String orgPimage = uploadPath + "\\" + fimage;
+	String orgPimage = uploadPath + "\\" + pimage;
 	String newPimage = uploadPath + "\\" + pimage;
 	
 	File srcFile    = new File(orgPimage);
@@ -39,25 +38,18 @@ if (fimage != null)
 }
 
 AdVO vo = new AdVO();
-
-vo.setAdno(adno);
-vo.setType(type);
-vo.setName(name);
-vo.setDate_end(date_end);
-
+vo.setId(loginVO.getId());
+vo.setAdname(name);
+vo.setAdkey(keyword);
 if(fimage != null)
 {	
-	vo.setPimage(pimage);
-	vo.setFimage(fimage);
+	vo.setImage(fimage);
+	vo.setPhyimage(pimage);
 }
 
 AdDTO dto = new AdDTO();
-
-
 dto.Insert(vo);
 
-
-response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
+response.sendRedirect("adinfo.jsp");
 %>
-
 

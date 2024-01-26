@@ -9,54 +9,6 @@ if( loginVO == null)
 	return;
 }
 %>
-<script>
-window.onload = function()
-{
-	$("#title").focus();
-}
-
-function setThumbnail(event) {
-	
-	$("#btn-upload").css('display','none')
-	
-    var reader = new FileReader();
-
-    reader.onload = function(event) {
-      var img = document.createElement("img");
-      img.style.width = '650px';
-      img.style.height = '100px';
-      img.setAttribute("src", event.target.result);
-      document.querySelector("td#upload").appendChild(img);
-    };
-	
-    reader.readAsDataURL(event.target.files[0]);
-  }
-
-function DoWrite()
-{	
-	if($("#name").val() == "")
-	{
-		alert("상품이름을 입력하세요.")
-		$("#name").focus();
-		return false;
-	}
-	
-	if($("#keywords").val() == "")
-	{
-		alert("키워드를 입력하세요.")
-		$("#keywords").focus();
-		return false;
-	}
-	
-	if(confirm("광고를 등록하시겠습니까?") == 0)
-	{
-		return false;
-	}
-	return true;
-}
-
-
-</script>
 <style>
 	.btn-upload 
 	{	
@@ -118,10 +70,78 @@ window.onload=function()
 		
 	});
 }
+window.onload = function()
+{
+	$("#title").focus();
+}
+
+function setThumbnail(event) {
+	
+	$("#btn-upload").css('display','none')
+	
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.style.width = '650px';
+      img.style.height = '100px';
+      img.setAttribute("src", event.target.result);
+      document.querySelector("td#upload").appendChild(img);
+    };
+	
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+function DoWrite()
+{	
+	if($("#name").val() == "")
+	{
+		alert("상품이름을 입력하세요.")
+		$("#name").focus();
+		return false;
+	}
+	
+	if($("#keywords").val() == "")
+	{
+		alert("키워드를 입력하세요.")
+		$("#keywords").focus();
+		return false;
+	}
+	if($("#image").val() == "")
+	{
+		alert("뉴스 이미지를 넣으세요.")
+		$("#image").focus();
+		return false;
+	}
+	
+	if(confirm("광고를 등록하시겠습니까?") == false)
+	{
+		return; 
+	}else
+	{
+		$.ajax({
+			type : "post",
+			url: "aduploadok.jsp",
+			data :
+			{	
+				name     : name,
+				keywords : keywords,
+				image    : image,
+			},		
+			dataType : "html",	
+			success : function(data) 
+			{
+				data = data.trim();
+				alert("광고가 등록되었습니다.");
+				document.location = "../admin/member.jsp";
+			}				
+		});
+	}
+}
 </script>
 	<form name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 		<tr>
-			<td colspan="12"><h2><b>광고등록</b></h2><hr></td>
+			<td colspan="12"><h2><b>광고 등록</b></h2><hr></td>
 		</tr>
 		<tr>
 			<td height="50px"></td>

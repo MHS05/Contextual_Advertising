@@ -3,40 +3,31 @@ package mhs.dto;
 import mhs.dao.*;
 import mhs.vo.*;
 
-import java.util.List;
-
 public class AdDTO extends DBManager
 {
+	//광고를 등록한다.
 	public boolean Insert(AdVO vo)
 	{
 		this.DBOpen();
 		
 		String sql = "";
 
-	
-		sql += "insert into ad ";
-		sql += "(adno, keywords, link, fimage, pimage, type";
-		sql += "name, date_start, date_end) ";
+		sql += "insert into ad (id,adname, image, phyimage, adkey) ";
 		sql += "values (";
-		sql += "'" + vo.getAdno()        + "',";
-		sql += "'" + vo.getKeywords()    + "',";
-		sql += "'" + vo.getLink()        + "',";
-		sql += "'" + vo.getFimage()      + "',";
-		sql += "'" + vo.getPimage()      + "',";
-		sql += "'" + vo.getType()        + "',";
-		sql += "'" + _R(vo.getName())    + "',";
-		sql += "'" + vo.getDate_start()  + "',";
-		sql += "'" + vo.getDate_end()    + "' ";
+		sql += "'" + _R(vo.getId())          + "',";
+		sql += "'" + _R(vo.getAdname())      + "',";
+		sql += "'" + _R(vo.getImage())       + "',";
+		sql += "'" + _R(vo.getPhyimage())    + "',";
+		sql += "'" + _R(vo.getAdkey())       + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
-		sql = "select last_insert_name() as adno ";
+		sql = "select last_insert_id() as adno ";
 		this.RunSelect(sql);
 		this.GetNext();
 		vo.setAdno(this.GetValue("adno"));
 		this.DBClose();
-		return true;		
-
+		return true;
 	}
 	
 	public boolean Update(AdVO vo)
@@ -46,17 +37,12 @@ public class AdDTO extends DBManager
 		String sql = "";
 		sql  = "update ad set ";
 		sql += "adno='"           + vo.getAdno()           + "', ";
-		sql += "keywords='"       + vo.getKeywords()       + "', ";
-		if(!vo.getFimage().equals(""))
+		if(!vo.getImage().equals(""))
 		{
-			sql += "fimage='"     + _R(vo.getFimage())     + "', ";
-			sql += "pimage='"     + _R(vo.getPimage())     + "', ";
+			sql += "image='"     + _R(vo.getImage())     + "', ";
+			sql += "phyimage='"     + _R(vo.getPhyimage())     + "', ";
 		}
-		sql += "link='"           + vo.getLink()           + "', ";
-		sql += "type='"           + vo.getType()           + "', ";
-		sql += "name='" 		  + _R(vo.getName())       + "', ";
-		sql += "date_start='"     + vo.getDate_start()     + "', ";
-		sql += "date_end='"       + vo.getDate_end()       + "' ";
+		sql += "adname='" 		  + _R(vo.getAdname())       + "' ";
 		
 		
 		sql += "where adno = "  + vo.getAdno();
@@ -87,8 +73,7 @@ public class AdDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select adno, keywords, link, fimage, pimage, ";
-		sql	+= "type, name, date_start, date_end ";
+		sql  = "select adno, image, phyimage ";
 		sql += "from ad ";
 		sql += "where adno = " + adno;
 		this.RunSelect(sql);
@@ -99,14 +84,9 @@ public class AdDTO extends DBManager
 		}
 		AdVO vo = new AdVO();
 		vo.setAdno(adno);
-		vo.setKeywords(this.GetList("keywords"));
-		vo.setLink(this.GetValue("link"));
-		vo.setFimage(this.GetValue("fimage"));
-		vo.setPimage(this.GetValue("pimage"));
-		vo.setType(this.GetValue("type"));
-		vo.setName(this.GetValue("name"));
-		vo.setDate_start(this.GetValue("date_start"));
-		vo.setDate_end(this.GetValue("date_end"));
+		vo.setImage(this.GetValue("image"));
+		vo.setPhyimage(this.GetValue("phyimage"));
+		vo.setAdname(this.GetValue("name"));
 	
 		this.DBClose();
 		return vo;

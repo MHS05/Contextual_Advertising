@@ -36,7 +36,20 @@
 	border-radius: 12px;
 	cursor: pointer;
 }
+
+#fixed 
+{
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 100px;
+	padding: 5px;
+	color: white;
+}
 </style>
+<div id="fixed" style="width:50px; height: 50px;">
+	<a href="#top"><img style="width:50px; height: 50px;" src="../image/topbutton.png"></a>
+</div>
 <table border="0" align="center" width="1200px">
 	<tr>
 		<td width="200px" valign="top" >		
@@ -44,22 +57,22 @@
 			<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
 				<table border="0" align="left" width="200px" height="50px">
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b>다이어트</b></a></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=D"><b>다이어트</b></a></td>
 					</tr>
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b><u>음식</u></b></a></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=F"><b><u>음식</u></b></a></td>
 					</tr>
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b>운동</b></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=E"><b>운동</b></td>
 					</tr>
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b>영양제</b></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=N"><b>영양제</b></td>
 					</tr>
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b>남성건강</b></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=M"><b>남성건강</b></td>
 					</tr>
 					<tr height="50px">
-						<td style="font-size: 20px;"><a href="category.jsp"><b>여성건강</b></td>
+						<td style="font-size: 20px;"><a href="newslist.jsp?category=F"><b>여성건강</b></td>
 					</tr>
 					<tr height="50px">
 						<td></td>
@@ -80,7 +93,7 @@
 				<img src="../image/diet.jpg">
 			</div>
 			<div id="adimage">
-				<a href="../ad/adchoicereason.jsp"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
+				<a href="../highchart/highchart01.jsp" target="_blanck"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
 			</div>
 			<div style="height:50px"></div>
 			<div id="newsmain" style="">

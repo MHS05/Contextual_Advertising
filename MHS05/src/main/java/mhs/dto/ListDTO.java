@@ -7,6 +7,96 @@ import mhs.vo.*;
 
 public class ListDTO extends DBManager
 {
+	
+	public ArrayList<AdVO> getadlist(int pageNo,String keyword)
+	{
+		ArrayList<AdVO> list = new ArrayList<AdVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from ad ";
+		if( !keyword.equals("") )
+		{
+			sql += "and adname like '%" + _R(keyword) + "%' ";
+		}	
+		sql += "order by adno desc ";
+		int startno = 10 * (pageNo - 1);
+		sql += "limit " + startno + ",10 ";		
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			AdVO vo = new AdVO();
+			vo.setAdno(this.GetValue("adno"));
+			vo.setId(this.GetValue("id"));
+			vo.setAdname(this.GetValue("adname"));
+			vo.setAdkey(this.GetValue("adkey"));
+			vo.setImage(this.GetValue("image"));
+			vo.setPhyimage(this.GetValue("phyimage"));
+			
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
+	public ArrayList<NewsVO> getnewslist(int pageNo,String category,String keyword)
+	{
+		ArrayList<NewsVO> list = new ArrayList<NewsVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from news ";
+		sql += "where category = '" + category + "' ";
+		if( !keyword.equals("") )
+		{
+			sql += "and title like '%" + _R(keyword) + "%' ";
+		}	
+		sql += "order by nno desc ";
+		int startno = 10 * (pageNo - 1);
+		sql += "limit " + startno + ",10 ";		
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			NewsVO vo = new NewsVO();
+			vo.setNno(this.GetValue("nno"));
+			vo.setNote(this.GetValue("note"));
+			vo.setTitle(this.GetValue("title"));
+			vo.setWdate(this.GetValue("wdate"));
+			vo.setImage(this.GetValue("image"));
+			
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
+	
+	public int getnewstotal(String category,String keyword)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select count(*) as total ";
+		sql += "from news ";
+		sql += "where category = '" + category + "' ";
+		if( !keyword.equals("") )
+		{
+			sql += "and title like '%" + _R(keyword) + "%' ";
+		}
+
+		this.RunSelect(sql);
+		this.GetNext();				
+		int total = Integer.parseInt(this.GetValue("total")); 
+		
+		this.DBClose();
+		return total;
+	}
+	
 	//전체 게시물의 갯수를 얻는다.
 	//type : N, F, TY, TE, SY, SE 
 	//type : J 또는 H 
@@ -26,6 +116,28 @@ public class ListDTO extends DBManager
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}
 
+		this.RunSelect(sql);
+		this.GetNext();				
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
+		
+		this.DBClose();
+		return total;
+	}
+	//전체 광고의 갯수를 얻는다.
+	//keyword : 검색 키워드
+	public int getadtotal(String keyword)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select count(*) as total ";
+		sql += "from ad ";
+		if( !keyword.equals("") )
+		{
+			sql += "and adname like '%" + _R(keyword) + "%' ";
+		}
+		
 		this.RunSelect(sql);
 		this.GetNext();				
 		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
@@ -549,52 +661,4 @@ public class ListDTO extends DBManager
 		return list;		
 	}
 	
-	
-	//게시물의 목록을 얻는다.
-		//type : F, TY, TE, SY, SE 
-		//keyword : 검색 키워드	
-		public ArrayList<AdVO> GetadList(int pageNo,String type,String keyword)
-		{
-			ArrayList<CommunityVO> list = new ArrayList<CommunityVO>();
-			
-			this.DBOpen();
-			
-			String sql = "";
-			
-			sql  = "select no,title,date(wdate) as wdate,hit,image,";
-			sql += "(select name from user where id = community.id) as name, ";
-			sql += "(select nickname from user where id = community.id) as nickname, ";
-			sql += "(select uno from user where id = community.id) as uno, ";
-			sql += "(select count(*) from reply where no = community.no) as count ";
-			sql += "from community ";
-			sql += "where type = '" + type + "' ";
-			//제목에서 검색
-			if( !keyword.equals("") )
-			{
-				sql += "and title like '%" + _R(keyword) + "%' ";
-			}	
-			//작성일 내림차순
-			sql += "order by no desc ";
-			int startno = 10 * (pageNo - 1);
-			sql += "limit " + startno + ",10 ";		
-			this.RunSelect(sql);
-			while( this.GetNext() == true)
-			{
-				CommunityVO vo = new CommunityVO();
-				vo.setNo(this.GetValue("no"));
-				vo.setUno(this.GetValue("uno"));
-				vo.setTitle(this.GetValue("title"));
-				vo.setWdate(this.GetValue("wdate"));
-				vo.setHit(this.GetValue("hit"));
-				vo.setImage(this.GetValue("image"));
-				vo.setName(this.GetValue("name"));
-				vo.setNickname(this.GetValue("nickname"));
-				vo.setRecount(this.GetValue("count"));
-				
-				list.add(vo);
-			}		
-			this.DBClose();
-			
-			return list;		
-		}
 }

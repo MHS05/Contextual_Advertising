@@ -2,10 +2,6 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
 <%
-String kind = request.getParameter("kind");
-if(kind == null) kind = "N";
-String btitle = "공지사항 게시판";
-
 int page_no = 1;
 //페이징 4단계 : 브라우저로부터 페이지 번호를 받는다. ex)index.jsp?page=3
 try
@@ -16,7 +12,7 @@ try
 ListDTO dto = new ListDTO();
 
 //페이징 1단계: 전체 게시물 갯수를 얻는다.
-int totalData = dto.GetTotal(kind,"");
+int totalData = dto.getadtotal("");
 
 //페이징 2단계 : 전체 페이지 갯수를 계산한다.
 int totalPage = totalData / 10;
@@ -27,7 +23,7 @@ if(totalData % 10 != 0)
 	totalPage++;
 }
 
-ArrayList<CommunityVO> list = dto.GetList(page_no, kind, "");
+ArrayList<AdVO> list = dto.getadlist(page_no,"");
 %>
 <script>
 var selectedElementsCnt = 0; //체크된 체크박스 갯수
@@ -64,7 +60,7 @@ function Dodelete()
 	}
 }
 </script>
-<form id="nlistForm" method="get" action="adminnndelete.jsp">
+<form id="nlistForm" method="get" action="addelete.jsp">
 	<tr>
 		<td colspan="7">
 			<a href="javascript:Dodelete();"><div class="dbutton" style="background-color:#FD7064;">선택삭제</div></a>
@@ -80,17 +76,6 @@ function Dodelete()
 			<input type="checkbox" name="delNo" id="delNo"  value="selectall" onclick='selectAll(this)'>
 		</td>
 		<td align="center" width="30px">번호</td>
-		<td align="center" width="30px">
-			<select name="tag_age" id="tag_age" style="width:80px; height:30px;" onchange="doSearch();">
-	           <option value="">카테고리</option>
-	           <option value="다어이트">다이어트</option>
-	           <option value="음식">음식</option>
-	           <option value="운동">운동</option>
-	           <option value="영양제">영양제</option>
-	           <option value="남성건강">남성건강</option>
-	           <option value="여성건강">여성건강</option>
-    		</select>
-		</td>
 		<td align="center" width="100px">상품이름</td>
 		<td align="center" width="50px">키워드</td>
 		<td align="center" width="50px">작성일</td>
@@ -102,17 +87,16 @@ function Dodelete()
 	<%
 	int SeqNo = totalData - (page_no - 1) * 10;
 	
-	for(CommunityVO vo : list)
+	for(AdVO vo : list)
 	{
 	%>
 	<tr>
 		<td align="center" width="10px">
-			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getNo() %>" onclick='getCheckedCnt()'>
+			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getAdno() %>" onclick='getCheckedCnt()'>
 		</td>
 		<td align="center"><%= SeqNo-- %></td>
-		<td align="center">카테고리</td>
-		<td align="center"><a href="adinfo.jsp">"ㅇㅇㅇ" 광고입니다.</a></td>
-		<td align="center">키워드</td>
+		<td align="center"><a href="adinfo.jsp"><%= vo.adname %></a></td>
+		<td align="center"><%= vo.adkey %></td>
 		<td align="center">2024-01-22</td>
 		<td align="center">9회</td>
 	</tr>
@@ -141,7 +125,7 @@ function Dodelete()
 		if(startBlock > 10)
 		{
 			%>
-			<a href="adminnlist.jsp?kind=<%= kind %>&page=<%= startBlock - 1 %>">이전</a>
+			<a href="adminnlist.jsp?page=<%= startBlock - 1 %>">이전</a>
 			<%					
 		}		
 		for(int i=startBlock; i <= endBlock; i++)
@@ -149,18 +133,17 @@ function Dodelete()
 			if( i == page_no )
 			{
 				//현재 페이지임
-				%><a style="color:red;" href="adminnlist.jsp?kind=<%= kind %>&page=<%= i %>"><%= i %></a>&nbsp;<%
+				%><a style="color:red;" href="adminnlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
 			}else
 			{
-				%><a href="adminnlist.jsp?kind=<%= kind %>&page=<%= i %>"><%= i %></a>&nbsp;<%
+				%><a href="adminnlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
 			}
 		}
-		
 		//다음 블럭 표시하기
 		if(endBlock < totalPage)
 		{
 			%>
-			<a href="adminnlist.jsp?kind=<%= kind %>&page=<%= endBlock + 1 %>">다음</a>
+			<a href="adminnlist.jsp?page=<%= endBlock + 1 %>">다음</a>
 			<%					
 		}		
 		%>
