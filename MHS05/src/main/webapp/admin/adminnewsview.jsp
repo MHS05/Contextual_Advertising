@@ -168,10 +168,13 @@ if( vo == null )
 		</div>
 		<%
 		}else
-		{
+		{	
+			String adno = vo.getAdno();
+			AdDTO addto = new AdDTO();
+			AdVO advo = addto.Read(adno);
 		%>
 		<div id="adimage">
-			<a href="../ad/adchoicereason.jsp"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
+			<a href="../highchart/highchart01.jsp" target="_blank"><img width="800px" height="140px" src="../image/ad.jpg"></a>
 		</div>
 		<%
 		}

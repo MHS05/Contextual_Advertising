@@ -5,7 +5,6 @@ import mhs.vo.*;
 
 public class AdDTO extends DBManager
 {
-	//광고를 등록한다.
 	public boolean Insert(AdVO vo)
 	{
 		this.DBOpen();
@@ -73,8 +72,7 @@ public class AdDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select adno, image, phyimage ";
-		sql += "from ad ";
+		sql  = "select * from ad ";
 		sql += "where adno = " + adno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
@@ -86,7 +84,9 @@ public class AdDTO extends DBManager
 		vo.setAdno(adno);
 		vo.setImage(this.GetValue("image"));
 		vo.setPhyimage(this.GetValue("phyimage"));
-		vo.setAdname(this.GetValue("name"));
+		vo.setAdname(this.GetValue("adname"));
+		vo.setId(this.GetValue("id"));
+		vo.setAdkey(this.GetValue("adkey"));
 	
 		this.DBClose();
 		return vo;

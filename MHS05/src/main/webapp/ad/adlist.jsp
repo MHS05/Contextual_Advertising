@@ -95,7 +95,7 @@ function Dodelete()
 			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getAdno() %>" onclick='getCheckedCnt()'>
 		</td>
 		<td align="center"><%= SeqNo-- %></td>
-		<td align="center"><a href="adinfo.jsp"><%= vo.adname %></a></td>
+		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
 		<td align="center"><%= vo.adkey %></td>
 		<td align="center">2024-01-22</td>
 		<td align="center">9ȸ</td>

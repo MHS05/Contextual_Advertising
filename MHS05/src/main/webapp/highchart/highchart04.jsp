@@ -10,7 +10,7 @@
 	<body>
 		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
 		<span class="select_ad"><h2>** 선정된 광고 **</h2></span>
-		<span class="ad"><img src="../image/AD/ad.jpg" style="width:850px; height:150px"></span>
+		<span class="ad"><img src="../image/ad.jpg" style="width:850px; height:150px"></span>
 		<span class="analyze_emotion"><h2>** 감성 분석 **</h2></span>
 		<span class="emotion_ratio"><h2>긍부정 비율 : </h2></span>
 		<span class="emotion_percent"><font color='red'><h1>긍정 53%</h1></font></span>
