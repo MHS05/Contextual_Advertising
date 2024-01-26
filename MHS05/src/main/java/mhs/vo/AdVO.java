@@ -21,6 +21,7 @@ public class AdVO
 	}
 	
 	//getter
+	
 	public String getAdno() 		  {	return adno;		}
 	public String getImage() 		  {	return image;		}
 	public String getPhyimage() 	  {	return phyimage;	}
