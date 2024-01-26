@@ -17,19 +17,19 @@
 								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b>다이어트</b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F"><b>음식</b></a></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>운동</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=E"><b>운동</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>영양제</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=N"><b>영양제</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>남성건강</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=M"><b>남성건강</b></td>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>여성건강</b></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F2"><b>여성건강</b></td>
 							</tr>
 						</table>
 					</div>

@@ -10,6 +10,27 @@ if( loginVO == null)
 }
 String category = request.getParameter("category");
 if(category == null) category = "D";
+String htitle = "다이어트";
+if(category.equals("F"))
+{
+	htitle = "음식";
+}
+if(category.equals("E"))
+{
+	htitle = "운동";
+}
+if(category.equals("N"))
+{
+	htitle = "영양제";
+}
+if(category.equals("M"))
+{
+	htitle = "남성건강";
+}
+if(category.equals("F2"))
+{
+	htitle = "여성건강";
+}
 String nno = request.getParameter("nno");
 String page_no = request.getParameter("page");
 if(page_no == null || page_no.equals("")) page_no = "";
@@ -94,13 +115,13 @@ if( vo == null )
 </style>
 <tr>
 	<td valign="top">
-		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>다이어트</h2>
+		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2><%= htitle %></h2>
 			<div align="center" id="modbutton"><a href="../admin/modifynews.jsp">수정</a></div>
 			<div align="center" id="delbutton">삭제</div>
 		</div>
 		<div id="newstitle"><h2><%= vo.getTitle() %></h2>
-			<span><font color="gray" size="2px">입력&nbsp;<time>2024-01-19</time></font></span><br>
-			<span>김용 기자</span>
+			<span><font color="gray" size="2px">입력&nbsp;<time><%= vo.getWdate() %></time></font></span><br>
+			<span><%= loginVO.getName() %></span>
 		</div>
 		<div style="height:50px"></div>
 		<div id="newsimage">

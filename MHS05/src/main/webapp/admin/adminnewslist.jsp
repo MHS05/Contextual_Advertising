@@ -4,6 +4,27 @@
 <%
 String category = request.getParameter("category");
 if(category == null) category = "D";
+String htitle = "다이어트";
+if(category.equals("F"))
+{
+	htitle = "음식";
+}
+if(category.equals("E"))
+{
+	htitle = "운동";
+}
+if(category.equals("N"))
+{
+	htitle = "영양제";
+}
+if(category.equals("M"))
+{
+	htitle = "남성건강";
+}
+if(category.equals("F2"))
+{
+	htitle = "여성건강";
+}
 
 ListDTO dto = new ListDTO();
 
@@ -51,7 +72,7 @@ ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
 
 <tr>
 	<td valign="top">
-		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2>남성건강</h2>
+		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2><%= htitle %></h2>
 
 			<div align="center" id="delbutton"><a href="writenews.jsp?category=D">등록</a></div>
 		</div>
