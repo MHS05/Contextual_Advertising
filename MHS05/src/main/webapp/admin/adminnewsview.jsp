@@ -160,9 +160,22 @@ if( vo == null )
 		<div id="newsimage">
 			<img style="width:100%;height:100%;" src="newsimagedown.jsp?nno=<%= nno %>">
 		</div>
+		<%
+		if(vo.getEmotion().equals("ºÎÁ¤"))
+		{
+		%>
+		<div id="adimage">
+		</div>
+		<%
+		}else
+		{
+		%>
 		<div id="adimage">
 			<a href="../ad/adchoicereason.jsp"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
 		</div>
+		<%
+		}
+		%>
 		<div style="height:50px"></div>
 		<div id="newsmain" style="">
 			<div id="newsnote">
