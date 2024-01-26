@@ -112,12 +112,45 @@ if( vo == null )
 	right: 100px;
 	top:0px;
 }
+.del
+{
+	border: 0;
+	background-color:lightgray;
+	font-size: 16px;
+	cursor: pointer;
+}
 </style>
+<script>
+	function del()
+	{
+		if(confirm("뉴스를 삭제하시겠습니까?") == false)
+		{
+			return;	
+		}else 
+		{
+			$.ajax({
+				type : "post",
+				url: "newsdelok.jsp",
+				data :
+				{	
+					nno : <%= vo.getNno() %>,
+				},		
+				dataType : "html",	
+				success : function(data) 
+				{
+					data = data.trim();
+					alert("뉴스가 삭제되었습니다.");
+					document.location = "adminnewslist.jsp";
+				}				
+			});
+		}
+	}
+</script>
 <tr>
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2><%= htitle %></h2>
 			<div align="center" id="modbutton"><a href="../admin/modifynews.jsp">수정</a></div>
-			<div align="center" id="delbutton">삭제</div>
+			<div align="center" id="delbutton"><input type="button" class="del" id="del" value="삭제" onclick="del()"></div>
 		</div>
 		<div id="newstitle"><h2><%= vo.getTitle() %></h2>
 			<span><font color="gray" size="2px">입력&nbsp;<time><%= vo.getWdate() %></time></font></span><br>

@@ -67,4 +67,19 @@ public class NewsDTO extends DBManager
 		return vo;
 	}
 	
+	//뉴스 정보를 삭제한다.
+	public boolean Delete(String nno)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+
+		sql = "delete from news where nno = " + nno;
+		this.RunCommand(sql);
+		
+		this.DBClose();
+		
+		return true;
+	}
+	
 }
