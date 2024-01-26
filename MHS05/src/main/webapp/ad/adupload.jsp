@@ -83,8 +83,8 @@ function setThumbnail(event) {
 
     reader.onload = function(event) {
       var img = document.createElement("img");
-      img.style.width = '650px';
-      img.style.height = '100px';
+      img.style.width = '800px';
+      img.style.height = '150px';
       img.setAttribute("src", event.target.result);
       document.querySelector("td#upload").appendChild(img);
     };
@@ -158,7 +158,7 @@ function DoWrite()
 			<td height="50px"></td>
 		</tr>
 		<tr>
-			<td colspan="12" align="right">«»ºø : 650 * 100<hr></td>
+			<td colspan="12" align="right">«»ºø : 800 * 150<hr></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><h4>ªÛ«∞¿Ã∏ß:</h4></td>
