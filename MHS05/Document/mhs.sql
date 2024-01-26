@@ -108,7 +108,7 @@ create table news
 	wdate datetime default now() comment '작성일',
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리',
-	emotion varchar(5) comment '긍부정',
+	emotion varchar(5) default 'N' comment '긍부정',
 	mainyn varchar(2) comment '메인여부',
 	foreign key(adno) references ad(adno)
 ) comment '건강소식';
