@@ -59,12 +59,12 @@ ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
 		for(NewsVO vo : list)
 		{
 		%>
-		<div style="border-bottom: 1px solid lightgray; position: relative;">
+		<div style="border-bottom: 1px solid lightgray; position: relative; height: 145px;">
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h2><a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= vo.getTitle() %></a></h2>
-						<div id=note style="color: #999999; font-size: 16px;margin: 10px 10px 0px;padding: 20px 10px 10px">
+						<h3><a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= vo.getTitle() %></a></h3>
+						<div id=note style="height:30px; color: #999999; font-size: 16px;margin: 0px 10px 5px;padding: 10px 10px 10px">
 							<% 
 								String content = vo.getNote(); 
 								String hangulOnly = content.replaceAll("[^°¡-Èþ\\s]", "");
