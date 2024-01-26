@@ -64,15 +64,30 @@ ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
 				<div>
 					<div style="width:650px;">
 						<h2><a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= vo.getTitle() %></a></h2>
-						<div style="border:1px solid black;color: #999999; font-size: 16px;margin: 10px 10px 0px;padding: 20px 10px 10px"><%= vo.getNote() %></div>
+						<div id=note style="color: #999999; font-size: 16px;margin: 10px 10px 0px;padding: 20px 10px 10px">
+							<% 
+								String content = vo.getNote(); 
+								String hangulOnly = content.replaceAll("[^°¡-Èþ\\s]", "");
+								
+								if(hangulOnly.length() > 100)
+								{
+									%>
+										<a style="color: #999999;" href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly.substring(16,120) %>...</a>
+									<%
+								} else
+								{
+									%><a style="color: #999999;" href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly %></a><%
+								}
+							%>
+						</div>
                         <div style="padding: 20px 0px 0px;font-size: 12px;color: #777777;">
                       		 	<span><time><%= vo.getWdate() %></time></span>
                       	</div>
                     </div>
                 </div>
             </div>
-            <div style="background-color : yellow; position:absolute; bottom:15px; right:45px; width:210px; height:100px;" >
-            	<a href="adminnewsview.jsp"><img width="210px" height="100px" src="../image/<%= vo.getImage() %>"></a>
+            <div style="position:absolute; bottom:15px; right:45px; width:210px; height:130px;" >
+            	<a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><img width="210px" height="130px" src="newsimagedown.jsp?nno=<%= vo.getNno() %>"></a>
             </div>
        	</div>
        	<%

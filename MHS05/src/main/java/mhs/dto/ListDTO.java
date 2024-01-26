@@ -30,6 +30,7 @@ public class ListDTO extends DBManager
 		{
 			NewsVO vo = new NewsVO();
 			vo.setNno(this.GetValue("nno"));
+			vo.setNote(this.GetValue("note"));
 			vo.setTitle(this.GetValue("title"));
 			vo.setWdate(this.GetValue("wdate"));
 			vo.setImage(this.GetValue("image"));

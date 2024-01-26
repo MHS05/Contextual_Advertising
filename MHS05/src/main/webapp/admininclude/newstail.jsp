@@ -14,7 +14,7 @@
 					<div style="width: 220px; height: 310px; box-shadow: 3px 3px 3px 3px lightgray;">
 						<table border="0" width="200px" height="50px">
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>다이어트</b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b>다이어트</b></a></td>
 							</tr>
 							<tr height="50px">
 								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>

@@ -1,6 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
+<%
+if( loginVO == null)
+{	
+	//로그인 하지 않은 경우 처리
+	response.sendRedirect("../main/index.jsp");
+	return;
+}
+String category = request.getParameter("category");
+if(category == null) category = "D";
+String nno = request.getParameter("nno");
+String page_no = request.getParameter("page");
+if(page_no == null || page_no.equals("")) page_no = "";
+
+NewsDTO dto = new NewsDTO();
+NewsVO  vo  = dto.Read(nno);
+if( vo == null )
+{
+	//해당 게시물 번호의 데이터가 없음
+	%>
+	<script>
+		alert("해당 게시물을 조회 할 수 없습니다.");
+		document.location = "adminnewslist.jsp";
+	</script>
+	<%
+	return;
+}
+%>
 <style>
 #newstitle
 {
@@ -71,13 +98,13 @@
 			<div align="center" id="modbutton"><a href="../admin/modifynews.jsp">수정</a></div>
 			<div align="center" id="delbutton">삭제</div>
 		</div>
-		<div id="newstitle"><h2>“당장 일어나세요”… 심장 혈관 망가지는 최악의 습관은?</h2>
+		<div id="newstitle"><h2><%= vo.getTitle() %></h2>
 			<span><font color="gray" size="2px">입력&nbsp;<time>2024-01-19</time></font></span><br>
 			<span>김용 기자</span>
 		</div>
 		<div style="height:50px"></div>
 		<div id="newsimage">
-			<img src="../image/diet.jpg">
+			<img style="width:100%;height:100%;" src="newsimagedown.jsp?nno=<%= nno %>">
 		</div>
 		<div id="adimage">
 			<a href="../ad/adchoicereason.jsp"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
@@ -85,28 +112,7 @@
 		<div style="height:50px"></div>
 		<div id="newsmain" style="">
 			<div id="newsnote">
-				심장병이 있으면 일상생활에서 어려움이 참 많다. 특히 심장 혈관이 막히는 심근경색증은 돌연사 위험도 있다. 추위에 혈관이 수축하는 요즘엔 더욱 조심해야 한다. 심혈관 질환을 예방-관리하기 위해선 혈압-고지혈증 조절, 금연, 식사 관리 등이 필요하지만 몸도 자주 움직여야 한다. 꼭 운동을 하라는 얘기가 아니다. 일상에서 몸을 사용하라는 것이다.<br>
-				<br>
-				<b>오래 앉아 있는 습관 지속했더니… 심혈관 질환 사망 위험 34% 높다</b><br>
-				<br>
-				미국의사협회의 국제 학술지(JAMA Network Open)에 장시간 앉아서 일하는 사람은 모든 원인에 의한 사망 위험이 16% 높고, 심혈관 질환으로 인한 사망 위험은 34% 높다는 논문이 실렸다. 직장인 48만여 명을 13년 동안 추적 관찰해 신체 활동과 건강 위험의 상관성을 살핀 것이다.<br>
-				<br>
-				세계보건기구(WHO)에 따르면 건강에 좋은 신체 활동은 운동 외에도 일어서서 전화 통화, 물건 옮기기, 청소 등 몸을 움직이는 다양한 활동을 말한다. 집에서도 오래 앉아 있는 습관이 지속되면 혈관병, 대장암 등 여러 질병 위험이 높아진다. 일상에서 움직여야 건강을 지킬 수 있다.<br>
-				<br>
-				<b>“귀찮아서”… “지금 당장 일어나 거실이라도 걸으세요”</b><br>
-				<br>
-				정식 운동을 하려먼 복장, 기구, 이동 거리 등이 필요하다. 무척 번거롭고 날씨도 춥다. 이럴 때 집에서 몸을 움직여보자. 소파에 누워 있지 말고 일어서서 스마트폰이나 TV를 보는 것이다. 거실 끝과 끝을 왕복하거나 발뒤꿈치를 들어 올리는 종아리 근력 운동도 좋다. 무릎이 괜찮으면 스쿼트를 통해 허벅지 근력을 단련해보자. 집안 청소는 훌륭한 신체 활동이다. 비싼 헬스 클럽 운동만 할 게 아니다.<br>
-				<br>
-				<b>몸의 경고 신호… 혈압-혈당 관리, 금연, 싱겁게 먹기 등</b><br>
-				<br>
-				교통사고처럼 어느 날 갑자기 심혈관 질환이 생기는 것이 아니다. 높은 혈압-혈당, 고지혈증(이상지질혈증), 비만, 흡연, 짜게 먹는 식습관, 운동 부족 등이 출발점이다. 건강 검진에서 나쁜 성적표를 받았는데도 몸 관리를 하지 않으면 혈관병 위험이 높다. 심근경색증까지 가면 일상생활이 험난하다. 심장병 예방도 혈압-혈당, 고지혈증 관리가 기본이다. 당연히 담배를 끊고 덜 짜게 먹는 등 음식도 조심해야 한다.<br>
-				<br>
-				<b>자녀의 건강에도 영향… 나쁜 습관 공유하지 않도록 해야</b><br>
-				<br>
-				심장병도 가족력이 있다. 하지만 같은 식단을 공유하는 등 일상의 습관이 더 큰 영향을 미친다. 움직이기 싫어하고 짠 음식을 좋아하는 경우 어린 자녀들도 닮는다. 가족 중에 고혈압, 심장병 환자가 많이 나오는 이유다.<br>
-				<br>
-				지금 중년 이상의 나이라면 혈관병 예방-관리에 집중해야 한다. 병치레를 오래 하면 생업에 바쁜 자녀들에게 엄청난 부담을 준다. 내 건강을 지켜야 아들, 딸이 편하다. 간병비 때문에 고민하는 일이 없도록 해야 한다.<br>
-				<br>
+				<%= vo.getNote() %>
 			</div>
 		</div>
 		<div style="height: 20px"></div>
@@ -115,4 +121,117 @@
 		</div>
 	</td>
 </tr>
-<%@ include file="../admininclude/newstail.jsp" %>
+</table>	
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<div><a href="../admin/adminnews.jsp"><h1>건강소식</h1></a></div> 
+				</td>
+			</tr>
+			<tr height="310px">
+				<td width="20%" valign="top">
+					<div style="width: 220px; height: 310px; box-shadow: 3px 3px 3px 3px lightgray;">
+						<table border="0" width="200px" height="50px">
+							<tr height="50px">
+							<%
+							if(category.equals("D"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b><u>다이어트</u></b></a></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>다이어트</b></a></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>운동</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>영양제</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>남성건강</b></td>
+							</tr>
+							<tr height="50px">
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>여성건강</b></td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/adminclist.jsp"><h1>커뮤니티</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../ad/adlist.jsp"><h1>광고관리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table border="0" width="1200px" align="center" height="150px">
+				<tr>
+					<td rowspan="5" width="250px" align="center">
+						<img style="width:100px; height: 100px;" src="../image/market.png">
+					</td>
+					<td rowspan="5" width="10px">
+					</td>
+					<td colspan="2" height="15px" align="right">
+						<hr>
+					</td>
+				</tr>
+				<tr>
+					<td width="450px">
+						상담가능시간
+					</td>
+					<td>
+						회사정보
+					</td>
+				</tr>
+				<tr>
+					<td>
+						평일 : 오전 09:00 ~ 오후 06:00
+					</td>
+					<td>
+						회사이름 : ezen  |  전화번호 : 010-0000-0000
+					</td>
+				</tr>
+				<tr>
+					<td>
+						점심시간 : 오후 12:00 ~ 오후 01:00
+					</td>
+					<td>
+						이메일 : asdf@naver.com  |  대한민국 전주시
+					</td>
+				</tr>
+				<tr>
+					<td>
+						주말 휴무
+					</td>
+					<td>
+						팩스 : 00-000-0000
+					</td>
+				</tr>
+			</table>
+	</body>
+</html>

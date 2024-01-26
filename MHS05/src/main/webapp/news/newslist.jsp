@@ -155,7 +155,7 @@
 		                       	</div>
 	                       	</div>
 	                    </div>
-	                    <div style="background-color : yellow; position:absolute; bottom:15px; right:45px; width:210px; height:130px;" >
+	                    <div style="position:absolute; bottom:15px; right:45px; width:210px; height:130px;" >
 	                    	<img width="210px" height="130px" src="../image/news1.jpg">
 	                    </div>
                     </div>
