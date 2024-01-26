@@ -62,6 +62,7 @@ public class NewsDTO extends DBManager
 		vo.setImage(this.GetValue("image"));
 		vo.setPhyimage(this.GetValue("Phyimage"));
 		vo.setWdate(this.GetValue("wdate"));
+		vo.setEmotion(this.GetValue("emotion"));
 		
 		this.DBClose();
 		return vo;
