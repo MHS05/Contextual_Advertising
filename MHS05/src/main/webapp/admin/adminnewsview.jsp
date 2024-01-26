@@ -171,7 +171,7 @@ if( vo == null )
 		{
 		%>
 		<div id="adimage">
-			<a href="../ad/adchoicereason.jsp"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
+			<a href="../highchart/highchart01.jsp" target="_blank"><img width="800px" height="140px" src="../image/dosu.jpg"></a>
 		</div>
 		<%
 		}
