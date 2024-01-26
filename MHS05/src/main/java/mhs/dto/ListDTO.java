@@ -8,6 +8,39 @@ import mhs.vo.*;
 public class ListDTO extends DBManager
 {
 	
+	public ArrayList<AdVO> getadlist(int pageNo,String keyword)
+	{
+		ArrayList<AdVO> list = new ArrayList<AdVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from ad ";
+		if( !keyword.equals("") )
+		{
+			sql += "and adname like '%" + _R(keyword) + "%' ";
+		}	
+		sql += "order by adno desc ";
+		int startno = 10 * (pageNo - 1);
+		sql += "limit " + startno + ",10 ";		
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			AdVO vo = new AdVO();
+			vo.setAdno(this.GetValue("adno"));
+			vo.setId(this.GetValue("id"));
+			vo.setAdname(this.GetValue("adname"));
+			vo.setAdkey(this.GetValue("adkey"));
+			vo.setImage(this.GetValue("image"));
+			vo.setPhyimage(this.GetValue("phyimage"));
+			
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
 	public ArrayList<NewsVO> getnewslist(int pageNo,String category,String keyword)
 	{
 		ArrayList<NewsVO> list = new ArrayList<NewsVO>();
@@ -83,6 +116,28 @@ public class ListDTO extends DBManager
 			sql += "and title like '%" + _R(keyword) + "%' ";
 		}
 
+		this.RunSelect(sql);
+		this.GetNext();				
+		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
+		
+		this.DBClose();
+		return total;
+	}
+	//전체 광고의 갯수를 얻는다.
+	//keyword : 검색 키워드
+	public int getadtotal(String keyword)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select count(*) as total ";
+		sql += "from ad ";
+		if( !keyword.equals("") )
+		{
+			sql += "and adname like '%" + _R(keyword) + "%' ";
+		}
+		
 		this.RunSelect(sql);
 		this.GetNext();				
 		int total = Integer.parseInt(this.GetValue("total")); //전체 데이터 갯수
