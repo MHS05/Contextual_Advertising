@@ -5,18 +5,20 @@ import mhs.vo.*;
 
 public class AdDTO extends DBManager
 {
+	//광고를 등록한다.
 	public boolean Insert(AdVO vo)
 	{
 		this.DBOpen();
 		
 		String sql = "";
 
-		sql += "insert into ad ";
-		sql += "(adname, image, phyimage) ";
+		sql += "insert into ad (id,adname, image, phyimage, adkey) ";
 		sql += "values (";
-		sql += "'" + _R(vo.getAdname())  + "',";
-		sql += "'" + vo.getImage()       + "',";
-		sql += "'" + vo.getPhyimage()    + "'";
+		sql += "'" + _R(vo.getId())          + "',";
+		sql += "'" + _R(vo.getAdname())      + "',";
+		sql += "'" + _R(vo.getImage())       + "',";
+		sql += "'" + _R(vo.getPhyimage())    + "',";
+		sql += "'" + _R(vo.getAdkey())       + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
@@ -26,7 +28,6 @@ public class AdDTO extends DBManager
 		vo.setAdno(this.GetValue("adno"));
 		this.DBClose();
 		return true;
-
 	}
 	
 	public boolean Update(AdVO vo)

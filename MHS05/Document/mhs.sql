@@ -90,6 +90,7 @@ create table reply
 create table ad
 (
 	adno int auto_increment primary key comment '광고번호',
+	id varchar(50) comment '작성자',
 	adname varchar(50) comment '상품이름',
 	adkey varchar(50) comment '광고키워드_리스트',
 	image varchar(100) comment '이미지_논리',
@@ -139,7 +140,7 @@ create table similarity
 	nkeylist varchar(50) comment '뉴스키워드_리스트',
 	adkey varchar(50) comment '광고키워드_리스트',
 	similary varchar(10) comment '유사도',
-	foreign key(adno) references ad(nno),
+	foreign key(adno) references ad(adno),
 	foreign key(nno) references news(nno)
 ) comment '유사도';
 
@@ -148,7 +149,7 @@ create table clickad
 	clickadno int auto_increment primary key comment '노출정보관리번호',
 	adno int comment '광고번호',
 	nno int comment '뉴스번호',
-	cdate datetime comment '노출일'
-	foreign key(adno) references ad(adno)
+	cdate datetime comment '노출일',
+	foreign key(adno) references ad(adno),
 	foreign key(nno) references news(nno)
 ) comment '광고노출정보';

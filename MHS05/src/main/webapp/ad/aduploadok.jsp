@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    
 <%@ page import="mhs.vo.*" %>    
 <%@ page import="java.util.*" %>    
 <%@ page import="java.io.*" %>
@@ -27,7 +26,7 @@ if (fimage != null)
 	pimage = UUID.randomUUID().toString();
 	
 	//파일 이름 변경
-	String orgPimage = uploadPath + "\\" + fimage;
+	String orgPimage = uploadPath + "\\" + pimage;
 	String newPimage = uploadPath + "\\" + pimage;
 	
 	File srcFile    = new File(orgPimage);
@@ -38,35 +37,19 @@ if (fimage != null)
 	out.println("바뀐 파일명 : " + newPimage + "<br>");
 }
 
-String keywords[] = keyword.split(",");
-
-
-
 AdVO vo = new AdVO();
-AdKeywordVO avo = new AdKeywordVO(); 
-
+vo.setId(loginVO.getId());
 vo.setAdname(name);
-
+vo.setAdkey(keyword);
 if(fimage != null)
 {	
-	vo.setPhyimage(pimage);
 	vo.setImage(fimage);
+	vo.setPhyimage(pimage);
 }
 
 AdDTO dto = new AdDTO();
 dto.Insert(vo);
 
-String ano = vo.getAdno();
-AdKeywordDTO adto = new AdKeywordDTO();
-
-for(String key : keywords)
-{
-	avo.setAdkey(key);
-	avo.setAdno(ano);
-	adto.Insert(avo);
-}
-
-response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
-
+response.sendRedirect("adinfo.jsp");
 %>
 

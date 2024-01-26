@@ -2,9 +2,6 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
 <%
-String kind = request.getParameter("kind");
-if(kind == null) kind = "N";
-String btitle = "공지사항 게시판";
 
 int page_no = 1;
 //페이징 4단계 : 브라우저로부터 페이지 번호를 받는다. ex)index.jsp?page=3
