@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="mhs.dao.*" %>    
+<%
+DBManager db = new DBManager();
+db.DBOpen();
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -62,3 +67,6 @@ window.onload = function()
 		<!-- HTML figure 여기까지 -->
 	</body>
 </html>
+<%
+db.DBClose();
+%>

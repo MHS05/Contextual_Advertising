@@ -1,6 +1,6 @@
 package mhs.vo;
 
-public class SemotionVO 
+public class SemotionVO
 {
 	public String senno;		   	//문장별감정관리번호
 	public String nno;				//뉴스번호
