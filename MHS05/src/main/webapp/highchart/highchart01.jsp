@@ -80,7 +80,7 @@ for(SemotionVO vo : list)
 			Highcharts.chart('emotion', {
 			    chart: { type: 'column'},
 			    title: { text: '게시물 문장별 긍부정 그래프'},
-			    xAxis: { categories: categories   },
+			    xAxis: { categories: categories },
 			    credits: {  enabled: false },
 			    plotOptions: {
 			        column: {
@@ -89,10 +89,9 @@ for(SemotionVO vo : list)
 			            groupPadding: 0.1 // 그룹 간 간격을 조절합니다.
 			        }
 			    },
-			    tooltip: {
-			        style: {
-			            fontSize: '18px' // 툴팁 글자 크기
-			        }
+			    tooltip: 
+			    {
+			        style: { fontSize: '18px' }
 			    },
 			    series: 
 			    [{
@@ -107,14 +106,12 @@ for(SemotionVO vo : list)
 		}
 		//JS 여기까지	
 		</script>
-		<div class="title"><h1>[ 광고 	선정 이유 ]</h1></div>
+		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
 		<span class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></span>
 		<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
 		<span id="emotion" style="display:inline-block; width:1000px; height:800px"></span>
- 		<a href="../highchart/highchart02.jsp">
+ 		<a href="../highchart/highchart02.jsp?nno=3">
 			<span id="button_next"><input type="button" value="Next >"></span>
 		</a>
 	</body>
 </html>
-
-	
