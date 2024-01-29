@@ -77,6 +77,9 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
+		sql = "delete from semotion where nno = " + nno;
+		this.RunCommand(sql);
+		
 		sql = "delete from news where nno = " + nno;
 		this.RunCommand(sql);
 		
