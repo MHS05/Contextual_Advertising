@@ -20,7 +20,7 @@ public class SemotionDTO extends DBManager
 		sql += "from semotion ";
 		sql += "where nno = '" + nno + "' ";
 		//작성일 내림차순
-		sql += "order by no senno";
+		sql += "order by senno ";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{
@@ -44,7 +44,7 @@ public class SemotionDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select senno, nno, sentance, emotion, score ";
+		sql  = "select * ";
 		sql += "from semotion ";
 		sql += "where nno = " + nno;
 		this.RunSelect(sql);
