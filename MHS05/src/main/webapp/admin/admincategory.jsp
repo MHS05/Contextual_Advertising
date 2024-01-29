@@ -9,7 +9,7 @@ if(kind.equals("F"))
 {
 	btitle = "과일";
 }
-if(kind.equals("H"))
+if(kind.equals("H")) 
 {
 	btitle = "건강식품";
 }

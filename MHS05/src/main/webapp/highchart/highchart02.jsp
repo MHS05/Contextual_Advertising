@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "mhs.vo.*" %>
+<%@ page import = "mhs.dto.*" %>
+<%@ page import = "mhs.dao.*" %>
+<%@ page import = "java.util.*" %>
+<%
+String nkeyno = request.getParameter("nkeyno");
+String nno = request.getParameter("nno");
+
+NewsKeywordDTO dto = new NewsKeywordDTO();
+
+ArrayList<SemotionVO> list = dto.GetList(nno);
+%>  
 <!DOCTYPE html>
 <html>
 	<head>
