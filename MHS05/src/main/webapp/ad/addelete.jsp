@@ -3,26 +3,27 @@
 <%@ include file="../admininclude/head.jsp" %> 
 
 <%
-String adno = request.getParameter("adno");
-if( loginVO == null || adno == null || adno.equals("") )
-{
-	response.sendRedirect("adlist.jsp");
-	return;
-}
+String uno     = request.getParameter("uno");
+String[] delNo = request.getParameterValues("delNo");
+
 AdDTO dto = new AdDTO();
-AdVO  vo  = dto.Read(adno);
-if( vo == null)
+
+for(String adno : delNo)
+{
+	if( !adno.equals("selectall"))
+	{
+		dto.Delete(adno);
+	}
+}
+if( loginVO == null )
 {
 	response.sendRedirect("adlist.jsp");
 	return;
 }
-
-if(loginVO.getId().equals("admin"))
-{   //관리자일경우
-	dto.Delete(adno);
-} 
-
-response.sendRedirect("admincategory.jsp");
+%>
+alert("삭제되었습니다.");
+<% 
+response.sendRedirect("adlist.jsp");
 %>
 
 <%@ include file="../admininclude/tail.jsp" %> 
