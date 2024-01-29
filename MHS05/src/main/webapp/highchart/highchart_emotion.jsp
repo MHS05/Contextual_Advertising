@@ -1,9 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="mhs.dao.*" %>    
+<%@ page import = "mhs.vo.*" %>
+<%@ page import = "mhs.dto.*" %>
+<%@ page import = "mhs.dao.*" %>
 <%
-DBManager db = new DBManager();
-db.DBOpen();
+String senno = request.getParameter("senno");
+String nno = request.getParameter("nno");
+
+SemotionDTO dto = new SemotionDTO();
+SemotionVO vo = dto.Read(nno);
+if( vo == null )
+{
+	//해당 게시물 번호의 데이터가 없음
+	%>
+	<script>
+		alert("해당 게시물을 조회 할 수 없습니다.");
+		document.location = "adminnewslist.jsp";
+	</script>
+	<%
+	return;
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -29,10 +45,7 @@ window.onload = function()
 	        text: '문장별 긍부정 차트'
 	    },
 	    xAxis: {
-	        categories: ['1번째.', '2번째 문장입니다.', '3번째 문장입니다.', '4번째 문장입니다.', '5번째 문장입니다.',
-	        			'6번째 문장입니다.', '7번째 문장입니다.', '8번째 문장입니다.', '9번째 문장입니다.', '10번째 문장입니다.',
-	        			'6번째 문장입니다.', '7번째 문장입니다.', '8번째 문장입니다.', '9번째 문장입니다.', '10번째 문장입니다.',
-	        			'6번째 문장입니다.', '7번째 문장입니다.', '8번째 문장입니다.', '9번째 문장입니다.', '10번째 문장입니다.']
+	        categories: [<%= vo.getSentance()%> ]
 	    },
 	    credits: {
 	        enabled: false
@@ -44,10 +57,7 @@ window.onload = function()
 	    },
 	    series: [{
 	        name: '긍정',
-	        data: [15, 10, "", 17, "",
-	        	"", 23, "", 17, 12, 15,
-	        	"", 23, "", 17, 12, 15,
-	        	"", 14, "", 12, 15]
+	        data: [<%= vo.getScore() %>]
 	    }, {
 	        name: '부정',
 	        data: ["", "", -14, "", -12,
