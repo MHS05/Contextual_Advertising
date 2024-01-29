@@ -50,6 +50,6 @@ if(fimage != null)
 AdDTO dto = new AdDTO();
 dto.Insert(vo);
 
-response.sendRedirect("adinfo.jsp");
+response.sendRedirect("adlist.jsp");
 %>
 
