@@ -93,7 +93,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2><%= htitle %></h2>
 
-			<div align="center" id="delbutton"><a href="writenews.jsp?category=D">등록</a></div>
+			<div align="center" id="delbutton"><a href="writenews.jsp?">등록</a></div>
 		</div>
 		<%
 		for(NewsVO vo : list)
