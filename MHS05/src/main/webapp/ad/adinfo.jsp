@@ -32,7 +32,6 @@ if( vo == null )
 	<tr>
 		<td height="50px" align="right">
 			<a href="admodify.jsp"><span id="span1" style="background-color: #4dd5b0;">수정</span></a>
-			<a href="addelete.jsp"><span id="span1" style="background-color: lightgray;">삭제</span></a>
 		</td>
 	</tr>
 	<tr>

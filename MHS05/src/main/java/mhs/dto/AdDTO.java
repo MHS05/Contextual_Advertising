@@ -58,6 +58,9 @@ public class AdDTO extends DBManager
 		
 		String sql = "";
 
+		sql = "delete from similarity where adno = " + adno;
+		this.RunCommand(sql);
+		
 		sql = "delete from ad where adno = " + adno;
 		this.RunCommand(sql);
 		
