@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "mhs.vo.*" %>
+<%@ page import = "mhs.dto.*" %>
+<%@ page import = "mhs.dao.*" %>
+<%@ page import = "java.util.*" %>
+<%
+String senno = request.getParameter("senno");
+String nno = request.getParameter("nno");
+
+SemotionDTO dto = new SemotionDTO();
+
+ArrayList<SemotionVO> list = dto.GetList(nno);
+%>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,7 +25,7 @@
 		<title>광고 선정 이유</title>
 	</head>
 	<body>
-		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
+		<div class="title"><h1>[ 광고 	선정 이유 ]</h1></div>
 		<span class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></span>
 	<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
 		<span id="emotion" style="display:inline-block; width:1000px; height:800px"></span>
@@ -25,11 +37,14 @@ Highcharts.chart('emotion', {
     xAxis: 
     {
         categories: [
-        			'1번째 문장', '2번째 문장', '3번째 문장', '4번째 문장', '5번째 문장',
-        			'6번째 문장', '7번째 문장', '8번째 문장', '9번째 문장', '10번째 문장',
-        			'11번째 문장', '12번째 문장', '13번째 문장', '14번째 문장', '15번째 문장',
-        			'16번째 문장', '17번째 문장', '18번째 문장', '19번째 문장', '20번째 문장',
-        			'21번째 문장', '22번째 문장', '23번째 문장', '24번째 문장', '25번째 문장'
+        			<%
+					for(SemotionVO vo : list)
+					{
+					%>
+        				'<%= vo.getSentance() %>',
+       				<%
+					}
+        			%>
         			]
     },
     credits: {  enabled: false },
@@ -50,25 +65,50 @@ Highcharts.chart('emotion', {
         name: '긍정',
         data: 
         	[
-        	15, null, null, 17, null,
-        	null, 23, null, 17, 12, 
-        	null, 23, null, 17, 12,
-        	null, 23, null, 17, 12, 
-        	null, 14, null, 12, 15
+       		<%
+			for(SemotionVO vo : list)
+			{
+			%>	<%
+				if(vo.getEmotion().equals("긍정"))
+				{
+				%>
+					<%= vo.getScore() %>,
+				<%
+				}else
+				{
+				%>
+					null,
+				<%
+				}
+			}
+   			%>
         	]
     }, 
     {
         name: '부정',
         data: 
         	[
-        	null, -10, -14, null, -12,
-        	-15, null, -14, null, null,
-        	-15, null, -14, null, null,
-        	-15, null, -14, null, null,
-        	-15, null, -14, -17, null
-        	]
+           		<%
+    			for(SemotionVO vo : list)
+    			{
+    			%>	<%
+    				if(vo.getEmotion().equals("부정"))
+    				{
+    				%>
+    					-<%= vo.getScore() %>,
+    				<%
+    				}else
+    				{
+    				%>
+    					null,
+    				<%
+    				}
+    			}
+       			%>
+            	]
     }]
 });
+
 //JS 여기까지
 </script>
 		<a href="../highchart/highchart02.jsp">
@@ -76,4 +116,5 @@ Highcharts.chart('emotion', {
 		</a>
 	</body>
 </html>
+
 	
