@@ -15,6 +15,7 @@ import re
 from kss import split_sentences
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import time
 
 #뉴스번호 받아서 내용뽑아내는 함수
 def getNote(nno) :
@@ -23,8 +24,6 @@ def getNote(nno) :
     if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
         print("ERROR")
         return False
-    else :
-        print("OK")
         
     sql = f"select * from news where nno = {nno}" 
     #print(sql)
@@ -41,7 +40,7 @@ def getNote(nno) :
         
     #print("뉴스번호", newsno)
     #print(text)
-    text = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', text)
+    text = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣. ]','', text)
     dbms.DBClose()
     return text, newsno
 
@@ -95,8 +94,7 @@ def getEmotion(Okt,nno) :
         
     def sentiment_predict(new_sentence):
         new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
-        
-        print(new_sentence)
+        #print(new_sentence)
         new_sentence = Okt.morphs(new_sentence, stem=True) # 토큰화
         new_sentence = [word for word in new_sentence if not word in stopwords] # 불용어 제거
         encoded = tokenizer.texts_to_sequences([new_sentence]) # 정수 인코딩
@@ -120,12 +118,11 @@ def insertSentance(Okt, nno, text) :
     if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
         print("ERROR")
         return False
-    else :
-        print("OK")
     
-    text = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', text)
-    #가져온 뉴스내용을 문장으로 구분
+    text = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣.]','', text)
+    text = re.sub(r'\s', '', text)
     text = split_sentences(text)
+    #가져온 뉴스내용을 문장으로 구분
     
     
     #임시로 text 길이만큼 감정 리스트를 만들어 놓음
@@ -156,10 +153,11 @@ def insertSentance(Okt, nno, text) :
         emotion = df.iloc[i]["emotion"]
         #print(emotion)
         sentance = (text, emotion)
-        print(sentance)
+        #print(sentance)
         test.append(sentance)
-    
-    print("=" * 60)
+        
+    #print(test)
+    #print("=" * 60)
     
     stop_words = pd.read_csv('stopword.txt',header=None,
                              encoding='utf-8')
@@ -180,14 +178,13 @@ def insertSentance(Okt, nno, text) :
     
     def sentiment_predict(new_sentence):
         new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
-        
+        new_sentence = new_sentence.strip()
         print(new_sentence)
-        
         new_sentence = Okt.morphs(new_sentence, stem=True) # 토큰화
         new_sentence = [word for word in new_sentence if not word in stopwords] # 불용어 제거
         encoded = tokenizer.texts_to_sequences([new_sentence]) # 정수 인코딩
         pad_new = pad_sequences(encoded, maxlen = max_len) 
-        score = float(loaded_model.predict(pad_new)) 
+        score = float(loaded_model.predict(pad_new))
         if(score > 0.5):
           str = "{:.2f}% 확률로 긍정 뉴스입니다.\n".format(score * 100)
           print(str)
@@ -201,11 +198,12 @@ def insertSentance(Okt, nno, text) :
     for i in range(0, len(test)):
         score,emotion = sentiment_predict(test[i][0])
         sentance = test[i][0]
+        sentance = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', sentance)
+        sentance = sentance.strip()
         #print("문장 :",sentance)
         #print("점수 :", score)
         #print("긍부정 :", emotion)
         semotion = ( sentance , emotion, score)
-        print(sentance)
         sql   = "insert into semotion (nno, sentance, emotion, score) "
         sql  += f"values ('%d','%s','%s','%s')" %(nno,sentance,emotion,score)
         dbms.RunSql(sql)
@@ -222,8 +220,6 @@ def insertKeyword(Okt,nno,text) :
     if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
         print("ERROR")
         return False
-    else :
-        print("OK")
         
     #형태소 분석 (명사)
     nouns = Okt.morphs(text, stem=True) # 토큰화
@@ -296,29 +292,28 @@ def insertKeyword(Okt,nno,text) :
     plt.axis("off")
     plt.show()
     
-    key = list(wordlist.keys())
-    value = list(wordlist.values())
-    for i in range(0,len(key)):
-        if value[i] > 1 :
+   
+    keylist = list(wordlist.keys())
+    valuelist = list(wordlist.values())
+    for i in range(0,len(keylist)):
+        if valuelist[i] > 2 :
             sql   = "insert into newskeyword (nno, nkey, nkeynum) "
-            sql  += "values ('%s','%s','%s') " %(nno,key[i],value[i])
+            sql  += "values ('%s','%s','%s') " %(nno,keylist[i],valuelist[i])
             #print(sql)
             dbms.RunSql(sql)
-            #print("단어 :", key[i], value[i],"회")
+            print("단어 :", keylist[i], valuelist[i],"회")
         else :
             dbms.DBClose()
             break
-
+    
+#뉴스,광고 리스트 간의 유사도 구해서 중복안된 데이터만 DB에 저장
 def getSimilary(nno, adno) :
     dbms = db.DBmanager() 
     
     if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
         print("ERROR")
         return False
-    else :
-        print("OK")
         
-    
     sql = f"select adkey from ad where adno = {adno}" 
     dbms.OpenQuery(sql)
     total = dbms.GetTotal()
@@ -370,41 +365,171 @@ def getSimilary(nno, adno) :
     print(sim)
     sim = f'{sim : .2f}'
     
-    sql  = "insert into similarity (nkeylist, adkey, similary, adno, nno) values "
-    sql += "('%s', '%s', '%s', '%d', '%d')" %(nkey, adkey, sim, adno, nno)
-    cursor.execute(sql)
-    con.commit()
+    count = getCount(nno, adno)
     
-      
-    if float(sim) > 0.4 :
+    if count == 0 :
+        sql  = "insert into similarity (nkeylist, adkey, similary, adno, nno) values "
+        sql += "('%s', '%s', '%s', '%d', '%d')" %(nkey, adkey, sim, adno, nno)
+        cursor.execute(sql)
+        con.commit()
+        
+    similary = getSimVal(nno)
+    
+    if (similary is None) and (float(sim) > 0.4) :
+        print(f"{nno}번 뉴스의 광고는 {adno}번 광고 입니다")
         sql  = "update news set adno = '%d' where nno = '%d'" %(adno,nno)
-    cursor.execute(sql)
-    con.commit()
+        cursor.execute(sql)
+        con.commit()
+        
+    elif(float(similary) > 0.4) and (float(sim) >= float(similary)) :
+        print(f"{nno}번 뉴스의 광고는 {adno}번 광고 입니다")
+        sql  = "update news set adno = '%d' where nno = '%d'" %(adno,nno)
+        cursor.execute(sql)
+        con.commit()
+        
     cursor.close()
     con.close()
-    
     return nkey, adkey, sim
 
-Okt = Okt()
-
-nno = 5
-adno = 3
-#뉴스 내용 긍부정 파악하기
-text, nno, score, emotion= getEmotion(Okt, nno)
-dbms = db.DBmanager() 
-if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
-    print("ERROR")
-else :
-    print("OK")
+#새로 등록돼서 긍부정,문장별 긍부정 예측 안된 뉴스번호 리스트 불러오기
+def getNnoList() :
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
+        return False
     
-sql   = "update news "
-sql  += "set emotion = '%s' where nno = %d " %(emotion,nno)
-dbms.RunSql(sql)
-dbms.DBClose()
-#문장별 긍부정도 파악해서 DB에 저장
-insertSentance(Okt, nno, text)
-#뉴스 내용 키워드 추출해서 DB에 저장
-insertKeyword(Okt,nno,text)
-#DB에있는 광고,뉴스 키워드 가져와서 유사도 검증 후 유사도 DB에 넣기
-nkey, adkey,sim = getSimilary(nno, adno)
+    sql = "select nno from news where emotion = 'N'" 
+    #print(sql)
+    dbms.OpenQuery(sql)
+    total = dbms.GetTotal()
+    
+    #print(total)
+    
+    nnolist   = []
+    for i in range(total) :
+        nno   = dbms.GetValue(i, "nno")
+        nnolist.append(nno)
+        
+    dbms.DBClose()
+    return nnolist
 
+#광고가 등록되지 않은 뉴스번호 리스트 가져오기
+def getNoAdList() :
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
+        return False
+    
+    sql = "select nno from news where emotion = '긍정'" 
+    #print(sql)
+    dbms.OpenQuery(sql)
+    total = dbms.GetTotal()
+    
+    #print(total)
+    
+    nnolist   = []
+    for i in range(total) :
+        nno   = dbms.GetValue(i, "nno")
+        nnolist.append(nno)
+        
+    dbms.DBClose()
+    return nnolist
+
+#등록된 광고 번호 가져오기
+def getAdList() :
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
+        return False
+    
+    sql = "select adno from ad" 
+    #print(sql)
+    dbms.OpenQuery(sql)
+    total = dbms.GetTotal()
+    
+    #print(total)
+    
+    adlist   = []
+    for i in range(total) :
+        adno   = dbms.GetValue(i, "adno")
+        adlist.append(adno)
+        
+    dbms.DBClose()
+    return adlist
+
+#뉴스가 가지고 있는 최고 유사도 가져오기
+def getSimVal(nno) :
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
+        return False
+    
+    sql = f"select max(similary) as similary from similarity where nno = '{nno}'" 
+    #print(sql)
+    dbms.OpenQuery(sql)
+    similary = dbms.GetValue(0, "similary")
+        
+    dbms.DBClose()
+    return similary
+
+#뉴스가 특정 광고와의 유사도 계산 했는지 여부 
+def getCount(nno, adno) :
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
+        return False
+    
+    sql = f"select count(*) as count from similarity where nno = '{nno}' and adno = '{adno}'" 
+    #print(sql)
+    dbms.OpenQuery(sql)
+    count = dbms.GetValue(0, "count")
+        
+    dbms.DBClose()
+    return count
+
+
+
+Okt = Okt()
+while True :
+    print("긍부정 여부 확인을 시작합니다")
+    print("=" * 60)
+    adlist = getNnoList()
+    if len(adlist) != 0 :
+        for i in adlist :
+            text, nno, score, emotion= getEmotion(Okt, i)
+            dbms = db.DBmanager() 
+            if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+                print("ERROR")
+                
+            sql   = "update news "
+            sql  += "set emotion = '%s' where nno = %d " %(emotion,nno)
+            dbms.RunSql(sql)
+            dbms.DBClose()
+            print("=" * 60)
+            insertSentance(Okt,nno,text)
+            print("=" * 60)
+            time.sleep(2)
+            insertKeyword(Okt,nno,text)
+            print("=" * 60)
+            time.sleep(2)
+    else :
+        print("새로운 뉴스가 없습니다.")
+        print("=" * 60)
+    print("긍부정 여부, 문장별 긍부정 확인이 끝났습니다")
+    print("=" * 60)
+    
+    NoAdlist = getNoAdList()
+    adlist = getAdList()
+    print("뉴스,광고 키워드간의 유사도를 측정 합니다")
+    print("=" * 60)
+    if len(NoAdlist) != 0 :
+        for nno in NoAdlist :
+            for adno in adlist :
+                print(f"{nno}번 뉴스와 {adno}번 광고의 유사도를 확인합니다")
+                nkey,adkey,sim = getSimilary(nno, adno)
+                print("=" * 60)
+    
+    print("유사도 측정 및 광고 선정이 끝났습니다.")
+    print("=" * 60)
+    
+    time.sleep(10)
