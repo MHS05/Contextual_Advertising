@@ -21,7 +21,7 @@ if(category.equals("M"))
 {
 	ntitle = "남성건강";
 }
-if(category.equals("F"))
+if(category.equals("F2"))
 {
 	ntitle = "여성건강";
 }
