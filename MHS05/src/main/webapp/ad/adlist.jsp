@@ -96,6 +96,8 @@ function Dodelete()
 	
 	for(AdVO vo : list)
 	{
+		ClickAdDTO addto = new ClickAdDTO();
+		ClickAdVO  advo = addto.Read(vo.getAdno());
 	%>
 	<tr>
 		<td align="center" width="10px">
@@ -104,7 +106,19 @@ function Dodelete()
 		<td align="center"><%= SeqNo-- %></td>
 		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
 		<td align="center"><%= vo.adkey %></td>
-		<td align="center">9ȸ</td>
+		<%
+		if(advo.getCcount() != null)
+		{
+		%>
+		<td align="center"><%= advo.getCcount() %></td>
+		<%
+		}else
+		{
+		%>
+		<td align="center">0</td>
+		<%
+		}
+		%>
 	</tr>
 	<tr>
 		<td colspan="7"><hr></td>

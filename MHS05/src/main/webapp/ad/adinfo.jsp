@@ -4,11 +4,20 @@
 <% 
 
 String adno = request.getParameter("adno");
-String page_no = request.getParameter("page");
-if(page_no == null || page_no.equals("")) page_no = "";
 
 AdDTO dto = new AdDTO();
 AdVO  vo  = dto.Read(adno);
+
+ClickAdDTO addto = new ClickAdDTO();
+ClickAdVO  advo = addto.Read(adno);
+if(advo != null)
+{
+	ClickAdVO  advo1 = addto.Read(adno);
+	
+}else
+{
+	ClickAdVO  advo2  = addto.Read2(adno);
+}
 if( vo == null )
 {
 	//해당 게시물 번호의 데이터가 없음
@@ -20,6 +29,11 @@ if( vo == null )
 	<%
 	return;
 }
+
+ListDTO listdto = new ListDTO();
+
+ArrayList<ClickAdVO> list = listdto.getclickadlist(adno);
+
 %>
 	<tr>
 		<td colspan="2"><h1><%= vo.getAdname() %></h1></td>
@@ -62,16 +76,18 @@ if( vo == null )
 					<td>날짜</td>
 					<td>게시물 제목</td>
 				</tr>
+				<%
+				for(ClickAdVO clickadvo : list)
+				{
+				%>
 				<tr>
-					<td>2</td>
-					<td>2024-01-22</td>
-					<td>제목입니다.</td>
+					<td><%= clickadvo.getCcount() %></td>
+					<td><%= clickadvo.getCdate() %></td>
+					<td><%= clickadvo.getTitle() %></td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>2024-01-22</td>
-					<td>제목입니다.</td>
-				</tr>
+				<%
+				}
+				%>
 			</table>
 		</td>
 	</tr>
