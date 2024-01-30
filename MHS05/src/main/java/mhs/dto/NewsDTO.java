@@ -13,7 +13,7 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into news (id,category,title,note,image,phyimage,adno,mainyn) ";
+		sql += "insert into news (id,category,title,note,image,phyimage,mainyn) ";
 		sql += "values (";
 		sql += "'" + _R(vo.getId())        + "',";
 		sql += "'" + _R(vo.getCategory())  + "',";
@@ -21,7 +21,6 @@ public class NewsDTO extends DBManager
 		sql += "'" + _R(vo.getNote())      + "',";
 		sql += "'" + _R(vo.getImage())     + "',";
 		sql += "'" + _R(vo.getPhyimage())  + "',";
-		sql += "'" + _R(vo.getAdno())      + "',";
 		sql += "'" + _R(vo.getMainyn())    + "'";
 		sql += ")";
 		this.RunCommand(sql);		

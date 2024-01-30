@@ -16,18 +16,18 @@ MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 
 String name       = multi.getParameter("name");
 String keyword    = multi.getParameter("keywords");
-String fimage     = (String)multi.getFilesystemName("image");
-String pimage     = "";
+String image     = (String)multi.getFilesystemName("image");
+String phyimage     = "";
 
 
-if (fimage != null)
+if (image != null)
 {
 	//논리명을 물리명 이름으로 변경한다.
-	pimage = UUID.randomUUID().toString();
+	phyimage = UUID.randomUUID().toString();
 	
 	//파일 이름 변경
-	String orgPimage = uploadPath + "\\" + pimage;
-	String newPimage = uploadPath + "\\" + pimage;
+	String orgPimage = uploadPath + "\\" + image;
+	String newPimage = uploadPath + "\\" + phyimage;
 	
 	File srcFile    = new File(orgPimage);
 	File targetFile = new File(newPimage);
@@ -41,15 +41,17 @@ AdVO vo = new AdVO();
 vo.setId(loginVO.getId());
 vo.setAdname(name);
 vo.setAdkey(keyword);
-if(fimage != null)
+if(image != null)
 {	
-	vo.setImage(fimage);
-	vo.setPhyimage(pimage);
+	vo.setImage(image);
+	vo.setPhyimage(phyimage);
 }
 
 AdDTO dto = new AdDTO();
 dto.Insert(vo);
 
 response.sendRedirect("adlist.jsp");
+
 %>
+
 
