@@ -5,7 +5,7 @@ public class AdVO
 	public String id;	         //등록자
 	public String adno;		   	 //광고번호
 	public String adname;		 //상품이름
-	public String adkey;		 //상품이름
+	public String adkey;		 //광고키워드
 	public String image;		 //이미지_논리
 	public String phyimage;		 //이미지_물리
 	
