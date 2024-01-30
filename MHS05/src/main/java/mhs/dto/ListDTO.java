@@ -8,6 +8,30 @@ import mhs.vo.*;
 public class ListDTO extends DBManager
 {
 	
+	public ArrayList<ClickAdVO> getclickadlist(String adno)
+	{
+		ArrayList<ClickAdVO> list = new ArrayList<ClickAdVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from clickad ";
+		sql += "where adno = " + adno;
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			ClickAdVO vo = new ClickAdVO();
+			vo.setTitle(this.GetValue("title"));
+			vo.setCdate(this.GetValue("cdate"));
+			vo.setCcount(this.GetValue("ccount"));
+			
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
 	public ArrayList<AdVO> getadlist(int pageNo,String keyword)
 	{
 		ArrayList<AdVO> list = new ArrayList<AdVO>();

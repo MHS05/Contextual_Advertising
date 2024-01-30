@@ -5,7 +5,6 @@ import mhs.vo.*;
 
 public class NewsDTO extends DBManager
 {
-	
 	public boolean Insert(NewsVO vo)
 	{
 		this.DBOpen();
@@ -24,7 +23,6 @@ public class NewsDTO extends DBManager
 		sql += ")";
 		this.RunCommand(sql);		
 
-	
 		sql = "select last_insert_id() as nno ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -34,7 +32,6 @@ public class NewsDTO extends DBManager
 		return true;		
 	}
 	
-	
 	public NewsVO Read(String nno)
 	{
 		String sql = "";
@@ -42,13 +39,12 @@ public class NewsDTO extends DBManager
 		this.DBOpen();
 
 
-		sql  = "select id,adno,title,category,mainyn,image,phyimage,note,emotion,score,wdate ";
+		sql  = "select id,adno,title,category,mainyn,image,phyimage,note,emotion,wdate,score ";
     
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			
 			this.DBClose();
 			return null;
 		}
@@ -69,7 +65,6 @@ public class NewsDTO extends DBManager
 		this.DBClose();
 		return vo;
 	}
-	
 	
 	public boolean Delete(String nno)
 	{

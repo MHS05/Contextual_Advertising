@@ -30,18 +30,15 @@ String nno = request.getParameter("nno");
 
 NewsDTO dto = new NewsDTO();
 NewsVO  vo  = dto.Read(nno);
+String adno = vo.getAdno();
 
-if( vo == null )
+if(!adno.equals("N"))
 {
-	//해당 게시물 번호의 데이터가 없음
-	%>
-	<script>
-		alert("해당 게시물을 조회 할 수 없습니다.");
-		document.location = "newslist.jsp";
-	</script>
-	<%
-	return;
+	AdDTO addto = new AdDTO();
+	AdVO advo = addto.Read(adno);
 }
+
+
 %>
 <style>
 #newstitle
@@ -89,6 +86,31 @@ if( vo == null )
 	color: white;
 }
 </style>
+<script>
+	function countad()
+	{
+		alert("클릭 성공");
+		
+		$.ajax
+		({
+			type : "post",
+			url  : "countad.jsp",
+			data :
+			{
+				nno   : <%= nno %>,
+				adno  : <%= adno %>,
+				title : "<%= vo.getTitle() %>"
+			},		
+			dataType : "html",	
+			success : function(data) 
+			{
+				data = data.trim();
+				document.location = "newsview.jsp?nno=<%= nno %>";
+			}				
+		});		
+		
+	}
+</script>
 <div id="fixed" style="width:50px; height: 50px;">
 	<a href="#top"><img style="width:50px; height: 50px;" src="../image/topbutton.png"></a>
 </div>
@@ -204,31 +226,28 @@ if( vo == null )
 			</div>
 			<div style="height:50px"></div>
 			<div id="newsimage">
-				<img src="../admin/newsimagedown.jsp?nno=<%= nno %>">
+				<img style="width:100%;height:100%;" src="../admin/newsimagedown.jsp?nno=<%= nno %>">
 			</div>
 			<%
 			if(vo.getEmotion().equals("부정"))
 			{
 			%>
-				<div id="adimage">X</div>
+				<div id="adimage"></div>
 			<%
 			}else
 			{	
 				if( vo.getAdno().equals("N") || vo.getAdno().equals(""))
 				{
 					%>
-					<div id="adimage">X</div>
+					<div id="adimage" style="display:none;"></div>
 					<%
 					
 				} else 
 				{
-					String adno =  vo.getAdno();
-					AdDTO addto = new AdDTO();
-					AdVO advo = addto.Read(adno);
 					%>
-					<div id="adimage">
+					<div id="adimage" onclick="countad()">
 						<a href="../highchart/highchart01.jsp?nno=<%= vo.getNno() %>" target="_blank">
-							<img width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>">
+							<img width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>&nno=<%= nno %>">
 						</a>
 					</div>
 					<%

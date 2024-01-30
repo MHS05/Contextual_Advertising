@@ -148,7 +148,9 @@ create table clickad
 	clickadno int auto_increment primary key comment '노출정보관리번호',
 	adno int comment '광고번호',
 	nno int comment '뉴스번호',
-	cdate datetime comment '노출일',
+	title varchar(200) comment '제목',
+	cdate datetime default now() comment '노출일',
+	ccount int default 0 comment '노출횟수',
 	foreign key(adno) references ad(adno),
 	foreign key(nno) references news(nno)
 ) comment '광고노출정보';
