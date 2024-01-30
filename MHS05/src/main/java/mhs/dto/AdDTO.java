@@ -35,16 +35,14 @@ public class AdDTO extends DBManager
 		
 		String sql = "";
 		sql  = "update ad set ";
-		sql += "adno='"           + vo.getAdno()           + "', ";
+		sql += "adkey='" + vo.getAdkey() + "',";
 		if(!vo.getImage().equals(""))
 		{
-			sql += "image='"     + _R(vo.getImage())     + "', ";
-			sql += "phyimage='"     + _R(vo.getPhyimage())     + "', ";
+			sql += "image='" + _R(vo.getImage()) + "',";
+			sql += "phyimage='" + _R(vo.getPhyimage()) + "',";
 		}
-		sql += "adname='" 		  + _R(vo.getAdname())       + "' ";
-		
-		
-		sql += "where adno = "  + vo.getAdno();
+		sql += "adname='" + _R(vo.getAdname()) + "' ";
+		sql += "where adno = " + vo.getAdno();
 		this.RunCommand(sql);
 		
 		this.DBClose();

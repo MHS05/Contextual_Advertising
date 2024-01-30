@@ -13,22 +13,21 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String adno       = multi.getParameter("adno");
-String type       = multi.getParameter("type");
-String name       = multi.getParameter("name");
-String date_end   = multi.getParameter("date_end");
-String fimage     = (String)multi.getFilesystemName("image");
-String pimage     = "";
+String adno         = multi.getParameter("adno");
+String adname       = multi.getParameter("name");
+String adkey        = multi.getParameter("keywords");
+String image        = (String)multi.getFilesystemName("image");
+String phyimage     = "";
 
 
-if (fimage != null)
+if (image != null)
 {
 	//논리명을 물리명 이름으로 변경한다.
-	pimage = UUID.randomUUID().toString();
+	phyimage = UUID.randomUUID().toString();
 	
 	//파일 이름 변경
-	String orgPimage = uploadPath + "\\" + fimage;
-	String newPimage = uploadPath + "\\" + pimage;
+	String orgPimage = uploadPath + "\\" + image;
+	String newPimage = uploadPath + "\\" + phyimage;
 	
 	File srcFile    = new File(orgPimage);
 	File targetFile = new File(newPimage);
@@ -39,23 +38,20 @@ if (fimage != null)
 }
 
 AdVO vo = new AdVO();
-
+vo.setId(loginVO.getId());
 vo.setAdno(adno);
-vo.setName(name);
-
-if(fimage != null)
+vo.setAdname(adname);
+vo.setAdkey(adkey);
+if(image != null)
 {	
-	vo.setPimage(pimage);
-	vo.setFimage(fimage);
+	vo.setImage(image);
+	vo.setPhyimage(phyimage);
 }
 
 AdDTO dto = new AdDTO();
-
-
 dto.Update(vo);
 
-
-response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
+response.sendRedirect("adlist.jsp?adno=" + adno);
 %>
 
 

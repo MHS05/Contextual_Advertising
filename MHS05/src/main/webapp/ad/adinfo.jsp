@@ -31,7 +31,7 @@ if( vo == null )
 	</tr>
 	<tr>
 		<td height="50px" align="right">
-			<a href="admodify.jsp"><span id="span1" style="background-color: #4dd5b0;">수정</span></a>
+			<a href="admodify.jsp?adno=<%= vo.getAdno() %>"><span id="span1" style="background-color: #4dd5b0;">수정</span></a>
 		</td>
 	</tr>
 	<tr>
