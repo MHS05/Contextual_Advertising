@@ -2,12 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
 <% 
-if( loginVO == null)
-{	
-	//로그인 하지 않은 경우 처리
-	response.sendRedirect("../main/index.jsp");
-	return;
-}
+
 String adno = request.getParameter("adno");
 String page_no = request.getParameter("page");
 if(page_no == null || page_no.equals("")) page_no = "";
@@ -42,7 +37,7 @@ if( vo == null )
 	</tr>
 	<tr>
 		<td align="center" width="650px" valign="top">
-			<img src="../image/<%= vo.getImage() %>" width="650px" height="100px">
+			<img src="../admin/adimagedown.jsp?adno=<%= adno %>" width="800px" height="140px">
 			<div style="margin-top: 30px; margin-left:50px; font-size: x-large; text-align: left;">
 				<h4>1. 키워드</h4>
 				<font style="font-size: 20px"><b><%= vo.getAdkey() %></b></font><br>
