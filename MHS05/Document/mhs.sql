@@ -9,9 +9,8 @@ drop table category;
 drop table similarity;
 drop table semotion;
 drop table newskeyword;
-drop table news;
 drop table clickad;
-drop table adkeyword;
+drop table news;
 drop table ad;
 
 create table user
@@ -100,7 +99,7 @@ create table ad
 create table news
 (
 	nno int auto_increment primary key comment '뉴스번호',
-	adno int comment '광고번호',
+	adno varchar(100) default 'N' comment '광고번호',
 	id varchar(50) comment '작성자',
 	category varchar(2) comment '카테고리',
 	title varchar(200) comment '제목',
@@ -109,8 +108,7 @@ create table news
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리',
 	emotion varchar(5) default 'N' comment '긍부정',
-	mainyn varchar(2) comment '메인여부',
-	foreign key(adno) references ad(adno)
+	mainyn varchar(2) comment '메인여부'
 ) comment '건강소식';
 
 create table newskeyword

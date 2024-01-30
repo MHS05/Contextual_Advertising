@@ -40,7 +40,6 @@ if (image != null)
 
 NewsVO vo = new NewsVO();
 vo.setId(loginVO.getId());
-vo.setAdno("1");
 vo.setCategory(category);
 vo.setTitle(title);
 vo.setNote(note);

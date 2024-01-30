@@ -45,7 +45,7 @@ public class NewsDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select  id,title,category,mainyn,image,phyimage,note,emotion,wdate ";
+		sql  = "select id,adno,title,category,mainyn,image,phyimage,note,emotion,wdate ";
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
@@ -57,6 +57,7 @@ public class NewsDTO extends DBManager
 		NewsVO vo = new NewsVO();
 		vo.setNno(nno);
 		vo.setId(this.GetValue("id"));
+		vo.setAdno(this.GetValue("adno"));
 		vo.setTitle(this.GetValue("title"));
 		vo.setCategory(this.GetValue("category"));
 		vo.setMainyn(this.GetValue("mainyn"));
