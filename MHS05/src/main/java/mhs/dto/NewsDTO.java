@@ -1,4 +1,4 @@
-//°Ô½Ã¹° °ü¸® Å¬·¡½º
+//ê²Œì‹œë¬¼ ê´€ë¦¬ í´ë˜ìŠ¤
 package mhs.dto;
 
 import mhs.dao.*;
@@ -6,7 +6,7 @@ import mhs.vo.*;
 
 public class NewsDTO extends DBManager
 {
-	//°Ô½Ã¹°À» µî·ÏÇÑ´Ù.
+	//ê²Œì‹œë¬¼ì„ ë“±ë¡í•œë‹¤.
 	public boolean Insert(NewsVO vo)
 	{
 		this.DBOpen();
@@ -25,7 +25,7 @@ public class NewsDTO extends DBManager
 		sql += ")";
 		this.RunCommand(sql);		
 
-		//µî·ÏµÈ ´º½º ¹øÈ£¸¦ ¾ò´Â´Ù.
+		//ë“±ë¡ëœ ë‰´ìŠ¤ ë²ˆí˜¸ë¥¼ ì–»ëŠ”ë‹¤.
 		sql = "select last_insert_id() as nno ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -35,21 +35,23 @@ public class NewsDTO extends DBManager
 		return true;		
 	}
 	
-	//´º½º 1°³ÀÇ Á¤º¸¸¦ Á¶È¸ÇÑ´Ù.
-	//nno : ´º½º ¹øÈ£
-	//false - °Ô½Ã¹° Á¤º¸¸¸ Á¶È¸
+	//ë‰´ìŠ¤ 1ê°œì˜ ì •ë³´ë¥¼ ì¡°íšŒí•œë‹¤.
+	//nno : ë‰´ìŠ¤ ë²ˆí˜¸
+	//false - ê²Œì‹œë¬¼ ì •ë³´ë§Œ ì¡°íšŒ
 	public NewsVO Read(String nno)
 	{
 		String sql = "";
 		
 		this.DBOpen();
 
+
 		sql  = "select id,adno,title,category,mainyn,image,phyimage,note,emotion,wdate ";
+    
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			//ÇØ´ç °Ô½Ã¹° ¾øÀ½.
+			//í•´ë‹¹ ê²Œì‹œë¬¼ ì—†ìŒ.
 			this.DBClose();
 			return null;
 		}
@@ -65,12 +67,13 @@ public class NewsDTO extends DBManager
 		vo.setPhyimage(this.GetValue("Phyimage"));
 		vo.setWdate(this.GetValue("wdate"));
 		vo.setEmotion(this.GetValue("emotion"));
+		vo.setScore(this.GetValue("score"));
 		
 		this.DBClose();
 		return vo;
 	}
 	
-	//´º½º Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.
+	//ë‰´ìŠ¤ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.
 	public boolean Delete(String nno)
 	{
 		this.DBOpen();
@@ -88,7 +91,7 @@ public class NewsDTO extends DBManager
 		return true;
 	}
 	
-	//´º½º Á¤º¸¸¦ º¯°æÇÑ´Ù.
+	//ë‰´ìŠ¤ ì •ë³´ë¥¼ ë³€ê²½í•œë‹¤.
 		public boolean Update(NewsVO vo)
 		{
 			this.DBOpen();
@@ -101,7 +104,7 @@ public class NewsDTO extends DBManager
 			sql += "note='"     + _R(vo.getNote())     + "'";
 			if( !vo.getPhyimage().equals(""))
 			{
-				//ÀÌ¹ÌÁöÆÄÀÏÀÌ ÀÖ´Â °æ¿ì
+				//ì´ë¯¸ì§€íŒŒì¼ì´ ìˆëŠ” ê²½ìš°
 				sql += ", phyimage='" + vo.getPhyimage() + "',";
 				sql += "image='"      + vo.getImage()    + "' ";
 			}

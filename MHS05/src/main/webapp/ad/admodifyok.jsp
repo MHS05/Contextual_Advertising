@@ -7,7 +7,7 @@
 <%@ include file="../admininclude/head.jsp" %>
 <%@ include file="../common/common.jsp" %>
 <%
-//¾÷·Îµå°¡ °¡´ÉÇÑ ÃÖ´ë ÆÄÀÏ Å©±â¸¦ ÁöÁ¤ÇÑ´Ù.
+//ì—…ë¡œë“œê°€ ê°€ëŠ¥í•œ ìµœëŒ€ íŒŒì¼ í¬ê¸°ë¥¼ ì§€ì •í•œë‹¤.
 int size = 10 * 1024 * 1024;
 
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
@@ -22,10 +22,10 @@ String phyimage     = "";
 
 if (image != null)
 {
-	//³í¸®¸íÀ» ¹°¸®¸í ÀÌ¸§À¸·Î º¯°æÇÑ´Ù.
+	//ë…¼ë¦¬ëª…ì„ ë¬¼ë¦¬ëª… ì´ë¦„ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 	phyimage = UUID.randomUUID().toString();
 	
-	//ÆÄÀÏ ÀÌ¸§ º¯°æ
+	//íŒŒì¼ ì´ë¦„ ë³€ê²½
 	String orgPimage = uploadPath + "\\" + image;
 	String newPimage = uploadPath + "\\" + phyimage;
 	
@@ -33,13 +33,14 @@ if (image != null)
 	File targetFile = new File(newPimage);
 	srcFile.renameTo(targetFile);
 	
-	out.println("¿ø·¡ ÆÄÀÏ¸í : " + orgPimage + "<br>");
-	out.println("¹Ù²ï ÆÄÀÏ¸í : " + newPimage + "<br>");
+	out.println("ì›ë˜ íŒŒì¼ëª… : " + orgPimage + "<br>");
+	out.println("ë°”ë€ íŒŒì¼ëª… : " + newPimage + "<br>");
 }
 
 AdVO vo = new AdVO();
 vo.setId(loginVO.getId());
 vo.setAdno(adno);
+
 vo.setAdname(adname);
 vo.setAdkey(adkey);
 if(image != null)
