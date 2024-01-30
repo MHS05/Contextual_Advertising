@@ -13,7 +13,7 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into news (id,category,title,note,image,phyimage,mainyn) ";
+		sql += "insert into news (id,category,title,note,image,phyimage,adno,mainyn) ";
 		sql += "values (";
 		sql += "'" + _R(vo.getId())        + "',";
 		sql += "'" + _R(vo.getCategory())  + "',";
@@ -21,6 +21,7 @@ public class NewsDTO extends DBManager
 		sql += "'" + _R(vo.getNote())      + "',";
 		sql += "'" + _R(vo.getImage())     + "',";
 		sql += "'" + _R(vo.getPhyimage())  + "',";
+		sql += "'" + _R(vo.getAdno())      + "',";
 		sql += "'" + _R(vo.getMainyn())    + "'";
 		sql += ")";
 		this.RunCommand(sql);		
@@ -44,7 +45,7 @@ public class NewsDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select * ";
+		sql  = "select  id,title,category,mainyn,image,phyimage,note,emotion,wdate ";
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
@@ -58,6 +59,7 @@ public class NewsDTO extends DBManager
 		vo.setId(this.GetValue("id"));
 		vo.setTitle(this.GetValue("title"));
 		vo.setCategory(this.GetValue("category"));
+		vo.setMainyn(this.GetValue("mainyn"));
 		vo.setNote(this.GetValue("note"));
 		vo.setImage(this.GetValue("image"));
 		vo.setPhyimage(this.GetValue("Phyimage"));
@@ -75,6 +77,9 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
+		sql = "delete from semotion where nno = " + nno;
+		this.RunCommand(sql);
+		
 		sql = "delete from news where nno = " + nno;
 		this.RunCommand(sql);
 		
@@ -82,5 +87,29 @@ public class NewsDTO extends DBManager
 		
 		return true;
 	}
+	
+	//뉴스 정보를 변경한다.
+		public boolean Update(NewsVO vo)
+		{
+			this.DBOpen();
+			
+			String sql = "";
+			sql  = "update news set ";
+			sql += "title='"    + _R(vo.getTitle())    + "',";
+			sql += "category='" + _R(vo.getCategory()) + "',";
+			sql += "mainyn='"   + _R(vo.getMainyn())   + "',";
+			sql += "note='"     + _R(vo.getNote())     + "'";
+			if( !vo.getPhyimage().equals(""))
+			{
+				//이미지파일이 있는 경우
+				sql += ", phyimage='" + vo.getPhyimage() + "',";
+				sql += "image='"      + vo.getImage()    + "' ";
+			}
+			sql += " where nno = " + vo.getNno();
+			this.RunCommand(sql);
+			
+			this.DBClose();
+			return true;
+		}	
 	
 }

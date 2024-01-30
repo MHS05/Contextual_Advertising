@@ -26,9 +26,28 @@ if(category.equals("F2"))
 	htitle = "여성건강";
 }
 
+int page_no = 1;
+//페이징 4단계 : 브라우저로부터 페이지 번호를 받는다. ex)index.jsp?page=3
+try
+{
+	page_no = Integer.parseInt(request.getParameter("page"));
+}catch(Exception e){}
+
 ListDTO dto = new ListDTO();
 
-ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
+//페이징 1단계: 전체 게시물 갯수를 얻는다.
+int totalData = dto.getnewstotal(category,"");
+
+//페이징 2단계 : 전체 페이지 갯수를 계산한다.
+int totalPage = totalData / 10;
+if(totalData % 10 != 0)
+{
+	//10으로 나눈 나머지가 0이 아니면
+	//전체 페이지 갯수 증가
+	totalPage++;
+}
+
+ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 %>
 <style>
 #headline
@@ -74,7 +93,7 @@ ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
 	<td valign="top">
 		<div style="position:relative; border-bottom: 1px solid lightgray; "><h2><%= htitle %></h2>
 
-			<div align="center" id="delbutton"><a href="writenews.jsp?category=D">등록</a></div>
+			<div align="center" id="delbutton"><a href="writenews.jsp?">등록</a></div>
 		</div>
 		<%
 		for(NewsVO vo : list)
@@ -118,7 +137,53 @@ ArrayList<NewsVO> list = dto.getnewslist(1,category, "");
 </tr>
 <tr>
 	<td align="center">
-		<br>◀ 1 2 3 4 5 6 7 8 9 ▶
+		<%
+			//페이징 5단계 : 시작, 종료 블럭 페이지 계산
+			//현제 페이지 번호가 16일때 시작 블럭 페이지 : 11, 종료 블럭 페이지 :20
+			int startBlock = ((page_no-1)/10)*10; //시작 블록 페이지
+			startBlock  += 1;
+			int endBlock = startBlock + 10 - 1; //종료 블럭 페이지
+			if(endBlock > totalPage)
+			{
+				//종료 블록 페이지가 전체 페이지보다 크면
+				endBlock = totalPage;
+			}
+			
+			//페이징 6단계 : 이전 , 다음 을 표시한다.
+			
+			if( startBlock > 10)
+			{
+				%>
+				<a href="adminnewslist.jsp?category=<%= category %>&page=<%= startBlock - 1 %>">◀이전</a>
+				<%
+				
+			}
+			
+			for(int i = startBlock; i <= endBlock; i++)
+			{	
+				if( i == page_no )
+				{
+					%>
+					<a style="color:red" "href="adminnewslist.jsp?category=<%= category %>&page=<%= i %>"><%= i %></a>&nbsp;
+					<%
+				}else
+				{
+					%>
+					<a href="adminnewslist.jsp?category=<%= category %>&page=<%= i %>"><%= i %></a>&nbsp;
+					<%
+				}
+			}
+			
+			//다음블럭 표기
+			
+			if( endBlock < totalPage)
+			{
+				%>
+				<a href="adminnewslist.jsp?category=<%= category %>&page=<%= endBlock + 1 %>">다음▶</a>
+				<%
+				
+			}
+		%>
 	</td>
 </tr>
 </table>	

@@ -31,7 +31,7 @@ if(loginVO == null)
 			<table border="0" width="1200px" align="center">
 				<tr>
 					<td rowspan="2" width="250px">
-						<a href="member.jsp"><img style="width:250px; height: 200px;" src="../image/logo.png"></a>
+						<a href="../admin/member.jsp"><img style="width:250px; height: 200px;" src="../image/logo.png"></a>
 					</td>
 					<td colspan="4" height="50px" align="right" valign="bottom" style="font-size: 14px; font-weight: 700;">
 						<div class="button" style="background-color: white; width:10px;"></div>
@@ -46,7 +46,7 @@ if(loginVO == null)
 				<tr>
 					<td class="nav">
 						<div>
-							<a href="../admin/adminnews.jsp"><h1>건강소식</h1></a>
+							<a href="../admin/adminnewslist.jsp"><h1>건강소식</h1></a>
 						</div> 
 						<div>
 							<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>

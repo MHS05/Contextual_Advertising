@@ -1,13 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
+<% 
+if( loginVO == null)
+{	
+	//로그인 하지 않은 경우 처리
+	response.sendRedirect("../main/index.jsp");
+	return;
+}
+String adno = request.getParameter("adno");
+String page_no = request.getParameter("page");
+if(page_no == null || page_no.equals("")) page_no = "";
+
+AdDTO dto = new AdDTO();
+AdVO  vo  = dto.Read(adno);
+if( vo == null )
+{
+	//해당 게시물 번호의 데이터가 없음
+	%>
+	<script>
+		alert("해당 광고를 조회 할 수 없습니다.");
+		document.location = "adlist.jsp";
+	</script>
+	<%
+	return;
+}
+%>
 	<tr>
-		<td colspan="2"><h1>오마이바디</h1></td>
+		<td colspan="2"><h1><%= vo.getAdname() %></h1></td>
 	</tr>
 	<tr>
 		<td height="50px" align="right">
 			<a href="admodify.jsp"><span id="span1" style="background-color: #4dd5b0;">수정</span></a>
-			<a href="addelete.jsp"><span id="span1" style="background-color: lightgray;">삭제</span></a>
 		</td>
 	</tr>
 	<tr>
@@ -18,10 +42,10 @@
 	</tr>
 	<tr>
 		<td align="center" width="650px" valign="top">
-			<img src="../image/AD/ad.jpg" width="650px" height="100px">
+			<img src="../image/<%= vo.getImage() %>" width="650px" height="100px">
 			<div style="margin-top: 30px; margin-left:50px; font-size: x-large; text-align: left;">
 				<h4>1. 키워드</h4>
-				<font style="font-size: 20px"><b>&emsp;-음식&emsp;-아침&emsp;-간단&emsp;-건강&emsp;-식사&emsp;-맞춤</b></font><br>
+				<font style="font-size: 20px"><b><%= vo.getAdkey() %></b></font><br>
 			</div>
 		</td>
 	</tr>

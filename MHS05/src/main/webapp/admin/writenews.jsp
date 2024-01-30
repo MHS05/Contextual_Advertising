@@ -142,7 +142,7 @@ function DoWrite()
 		return false;
 	}
 	
-	if(confirm("게시물을 등록하시겠습니까?") == 0)
+	if(confirm("뉴스를 등록하시겠습니까?") == 0)
 	{
 		return false;
 	}
@@ -199,7 +199,7 @@ function setThumbnail(event)
 							<option id="category" name="category" value="E"  <%= category.equals("E") ? "selected" : "" %>>운동</option>
 							<option id="category" name="category" value="N"  <%= category.equals("N") ? "selected" : "" %>>영양제</option>
 							<option id="category" name="category" value="M"  <%= category.equals("M") ? "selected" : "" %>>남성건강</option>
-							<option id="category" name="category" value="F"  <%= category.equals("F") ? "selected" : "" %>>여성건강</option>
+							<option id="category" name="category" value="F2"  <%= category.equals("F") ? "selected" : "" %>>여성건강</option>
 						</select>
 					</h4>
 				</div>
@@ -279,30 +279,90 @@ function setThumbnail(event)
 							if(category.equals("D"))
 							{
 							%>
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b><u>다이어트</u></b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b><u>다이어트</u></b></a></td>
 							<%
 							}else
 							{
 							%>
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>다이어트</b></a></td>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b>다이어트</b></a></td>
 							<%
 							}
 							%>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>음식</b></a></td>
+							<%
+							if(category.equals("F"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F"><b><u>음식</u></b></a></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F"><b>음식</b></a></td>
+							<%
+							}
+							%>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>운동</b></td>
+							<%
+							if(category.equals("E"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=E"><b><u>운동</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=E"><b>운동</b></td>
+							<%
+							}
+							%>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>영양제</b></td>
+							<%
+							if(category.equals("N"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=N"><b><u>영양제</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=N"><b>영양제</b></td>
+							<%
+							}
+							%>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>남성건강</b></td>
+							<%
+							if(category.equals("M"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=M"><b><u>남성건강</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=M"><b>남성건강</b></td>
+							<%
+							}
+							%>
 							</tr>
 							<tr height="50px">
-								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp"><b>여성건강</b></td>
+							<%
+							if(category.equals("F2"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F2"><b><u>여성건강</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F2"><b>여성건강</b></td>
+							<%
+							}
+							%>
 							</tr>
 						</table>
 					</div>

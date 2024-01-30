@@ -38,7 +38,7 @@ public class NewsKeywordDTO extends DBManager
 		sql += "from newskeyword ";
 		sql += "where nno = '" + nno + "' ";
 		//빈도수 높은것부터
-		sql += "order by no nkeynum desc";
+		sql += "order by nno, nkeynum desc";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{

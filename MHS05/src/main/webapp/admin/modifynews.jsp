@@ -11,31 +11,35 @@ if( loginVO == null)
 	response.sendRedirect("../main/index.jsp");
 	return;
 }
+String category = request.getParameter("category");
+if(category == null) category = "D";
+String htitle = "다이어트";
+if(category.equals("F"))
+{
+	htitle = "음식";
+}
+if(category.equals("E"))
+{
+	htitle = "운동";
+}
+if(category.equals("N"))
+{
+	htitle = "영양제";
+}
+if(category.equals("M"))
+{
+	htitle = "남성건강";
+}
+if(category.equals("F2"))
+{
+	htitle = "여성건강";
+}
+
+String nno = request.getParameter("nno");
+
+NewsDTO dto = new NewsDTO();
+NewsVO  vo  = dto.Read(nno);
 %>
-<script>
-	function check() 
-	{	
-		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
-		//스마트 에디터 값을 텍스트컨텐츠로 전달
-		$("#").submit();
-	}
-	function setThumbnail(event) 
-	{
-		$("#image_container").html("");
-		
-	    var reader = new FileReader();
-	
-	    reader.onload = function(event)
-	    {
-	      var img = document.createElement("img");
-	      img.style.width  = "900px";
-	      img.style.height = "300px";
-	      img.setAttribute("src", event.target.result);
-	      document.querySelector("div#image_container").appendChild(img);
-	    };
-	    reader.readAsDataURL(event.target.files[0]);
-	}
-</script>
 <style>
 	.title
 	{
@@ -115,7 +119,7 @@ if( loginVO == null)
 		top              : 1600px;
 		left             : 900px;
 		background-color : #4dd5b0;
-		padding          : 10px 50px;
+		padding          : 0px 0px;
 		border           : 1px solid #4dd5b0;
 		border-radius    : 10px;
 	}
@@ -128,6 +132,16 @@ if( loginVO == null)
 		padding          : 10px 50px;
 		border           : 1px solid lightgrey;
 		border-radius    : 10px;
+	}
+	#submitbutton
+	{	
+		width:130px;
+		height:45px; 
+		font-size:17px;
+		cursor:pointer;
+		background-color:#4dd5b0;
+		border:0;
+		border-radius: 5px;
 	}
 </style>
 <script>
@@ -144,10 +158,58 @@ window.onload=function()
 		
 	});
 }
+
+function DoWrite()
+{	
+	if($("#title").val() == "")
+	{
+		alert("제목을 입력하세요.")
+		$("#title").focus();
+		return false;
+	}
+	
+	if($("#note").val() == "내용 : ")
+	{
+		alert("내용을 입력하세요.")
+		$("#note").focus();
+		return false;
+	}
+	
+	if(confirm("뉴스를 수정하시겠습니까?") == 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+function check() 
+{	
+	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  
+	//스마트 에디터 값을 텍스트컨텐츠로 전달
+	$("#write").submit();
+}
+
+function setThumbnail(event) 
+{
+	$("#image_container").html("");
+	
+    var reader = new FileReader();
+
+    reader.onload = function(event)
+    {
+      var img = document.createElement("img");
+      img.style.width  = "900px";
+      img.style.height = "300px";
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>
-	<form name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+	<form id="write" name="upload" method="post" action="modifynewsok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+	<input type="hidden" id="nno" name="nno" value="<%= nno %>"> 
 		<tr>
-			<td colspan="12"><h2><b>건강뉴스</b></h2><hr></td>
+			<td colspan="12"><h2><b>건강소식</b></h2><hr></td>
 		</tr>
 		<tr>
 			<td height="50px"></td>
@@ -156,7 +218,7 @@ window.onload=function()
 			<td>
 				<div class="title">
 					<h4>제목 : 
-						<input id=" title" type="text" style="width:700px;height:20px;" placeholder="“당장 일어나세요”… 심장 혈관 망가지는 최악의 습관은?">
+						<input id="title" name="title" type="text" style="width:700px;height:20px;" placeholder="<%= vo.getTitle()%>">
 					</h4>
 				</div>
 			</td>
@@ -165,14 +227,13 @@ window.onload=function()
 			<td>
 				<div class="type">
 					<h4>카테고리 : 
-						<select style="width:100px;">
-							<option value="선택">선택</option>
-							<option value="다이어트" selected>다이어트</option>
-							<option value="음식">음식</option>
-							<option value="운동">운동</option>
-							<option value="영양제">영양제</option>
-							<option value="남성건강">남성건강</option>
-							<option value="여성건강">여성건강</option>
+						<select style="width:100px;" name="category">
+							<option id="category" name="category" value="D" <%= vo.getCategory().equals("D") ? "selected" : "" %>>다이어트</option>
+							<option id="category" name="category" value="F" <%= vo.getCategory().equals("F") ? "selected" : "" %>>음식</option>
+							<option id="category" name="category" value="E" <%= vo.getCategory().equals("E") ? "selected" : "" %>>운동</option>
+							<option id="category" name="category" value="N" <%= vo.getCategory().equals("N") ? "selected" : "" %>>영양제</option>
+							<option id="category" name="category" value="M" <%= vo.getCategory().equals("M") ? "selected" : "" %>>남성건강</option>
+							<option id="category" name="category" value="F2" <%= vo.getCategory().equals("F2") ? "selected" : "" %>>여성건강</option>
 						</select>
 					</h4>
 				</div>
@@ -182,8 +243,8 @@ window.onload=function()
 			<td>
 				<div class="mainyn" id="mainyn">
 					<h4>메인여부 : 
-						<label><input type="radio" name="main" value="Y">Y</label>
-						<label><input type="radio" name="main" value="N" checked>N</label>
+						<label><input type="radio" id="main" name="main" value="Y" <%= vo.getMainyn().equals("Y") ? "checked" : "" %>>Y</label>
+						<label><input type="radio" id="main" name="main" value="Y" <%= vo.getMainyn().equals("N") ? "checked" : "" %>>N</label>
 					</h4>
 				</div>
 			</td>
@@ -208,7 +269,7 @@ window.onload=function()
 		<tr>
 			<td>
 				<div class="displayi"><h4>이미지 나오는 곳 : </h4></div>
-				<div class="image_container" id="image_container"><img src="../image/diet.jpg" width="900px" height="300px"></div>
+				<div class="image_container" id="image_container"><img src="../image/<%=vo.getImage() %>" width="900px" height="300px"></div>
 			</td>
 		</tr>
 		<tr>
@@ -216,27 +277,7 @@ window.onload=function()
 				<div class="note"><h2>내용 : </h2></div>
 				<div class="noteinput" id="noteinput">
 					<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:900px;height:500px;">
-						심장병이 있으면 일상생활에서 어려움이 참 많다. 특히 심장 혈관이 막히는 심근경색증은 돌연사 위험도 있다. 추위에 혈관이 수축하는 요즘엔 더욱 조심해야 한다. 심혈관 질환을 예방-관리하기 위해선 혈압-고지혈증 조절, 금연, 식사 관리 등이 필요하지만 몸도 자주 움직여야 한다. 꼭 운동을 하라는 얘기가 아니다. 일상에서 몸을 사용하라는 것이다.
-
-						오래 앉아 있는 습관 지속했더니… 심혈관 질환 사망 위험 34% 높다
-						
-						미국의사협회의 국제 학술지(JAMA Network Open)에 장시간 앉아서 일하는 사람은 모든 원인에 의한 사망 위험이 16% 높고, 심혈관 질환으로 인한 사망 위험은 34% 높다는 논문이 실렸다. 직장인 48만여 명을 13년 동안 추적 관찰해 신체 활동과 건강 위험의 상관성을 살핀 것이다.
-						
-						세계보건기구(WHO)에 따르면 건강에 좋은 신체 활동은 운동 외에도 일어서서 전화 통화, 물건 옮기기, 청소 등 몸을 움직이는 다양한 활동을 말한다. 집에서도 오래 앉아 있는 습관이 지속되면 혈관병, 대장암 등 여러 질병 위험이 높아진다. 일상에서 움직여야 건강을 지킬 수 있다.
-						
-						“귀찮아서”… “지금 당장 일어나 거실이라도 걸으세요”
-						
-						정식 운동을 하려먼 복장, 기구, 이동 거리 등이 필요하다. 무척 번거롭고 날씨도 춥다. 이럴 때 집에서 몸을 움직여보자. 소파에 누워 있지 말고 일어서서 스마트폰이나 TV를 보는 것이다. 거실 끝과 끝을 왕복하거나 발뒤꿈치를 들어 올리는 종아리 근력 운동도 좋다. 무릎이 괜찮으면 스쿼트를 통해 허벅지 근력을 단련해보자. 집안 청소는 훌륭한 신체 활동이다. 비싼 헬스 클럽 운동만 할 게 아니다.
-						
-						몸의 경고 신호… 혈압-혈당 관리, 금연, 싱겁게 먹기 등
-						
-						교통사고처럼 어느 날 갑자기 심혈관 질환이 생기는 것이 아니다. 높은 혈압-혈당, 고지혈증(이상지질혈증), 비만, 흡연, 짜게 먹는 식습관, 운동 부족 등이 출발점이다. 건강 검진에서 나쁜 성적표를 받았는데도 몸 관리를 하지 않으면 혈관병 위험이 높다. 심근경색증까지 가면 일상생활이 험난하다. 심장병 예방도 혈압-혈당, 고지혈증 관리가 기본이다. 당연히 담배를 끊고 덜 짜게 먹는 등 음식도 조심해야 한다.
-						
-						자녀의 건강에도 영향… 나쁜 습관 공유하지 않도록 해야
-						
-						심장병도 가족력이 있다. 하지만 같은 식단을 공유하는 등 일상의 습관이 더 큰 영향을 미친다. 움직이기 싫어하고 짠 음식을 좋아하는 경우 어린 자녀들도 닮는다. 가족 중에 고혈압, 심장병 환자가 많이 나오는 이유다.
-						
-						지금 중년 이상의 나이라면 혈관병 예방-관리에 집중해야 한다. 병치레를 오래 하면 생업에 바쁜 자녀들에게 엄청난 부담을 준다. 내 건강을 지켜야 아들, 딸이 편하다. 간병비 때문에 고민하는 일이 없도록 해야 한다.
+						<%= vo.getNote() %>
 					</textarea>
 					<script id="smart" type="text/javascript">
 						var oEditors = [];
@@ -252,9 +293,182 @@ window.onload=function()
 		</tr>
 		<tr>
 			<td>
-				<span class="submit" id="submit"><a href="adminnewsview.jsp">등록</a></span>
+				<span class="submit" id="submit"><input type="submit" value="수정" id="submitbutton" onclick="check()"></span>
 				<span class="cancel" id="cancel"><a href="adminnewsview.jsp">취소</a></span>
 			</td>
 		</tr>
 	</form>
-<%@ include file="../admininclude/tail.jsp" %> 
+</table>	
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<div><a href="../admin/adminnews.jsp"><h1>건강소식</h1></a></div> 
+				</td>
+			</tr>
+			<tr height="310px">
+				<td width="20%" valign="top">
+					<div style="width: 220px; height: 310px; box-shadow: 3px 3px 3px 3px lightgray;">
+						<table border="0" width="200px" height="50px">
+							<tr height="50px">
+							<%
+							if(category.equals("D"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b><u>다이어트</u></b></a></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=D"><b>다이어트</b></a></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+							<%
+							if(category.equals("F"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F"><b><u>음식</u></b></a></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F"><b>음식</b></a></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+							<%
+							if(category.equals("E"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=E"><b><u>운동</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=E"><b>운동</b></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+							<%
+							if(category.equals("N"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=N"><b><u>영양제</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=N"><b>영양제</b></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+							<%
+							if(category.equals("M"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=M"><b><u>남성건강</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=M"><b>남성건강</b></td>
+							<%
+							}
+							%>
+							</tr>
+							<tr height="50px">
+							<%
+							if(category.equals("F2"))
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F2"><b><u>여성건강</u></b></td>
+							<%
+							}else
+							{
+							%>
+								<td style="font-size: 20px;"><a href="../admin/adminnewslist.jsp?category=F2"><b>여성건강</b></td>
+							<%
+							}
+							%>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/admincategory.jsp"><h1>카테고리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../admin/adminclist.jsp"><h1>커뮤니티</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td height="80px">
+					<a href="../ad/adlist.jsp"><h1>광고관리</h1></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table border="0" width="1200px" align="center" height="150px">
+				<tr>
+					<td rowspan="5" width="250px" align="center">
+						<img style="width:100px; height: 100px;" src="../image/market.png">
+					</td>
+					<td rowspan="5" width="10px">
+					</td>
+					<td colspan="2" height="15px" align="right">
+						<hr>
+					</td>
+				</tr>
+				<tr>
+					<td width="450px">
+						상담가능시간
+					</td>
+					<td>
+						회사정보
+					</td>
+				</tr>
+				<tr>
+					<td>
+						평일 : 오전 09:00 ~ 오후 06:00
+					</td>
+					<td>
+						회사이름 : ezen  |  전화번호 : 010-0000-0000
+					</td>
+				</tr>
+				<tr>
+					<td>
+						점심시간 : 오후 12:00 ~ 오후 01:00
+					</td>
+					<td>
+						이메일 : asdf@naver.com  |  대한민국 전주시
+					</td>
+				</tr>
+				<tr>
+					<td>
+						주말 휴무
+					</td>
+					<td>
+						팩스 : 00-000-0000
+					</td>
+				</tr>
+			</table>
+	</body>
+</html>

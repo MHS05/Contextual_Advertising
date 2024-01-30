@@ -2,6 +2,9 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="../admininclude/head.jsp" %>
 <%
+String ltype = request.getParameter("ltype");
+if(ltype == null ) ltype = "num";
+
 int page_no = 1;
 //페이징 4단계 : 브라우저로부터 페이지 번호를 받는다. ex)index.jsp?page=3
 try
@@ -24,6 +27,11 @@ if(totalData % 10 != 0)
 }
 
 ArrayList<AdVO> list = dto.getadlist(page_no,"");
+
+if( ltype.equals("num"))
+{
+	list = dto.getadlist(page_no, "");
+}
 %>
 <script>
 var selectedElementsCnt = 0; //체크된 체크박스 갯수
@@ -95,7 +103,7 @@ function Dodelete()
 			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getAdno() %>" onclick='getCheckedCnt()'>
 		</td>
 		<td align="center"><%= SeqNo-- %></td>
-		<td align="center"><a href="adinfo.jsp"><%= vo.adname %></a></td>
+		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
 		<td align="center"><%= vo.adkey %></td>
 		<td align="center">2024-01-22</td>
 		<td align="center">9회</td>
