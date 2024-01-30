@@ -1,4 +1,3 @@
-//寃���臾� 愿�由� �대����
 package mhs.dto;
 
 import mhs.dao.*;
@@ -6,7 +5,6 @@ import mhs.vo.*;
 
 public class NewsDTO extends DBManager
 {
-	//寃���臾쇱�� �깅�����.
 	public boolean Insert(NewsVO vo)
 	{
 		this.DBOpen();
@@ -25,7 +23,6 @@ public class NewsDTO extends DBManager
 		sql += ")";
 		this.RunCommand(sql);		
 
-		//�깅��� �댁�� 踰��몃�� �삳����.
 		sql = "select last_insert_id() as nno ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -35,9 +32,6 @@ public class NewsDTO extends DBManager
 		return true;		
 	}
 	
-	//�댁�� 1媛��� ��蹂대�� 議고������.
-	//nno : �댁�� 踰���
-	//false - 寃���臾� ��蹂대� 議고��
 	public NewsVO Read(String nno)
 	{
 		String sql = "";
@@ -51,7 +45,6 @@ public class NewsDTO extends DBManager
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			//�대�� 寃���臾� ����.
 			this.DBClose();
 			return null;
 		}
@@ -73,7 +66,6 @@ public class NewsDTO extends DBManager
 		return vo;
 	}
 	
-	//�댁�� ��蹂대�� ��������.
 	public boolean Delete(String nno)
 	{
 		this.DBOpen();
@@ -91,7 +83,6 @@ public class NewsDTO extends DBManager
 		return true;
 	}
 	
-	//�댁�� ��蹂대�� 蹂�寃쏀����.
 		public boolean Update(NewsVO vo)
 		{
 			this.DBOpen();
@@ -104,7 +95,6 @@ public class NewsDTO extends DBManager
 			sql += "note='"     + _R(vo.getNote())     + "'";
 			if( !vo.getPhyimage().equals(""))
 			{
-				//�대�몄����쇱�� ���� 寃쎌��
 				sql += ", phyimage='" + vo.getPhyimage() + "',";
 				sql += "image='"      + vo.getImage()    + "' ";
 			}

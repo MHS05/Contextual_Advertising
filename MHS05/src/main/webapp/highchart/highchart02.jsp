@@ -16,17 +16,16 @@ ArrayList<NewsKeywordVO> list = dto.GetList(nno);
 
 
 //키워드 데이터 목록을 작성한다.
-
 for(NewsKeywordVO vo : list)
 {	
 	if(!nkeyword.equals(""))
 	{	
 		nkeyword += ",";
 		nkeynum += ",";
-		data += "['"+vo.getNkey()+"',"+vo.getNkeynum()+"],";
 	}
 	nkeyword += "'" + vo.getNkey() + "'";
 	nkeynum  += vo.getNkeynum();
+	data += "['"+vo.getNkey()+"',"+vo.getNkeynum()+"],";
 }
 %>
 <!DOCTYPE html>
@@ -42,7 +41,6 @@ for(NewsKeywordVO vo : list)
 		<title>광고 선정 이유</title>
 	</head>
 	<body>
-	${data}
 		<script>
 		//JS 여기부터
 		window.onload = function()
@@ -72,7 +70,7 @@ for(NewsKeywordVO vo : list)
 			            autoRotation: [-45, -90],
 			            style: 
 			            {
-			                fontSize: '13px',
+			                fontSize: '18px',
 			                fontFamily: 'Verdana, sans-serif'
 			            }
 			        }
@@ -85,7 +83,9 @@ for(NewsKeywordVO vo : list)
 			    legend: { enabled: false },
 			    tooltip: {
 			        formatter: function() {
-			            return '키워드: <b>' + this.y + ' 회</b>';
+			            var index = this.point.index; // 현재 데이터 포인트의 인덱스 가져오기
+			            var keyword = nkeyword[index]; // 해당 인덱스에 해당하는 키워드 가져오기
+			            return '<b>'+ this.key + '<br>' + this.y + ' 회</b>';
 			        },
 			        style: {
 			            fontSize: '18px'
@@ -130,10 +130,8 @@ for(NewsKeywordVO vo : list)
 <!-- 2. 키워드 빈도 차트 highchart_keywords.jsp -->
 	<span id="keywords" style="display:inline-block; width:900px; height:700px"></span>
 		<a href="../highchart/highchart01.jsp?nno=<%= nno %>">
-			<span id="button_back"><input type="button" value="< Back "></span>
-		</a>
+			<span id="button_back"><img src="../image/back.png" style="width:100px; height:100px"></span></a>
 		<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
-			<span id="button_next"><input type="button" value="Next >"></span>
-		</a>
+			<span id="button_next"><img src="../image/next.png" style="width:100px; height:100px"></span></a>
 	</body>
 </html>

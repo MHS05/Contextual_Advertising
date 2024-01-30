@@ -108,6 +108,7 @@ create table news
 	image varchar(100) comment '이미지_논리',
 	phyimage varchar(100) comment '이미지_물리',
 	emotion varchar(5) default 'N' comment '긍부정',
+	score varchar(10) default 'N' comment '긍부정퍼센트',
 	mainyn varchar(2) comment '메인여부'
 ) comment '건강소식';
 

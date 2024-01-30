@@ -103,11 +103,11 @@ def getEmotion(Okt,nno) :
         if(score > 0.5):
             str = "{:.2f}% 확률로 긍정 뉴스입니다.\n".format(score * 100)
             print(str)
-            return text, nno,"{:.2f}%".format(score * 100), "긍정"
+            return text, nno,"{:.2f}".format(score * 100), "긍정"
         else:
             str = "{:.2f}% 확률로 부정 뉴스입니다.\n".format((1 - score) * 100)
             print(str)
-            return text, nno, "{:.2f}%".format((1 - score) * 100), "부정"
+            return text, nno, "{:.2f}".format((1 - score) * 100), "부정"
     return sentiment_predict(text)
     
 #뉴스내용을 문장별로 분리 하고, 각 문장별 감정 분석 결과 DB저장
@@ -188,11 +188,11 @@ def insertSentance(Okt, nno, text) :
         if(score > 0.5):
           str = "{:.2f}% 확률로 긍정 뉴스입니다.\n".format(score * 100)
           print(str)
-          return "{:.2f}%".format(score * 100), "긍정"
+          return "{:.2f}".format(score * 100), "긍정"
         else:
           str = "{:.2f}% 확률로 부정 뉴스입니다.\n".format((1 - score) * 100)
           print(str)
-          return "{:.2f}%".format((1 - score) * 100), "부정"
+          return "{:.2f}".format((1 - score) * 100), "부정"
       
     result = []
     for i in range(0, len(test)):
@@ -316,13 +316,15 @@ def getSimilary(nno, adno) :
         
     sql = f"select adkey from ad where adno = {adno}" 
     dbms.OpenQuery(sql)
-    total = dbms.GetTotal()
     
     adkey = dbms.GetValue(0, "adkey")
     adlist = adkey.split(",")
     
     sql = f"select nkey from newskeyword where nno = {nno}" 
     dbms.OpenQuery(sql)
+    total = dbms.GetTotal()
+    if total > 10 :
+        total = 10;
     
     '''
     for i in range(0,total) :
@@ -331,12 +333,12 @@ def getSimilary(nno, adno) :
         if i != (total-1) :
             adlist = adlist + ","
     '''
-       
+    
     nkey = ""
-    for i in range(0,10) :
+    for i in range(0,total) :
         key = dbms.GetValue(i, "nkey")
         nkey = nkey + key
-        if i != 9 :
+        if i != total - 1 :
             nkey = nkey + ","
 
     #print(nkey)
@@ -413,8 +415,8 @@ def getNnoList() :
     dbms.DBClose()
     return nnolist
 
-#광고가 등록되지 않은 뉴스번호 리스트 가져오기
-def getNoAdList() :
+#긍정인 뉴스번호 리스트 가져오기
+def getPosList() :
     dbms = db.DBmanager() 
     if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
         print("ERROR")
@@ -502,7 +504,7 @@ while True :
                 print("ERROR")
                 
             sql   = "update news "
-            sql  += "set emotion = '%s' where nno = %d " %(emotion,nno)
+            sql  += "set emotion = '%s', score = '%s' where nno = %d " %(emotion,score,nno)
             dbms.RunSql(sql)
             dbms.DBClose()
             print("=" * 60)
@@ -518,16 +520,17 @@ while True :
     print("긍부정 여부, 문장별 긍부정 확인이 끝났습니다")
     print("=" * 60)
     
-    NoAdlist = getNoAdList()
+    PosList = getPosList()
     adlist = getAdList()
     print("뉴스,광고 키워드간의 유사도를 측정 합니다")
     print("=" * 60)
-    if len(NoAdlist) != 0 :
-        for nno in NoAdlist :
+    if len(PosList) != 0 :
+        for nno in PosList :
             for adno in adlist :
-                print(f"{nno}번 뉴스와 {adno}번 광고의 유사도를 확인합니다")
-                nkey,adkey,sim = getSimilary(nno, adno)
-                print("=" * 60)
+                if getCount(nno,adno) == 0 :
+                    print(f"{nno}번 뉴스와 {adno}번 광고의 유사도를 확인합니다")
+                    nkey,adkey,sim = getSimilary(nno, adno)
+                    print("=" * 60)
     
     print("유사도 측정 및 광고 선정이 끝났습니다.")
     print("=" * 60)
