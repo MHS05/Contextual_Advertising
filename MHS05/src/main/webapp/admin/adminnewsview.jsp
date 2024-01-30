@@ -168,7 +168,7 @@ if( vo == null )
 		<%
 		}else
 		{	
-			if( vo.getAdno() == null)
+			if( vo.getAdno() == "N" || vo.getAdno().equals(""))
 			{
 				%>
 				<div id="adimage">광고페이지</div>

@@ -110,7 +110,7 @@ for(SemotionVO vo : list)
 		<span class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></span>
 		<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
 		<span id="emotion" style="display:inline-block; width:1000px; height:800px"></span>
- 		<a href="../highchart/highchart02.jsp?nno=3">
+ 		<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
 			<span id="button_next"><input type="button" value="Next >"></span>
 		</a>
 	</body>
