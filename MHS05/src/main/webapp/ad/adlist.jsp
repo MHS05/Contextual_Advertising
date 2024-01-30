@@ -86,7 +86,6 @@ function Dodelete()
 		<td align="center" width="30px">번호</td>
 		<td align="center" width="100px">상품이름</td>
 		<td align="center" width="50px">키워드</td>
-		<td align="center" width="50px">작성일</td>
 		<td align="center" width="50px">노출횟수</td>
 	</tr>
 	<tr>
@@ -105,7 +104,6 @@ function Dodelete()
 		<td align="center"><%= SeqNo-- %></td>
 		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
 		<td align="center"><%= vo.adkey %></td>
-		<td align="center">2024-01-22</td>
 		<td align="center">9회</td>
 	</tr>
 	<tr>
