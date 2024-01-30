@@ -41,12 +41,12 @@ if (fimage != null)
 AdVO vo = new AdVO();
 
 vo.setAdno(adno);
-vo.setName(name);
+//vo.setName(name);
 
 if(fimage != null)
 {	
-	vo.setPimage(pimage);
-	vo.setFimage(fimage);
+//	vo.setPimage(pimage);
+//	vo.setFimage(fimage);
 }
 
 AdDTO dto = new AdDTO();

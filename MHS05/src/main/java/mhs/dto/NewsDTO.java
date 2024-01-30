@@ -45,7 +45,7 @@ public class NewsDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select  id,title,category,mainyn,image,phyimage,note,emotion,wdate ";
+		sql  = "select  id,title,category,mainyn,image,phyimage,note,emotion,score,wdate ";
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
@@ -65,6 +65,7 @@ public class NewsDTO extends DBManager
 		vo.setPhyimage(this.GetValue("Phyimage"));
 		vo.setWdate(this.GetValue("wdate"));
 		vo.setEmotion(this.GetValue("emotion"));
+		vo.setScore(this.GetValue("score"));
 		
 		this.DBClose();
 		return vo;
