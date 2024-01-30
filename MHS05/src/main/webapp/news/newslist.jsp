@@ -177,7 +177,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 						<div style="width: 650px;" >
 							<div>
 								<div style="width:650px;">
-									<h2><a href=""><%= vo.getTitle() %></a></h2>
+									<h2><a href="../news/newsview.jsp?nno=<%= vo.getNno() %>&category=<%=category %>"><%= vo.getTitle() %></a></h2>
 									<div style="color: #999999; font-size: 16px;margin: 10px 0px 0px;padding: 0px 0px 10px;">
 										<% 
 											String content = vo.getNote(); 
@@ -186,11 +186,11 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 											if(hangulOnly.length() > 100)
 											{
 												%>
-													<a style="color: #999999;" href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly.substring(16,120) %>...</a>
+													<a style="color: #999999;" href="../news/newsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly.substring(16,120) %>...</a>
 												<%
 											} else
 											{
-												%><a style="color: #999999;" href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly %></a><%
+												%><a style="color: #999999;" href="../news/newsview.jsp?nno=<%= vo.getNno() %>"><%= hangulOnly %></a><%
 											}
 										%>
 	                           		 </div>
@@ -200,8 +200,10 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 		                       	</div>
 	                       	</div>
 	                    </div>
-	                    <div style="background-color : yellow; position:absolute; bottom:15px; right:45px; width:210px; height:130px;" >
-	                    	<img width="210px" height="130px" src="../image/news1.jpg">
+	                    <div style="background-color : white; position:absolute; bottom:15px; right:45px; width:210px; height:130px;" >
+	                    	<a href="../news/newsview.jsp?nno=<%= vo.getNno() %>">
+	                    		<img width="210px" height="130px" src="../admin/newsimagedown.jsp?nno=<%= vo.getNno() %>">
+                    		</a>
 	                    </div>
                     </div>
                     <%
