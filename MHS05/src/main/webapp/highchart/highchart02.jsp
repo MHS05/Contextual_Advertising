@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "mhs.vo.*" %>
 <%@ page import = "mhs.dto.*" %>
 <%@ page import = "mhs.dao.*" %>
@@ -10,22 +9,31 @@ String nno = request.getParameter("nno");
 
 NewsKeywordDTO dto = new NewsKeywordDTO();
 
-ArrayList<NewsKeywordVO> list = dto.GetList(nno);
-
-//키워드 데이터 목록을 작성한다.
 String nkeyword = "";
 String nkeynum  = "";
 String data     = "";
+ArrayList<NewsKeywordVO> list = dto.GetList(nno);
+/*if( list != null )
+{
+	for(NewsKeywordVO vo : list)
+	{	
+//		System.out.println(vo.toString());
+		data += "['"+vo.getNkey()+"',"+vo.getNkeyno()+"],";
+	}	
+}*/
+
+//키워드 데이터 목록을 작성한다.
+
 for(NewsKeywordVO vo : list)
 {	
 	if(!nkeyword.equals(""))
 	{	
 		nkeyword += ",";
 		nkeynum += ",";
-		data += ",";
+		data += "['"+vo.getNkey()+"',"+vo.getNkeynum()+"],";
 	}
 	nkeyword += "'" + vo.getNkey() + "'";
-	nkeynum  += vo.getNkeyno();
+	nkeynum  += vo.getNkeynum();
 }
 %>
 <!DOCTYPE html>
@@ -41,20 +49,19 @@ for(NewsKeywordVO vo : list)
 		<title>광고 선정 이유</title>
 	</head>
 	<body>
+	${data}
 		<script>
 		//JS 여기부터
 		window.onload = function()
 		{	
 			//뉴스 키워드
-			nkeyword =  <%= nkeyword %>;
+			nkeyword =  <%= nkeyword %>
 			
 			//키워드 빈도수
-			nkeynum  =  <%= nkeynum %>;
+			nkeynum  =  <%= nkeynum %> 
 			
 			//뉴스키워드, 키워드빈도수
-			data = [ 
-				[<%= nkeyword %>, <%= nkeynum %>] 
-				]
+			data =  [<%= data %>]
 			
 			DrawKeywordChart(data);
 		}
@@ -103,10 +110,8 @@ for(NewsKeywordVO vo : list)
 			        ],
 			        colorByPoint: true,
 			        groupPadding: 0,
-			        data: 
-			        [
-			        	data
-			        ],
+			        data: data
+			        ,
 			        credits: {  enabled: false },
 			        dataLabels: 
 			        {
@@ -131,10 +136,10 @@ for(NewsKeywordVO vo : list)
 		<span class="subtitle2"><h2>&lt; 키워드 빈도 분석 &gt;</h2></span>
 <!-- 2. 키워드 빈도 차트 highchart_keywords.jsp -->
 	<span id="keywords" style="display:inline-block; width:900px; height:700px"></span>
-		<a href="../highchart/highchart01.jsp">
+		<a href="../highchart/highchart01.jsp?nno=<%= nno %>">
 			<span id="button_back"><input type="button" value="< Back "></span>
 		</a>
-		<a href="../highchart/highchart03.jsp">
+		<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
 			<span id="button_next"><input type="button" value="Next >"></span>
 		</a>
 	</body>
