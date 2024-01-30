@@ -173,7 +173,7 @@ if( vo == null )
 			AdVO advo = addto.Read(adno);
 		%>
 			<div id="adimage">
-				<a href="../highchart/highchart01.jsp" target="_blank"><img width="800px" height="140px" src="../image/ad.jpg"></a>
+				<a href="../highchart/highchart01.jsp?nno=<%= nno %>" target="_blank"><img width="800px" height="140px" src="../image/ad.jpg"></a>
 			</div>
 		<%
 		}
