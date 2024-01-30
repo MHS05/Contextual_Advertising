@@ -7,55 +7,52 @@
 <%@ include file="../admininclude/head.jsp" %>
 <%@ include file="../common/common.jsp" %>
 <%
-//¾÷·Îµå°¡ °¡´ÉÇÑ ÃÖ´ë ÆÄÀÏ Å©±â¸¦ ÁöÁ¤ÇÑ´Ù.
+//ì—…ë¡œë“œê°€ ê°€ëŠ¥í•œ ìµœëŒ€ íŒŒì¼ í¬ê¸°ë¥¼ ì§€ì •í•œë‹¤.
 int size = 10 * 1024 * 1024;
 
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String adno       = multi.getParameter("adno");
-String type       = multi.getParameter("type");
-String name       = multi.getParameter("name");
-String date_end   = multi.getParameter("date_end");
-String fimage     = (String)multi.getFilesystemName("image");
-String pimage     = "";
+String adno         = multi.getParameter("adno");
+String adname       = multi.getParameter("name");
+String adkey        = multi.getParameter("keywords");
+String image        = (String)multi.getFilesystemName("image");
+String phyimage     = "";
 
 
-if (fimage != null)
+if (image != null)
 {
-	//³í¸®¸íÀ» ¹°¸®¸í ÀÌ¸§À¸·Î º¯°æÇÑ´Ù.
-	pimage = UUID.randomUUID().toString();
+	//ë…¼ë¦¬ëª…ì„ ë¬¼ë¦¬ëª… ì´ë¦„ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
+	phyimage = UUID.randomUUID().toString();
 	
-	//ÆÄÀÏ ÀÌ¸§ º¯°æ
-	String orgPimage = uploadPath + "\\" + fimage;
-	String newPimage = uploadPath + "\\" + pimage;
+	//íŒŒì¼ ì´ë¦„ ë³€ê²½
+	String orgPimage = uploadPath + "\\" + image;
+	String newPimage = uploadPath + "\\" + phyimage;
 	
 	File srcFile    = new File(orgPimage);
 	File targetFile = new File(newPimage);
 	srcFile.renameTo(targetFile);
 	
-	out.println("¿ø·¡ ÆÄÀÏ¸í : " + orgPimage + "<br>");
-	out.println("¹Ù²ï ÆÄÀÏ¸í : " + newPimage + "<br>");
+	out.println("ì›ë˜ íŒŒì¼ëª… : " + orgPimage + "<br>");
+	out.println("ë°”ë€ íŒŒì¼ëª… : " + newPimage + "<br>");
 }
 
 AdVO vo = new AdVO();
-
+vo.setId(loginVO.getId());
 vo.setAdno(adno);
-//vo.setName(name);
 
-if(fimage != null)
+vo.setAdname(adname);
+vo.setAdkey(adkey);
+if(image != null)
 {	
-//	vo.setPimage(pimage);
-//	vo.setFimage(fimage);
+	vo.setImage(image);
+	vo.setPhyimage(phyimage);
 }
 
 AdDTO dto = new AdDTO();
-
-
 dto.Update(vo);
 
-
-response.sendRedirect("adinfo.jsp?adno=" +vo.getAdno());
+response.sendRedirect("adlist.jsp?adno=" + adno);
 %>
 
 

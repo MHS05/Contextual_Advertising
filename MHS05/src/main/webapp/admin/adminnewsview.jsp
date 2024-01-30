@@ -164,18 +164,29 @@ if( vo == null )
 		if(vo.getEmotion().equals("부정"))
 		{
 		%>
-			<div id="adimage">광고페이지</div>
+			<div id="adimage">X</div>
 		<%
 		}else
 		{	
-			String adno = "1";
-			AdDTO addto = new AdDTO();
-			AdVO advo = addto.Read(adno);
-		%>
-			<div id="adimage">
-				<a href="../highchart/highchart01.jsp?nno=<%= nno %>" target="_blank"><img width="800px" height="140px" src="../image/ad.jpg"></a>
-			</div>
-		<%
+			if( vo.getAdno().equals("N") || vo.getAdno().equals(""))
+			{
+				%>
+				<div id="adimage">X</div>
+				<%
+				
+			} else 
+			{
+				String adno =  vo.getAdno();
+				AdDTO addto = new AdDTO();
+				AdVO advo = addto.Read(adno);
+				%>
+				<div id="adimage">
+					<a href="../highchart/highchart01.jsp?nno=<%= vo.getNno() %>" target="_blank">
+						<img width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
+					</a>
+				</div>
+				<%
+			}
 		}
 		%>
 		<div style="height:50px"></div>
