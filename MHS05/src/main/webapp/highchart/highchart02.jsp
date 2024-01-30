@@ -13,14 +13,7 @@ String nkeyword = "";
 String nkeynum  = "";
 String data     = "";
 ArrayList<NewsKeywordVO> list = dto.GetList(nno);
-/*if( list != null )
-{
-	for(NewsKeywordVO vo : list)
-	{	
-//		System.out.println(vo.toString());
-		data += "['"+vo.getNkey()+"',"+vo.getNkeyno()+"],";
-	}	
-}*/
+
 
 //키워드 데이터 목록을 작성한다.
 
@@ -119,8 +112,8 @@ for(NewsKeywordVO vo : list)
 			            rotation: -90,
 			            color: '#FFFFFF',
 			            align: 'right',
-			            format: '{point.y:.1f}', // one decimal
-			            y: 10, // 10 pixels down from the top
+			            format: '{point.y:.1f}', 
+			            y: 10, 
 			            style:
 			            {
 			                fontSize: '13px',
