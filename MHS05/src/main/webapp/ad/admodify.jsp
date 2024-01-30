@@ -158,7 +158,7 @@ function DoWrite()
 					<span class="btn-upload2" id="btn-upload2" style="padding: 0px 0px" >광고 이미지 수정</span>
 				</label>
 				<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
-				<div class="image_container" id="image_container"><img src="../image/<%= vo.getImage() %>" width="650px" height="100px"></div>
+				<div class="image_container" id="image_container"><img src="../admin/adimagedown.jsp?adno=<%= adno %>" width="650px" height="100px"></div>
 			</td>
 		</tr>
 		<tr>
