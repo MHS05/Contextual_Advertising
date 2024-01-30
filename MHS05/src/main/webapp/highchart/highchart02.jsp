@@ -22,10 +22,10 @@ for(NewsKeywordVO vo : list)
 	{	
 		nkeyword += ",";
 		nkeynum += ",";
-		data += "['"+vo.getNkey()+"',"+vo.getNkeynum()+"],";
 	}
 	nkeyword += "'" + vo.getNkey() + "'";
 	nkeynum  += vo.getNkeynum();
+	data += "['"+vo.getNkey()+"',"+vo.getNkeynum()+"],";
 }
 %>
 <!DOCTYPE html>
