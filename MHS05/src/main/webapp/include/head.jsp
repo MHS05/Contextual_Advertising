@@ -166,7 +166,7 @@ UserVO loginVO = (UserVO)session.getAttribute("login");
 				<tr>
 					<td class="nav">
 						<div>
-							<a href="../news/news.jsp"><h1>건강소식</h1></a>
+							<a href="../news/newslist.jsp"><h1>건강소식</h1></a>
 						</div>
 						<div>
 							<a href="../category/category.jsp?kind=V"><h1>카테고리</h1></a>
