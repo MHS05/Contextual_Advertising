@@ -87,9 +87,9 @@ if(!adno.equals("N"))
 }
 </style>
 <script>
-	function countad()
+	function count()
 	{
-		alert("클릭 성공");
+		
 		
 		$.ajax
 		({
@@ -97,9 +97,9 @@ if(!adno.equals("N"))
 			url  : "countad.jsp",
 			data :
 			{
-				nno   : <%= nno %>,
-				adno  : <%= adno %>,
-				title : "<%= vo.getTitle() %>"
+				nno   : <%= vo.getNno() %>,
+				adno  : <%= vo.getAdno() %>,
+				title : '<%= vo.getTitle().replace("'","''") %>'
 			},		
 			dataType : "html",	
 			success : function(data) 
@@ -245,7 +245,7 @@ if(!adno.equals("N"))
 				} else 
 				{
 					%>
-					<div id="adimage" onclick="countad()">
+					<div id="adimage" onclick="count()";>
 						<a href="../highchart/highchart01.jsp?nno=<%= vo.getNno() %>" target="_blank">
 							<img width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>&nno=<%= nno %>">
 						</a>
