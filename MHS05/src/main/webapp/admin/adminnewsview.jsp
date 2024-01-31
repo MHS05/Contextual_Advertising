@@ -63,7 +63,8 @@ if( vo == null )
 
 #adimage
 {	
-	margin-top : 20px;
+	margin : 20px;
+	padding : 20px;
 	text-align:center;
 }
 
@@ -119,6 +120,12 @@ if( vo == null )
 	font-size: 16px;
 	cursor: pointer;
 }
+.ad
+{
+	position:absolute;
+	right:432px;
+	margin-top:5px;
+}
 </style>
 <script>
 	function del()
@@ -158,6 +165,17 @@ if( vo == null )
 		window.open('../highchart/highchart01.jsp?nno=<%= vo.getNno() %>', '', 'width=1200, height=1000, left=' + _left +', top=' + (_top - 250)); return false;
 		
 	}
+	
+	function cancel()
+	{	
+		if(confirm("±¤°í¸¦ ´ÝÀ¸½Ã°Ú½À´Ï±î?") == 0)
+		{
+			return;
+		}else
+		{
+			$("#adimage").css("display","none");
+		}	
+	}
 </script>
 <tr>
 	<td valign="top">
@@ -195,8 +213,12 @@ if( vo == null )
 				%>
 				<div id="adimage">
 					<a href="javascript:openreason();">
-						<img width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
-					</a>
+						<img id="hidden" style="display:none; border:1px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=5">
+						<img id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>"></a>
+						<span class="ad" style="margin-right:2px">
+							<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
+							<img src="../image/x.png" width="30px" height="20px" valign="top" onclick="cancel()" style="cursor:pointer">
+						</span>
 				</div>
 				<%
 			}
