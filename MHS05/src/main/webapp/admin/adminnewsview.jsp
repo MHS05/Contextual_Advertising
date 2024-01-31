@@ -145,6 +145,19 @@ if( vo == null )
 			});
 		}
 	}
+	
+	function openreason() 
+	{
+		//로그인 팝업창 가운데에 띄우기
+		var _width = '1200';
+		var _height = '1000';
+			
+		var _left = Math.ceil((window.screen.width - _width )/2);
+		var _top = Math.ceil((window.screen.height - _height )/2);
+		
+		window.open('../highchart/highchart01.jsp?nno=<%= vo.getNno() %>', '', 'width=1200, height=1000, left=' + _left +', top=' + (_top - 250)); return false;
+		
+	}
 </script>
 <tr>
 	<td valign="top">
@@ -181,7 +194,7 @@ if( vo == null )
 				AdVO advo = addto.Read(adno);
 				%>
 				<div id="adimage">
-					<a href="../highchart/highchart01.jsp?nno=<%= vo.getNno() %>" target="_blank">
+					<a href="javascript:openreason();">
 						<img width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
 					</a>
 				</div>

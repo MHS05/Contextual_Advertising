@@ -176,27 +176,30 @@ String adkey[] = svo.getAdkey().split(",");
 		}
 		//JS 여기까지	
 		</script>
-		<span class="title"><h1>[ 광고 선정 이유 ]</h1></span>
-		<div class="ad"><img src="../admin/adimagedown.jsp?adno=<%= vo.getAdno() %>" width="800px" height="140px"></div>
+		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
+			<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
+			<span id="button_back"><img src="../image/back.png" style="width:50px; height:50px"></span></a>
+			<span class="ad"><img src="../admin/adimagedown.jsp?adno=<%= vo.getAdno() %>" style="width:850px; height:200px"></span>
+			<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
+			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
+		</div>
 <!-- 3. 유사도 차트 highchart_similarity.jsp -->
-    <span id="container" style="display:inline-block; width:650px; height:650px"></span>
-    <span class="board_keywords"><h2>[ 뉴스 키워드 리스트 ]</h2></span>
-    <span class="board_keywords1" style="border:50px;"><h1>
-	    <%
-	    	for(String key : nkey )
-		    {
-		    	out.println(key);%><br><%
-		    }
-    		%></h1></span>
-    <span class="ad_keywords"><h2>[ 광고 키워드 리스트 ] </h2></span>
-    <span class="ad_keywords1"><h1>
-   		 <%
-		    for(String key : adkey )
-		    {
-		    	out.println(key);%><br><%
-		    }
-		    %></h1></span>
-    <a href="../highchart/highchart02.jsp?nno=<%= nno %>">
-	<span id="button_back"><img src="../image/back.png" style="width:100px; height:100px"></span></a>
+	    <span class="board_keywords"><h2>[ 뉴스 키워드 리스트 ]</h2></span>
+	    <span class="board_keywords1" style="border:50px;"><h1>
+		    <%
+		    	for(String key : nkey )
+			    {
+			    	out.println(key);%><br><%
+			    }
+	    		%></h1></span>
+	    <span class="ad_keywords"><h2>[ 광고 키워드 리스트 ] </h2></span>
+	    <span class="ad_keywords1"><h1>
+	   		 <%
+			    for(String key : adkey )
+			    {
+			    	out.println(key);%><br><%
+			    }
+			    %></h1></span>
+    	<div id="container"></div>
 	</body>
 </html>

@@ -1,20 +1,21 @@
 @charset "EUC-KR";
-#keywords 
-{
-    height: 400px;
-}
 #emotion
-{
-	position: absolute;
-	top:250px;
-	height:500px;
-	left:200px;
+{	
+	width:100%;
+	height:60vw;
+}
+#keywords 
+{	
+	width:100%;
+	height:70vw;
 }
 #container
 {	
-	position: absolute;
-	top:260px;
-	left:580px;
+	float:center;
+	width:600px;
+	height:50%;
+	left:300px;
+	position: relative;
 }
 #similarity
 {
@@ -23,68 +24,62 @@
 	height:500px;
 	left:450px;
 }
-#keywords
-{
-	position: absolute;
-	top:250px;
-	height:500px;
-	left:450px;
-}
 .title
-{
-	left:770px;
-	position: absolute;
+{	
+	text-align:center;
+	width:auto;
+	height:auto;
 }
 #title
 {
+	border:1px solid black;
 	left:770px;
 	position: absolute;
 }
 .subtitle1
-{
-	top:120px;
-	left:820px;
-	position: absolute;
+{	
+	text-align:center;
+	width:auto;
+	height:auto;
 }
 #button_next
 {	
-	border: 0;
 	border-radius : 30px;
-	top: 550px;
-	left:1700px;
-	position: absolute;
+	float:right;
+	width:auto;
+	height:auto;
 }
 #button_back
 {	
-	border: 0;
 	border-radius : 30px;
-	top: 550px;
-	left: 50px;
-	position: absolute;
+	float:left;
+	width:auto;
+	height:auto;
 }
 .board_keywords
-{
-	top:300px;
-	left:200px;
-	position: absolute;
+{	
+	margin-top:50px;
+	left:30px;
+	position:absolute;
 }
 .board_keywords1
 {
-	top:400px;
-	left:280px;
-	position: absolute;	
+	margin-top:120px;
+	left:100px;
+	position:absolute;
 }
 .ad_keywords
 {
-	top:300px;
-	left:1400px;
-	position: absolute;
+	margin-top:50px;
+	right:30px;
+	position:absolute;
+	
 }
 .ad_keywords1
 {
-	top:400px;
-	left:1500px;
-	position: absolute;
+	margin-top:120px;
+	right:100px;
+	position:absolute;
 }
 .emotion_ratio
 {
@@ -112,11 +107,11 @@
 }
 .ad
 {	
-	position: relative;
 	z-index : 100;
-	top:150px;
-	left:520px;	
-	width:800px;
+	float:center;
+	width:10%;
+	height:5%;
+	position:relative;
 }
 .select_ad
 {

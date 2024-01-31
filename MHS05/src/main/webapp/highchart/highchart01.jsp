@@ -27,6 +27,7 @@ for(SemotionVO vo : list)
 	}
 	//category += "'" + vo.getSentance() + "'";
 	String sentance = vo.getSentance();
+	//out.println(sentance);
 	if(sentance.length() > 10)
 	{
 		sentance  = sentance.substring(0,10);
@@ -105,12 +106,13 @@ for(SemotionVO vo : list)
 			});
 		}
 		//JS 여기까지	
-		</script>
-		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
-		<span class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></span>
+		</script>	
+		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
+			<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
+			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
+		</div>
+		<div class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></div>
 		<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
-		<span id="emotion" style="display:inline-block; width:1400px; height:800px"></span>
- 		<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
-		<span id="button_next"><img src="../image/next.png" style="width:100px; height:100px"></span></a>
+		<div id="emotion"></div>
 	</body>
 </html>

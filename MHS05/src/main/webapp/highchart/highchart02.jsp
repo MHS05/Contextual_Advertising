@@ -125,13 +125,14 @@ for(NewsKeywordVO vo : list)
 		}
 		//JS 여기까지
 		</script>
-		<div class="title"><h1>[ 광고 선정 이유 ]</h1></div>
-		<span class="subtitle2"><h2>&lt; 키워드 빈도 분석 &gt;</h2></span>
-<!-- 2. 키워드 빈도 차트 highchart_keywords.jsp -->
-	<span id="keywords" style="display:inline-block; width:900px; height:700px"></span>
-		<a href="../highchart/highchart01.jsp?nno=<%= nno %>">
-			<span id="button_back"><img src="../image/back.png" style="width:100px; height:100px"></span></a>
-		<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
-			<span id="button_next"><img src="../image/next.png" style="width:100px; height:100px"></span></a>
+		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
+			<a href="../highchart/highchart01.jsp?nno=<%= nno %>">
+			<span id="button_back"><img src="../image/back.png" style="width:50px; height:50px"></span></a>
+			<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
+			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
+		</div>
+		<div class="subtitle1"><h2>&lt; 키워드 빈도 분석 &gt;</h2></div>
+		<!-- 2. 키워드 빈도 차트 highchart_keywords.jsp -->
+		<div id="keywords"></div>
 	</body>
 </html>
