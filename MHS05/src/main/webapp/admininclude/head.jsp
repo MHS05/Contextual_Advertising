@@ -16,6 +16,7 @@ if(loginVO == null)
 <html>
 	<head>
 		<meta charset="EUC-KR">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>나만의 건강 쇼핑몰</title>
 		<link rel="stylesheet" href="../admin/admin.css"/>
 		<script src="../js/jquery-3.7.1.js"></script>
