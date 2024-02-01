@@ -55,6 +55,10 @@ if( loginVO == null)
 		border:0;
 		border-radius: 5px;
 	}
+	#loading
+	{
+		align:left;
+	}
 </style>
 <script>
 //채팅 메시지를 표시할 DOM
@@ -118,6 +122,7 @@ async function click(){
 		$("#keywords").focus();
 		return false;
 	}
+	$("#chat-messages").html('<span id="loading"><img src="../image/LoadingImg.gif" style="width:50px; height:50px"></span>');
 	// 사용자가 입력한 메시지
     const keyword = $("#keywords").val().trim();
     const message = "숫자 없이 쉼표로 구분해서 " + keyword + " 관련 키워드 10개 추천해줘"
@@ -197,6 +202,32 @@ function DoWrite()
 	}
 }
 </script>
+<script>
+function LoadingWithMask() {
+		//화면의 높이와 너비를 구합니다.
+var maskHeight = $(document).height();
+		var maskWidth = window.document.body.clientWidth;
+		//화면에 출력할 마스크를 설정해줍니다.
+		var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+		var loadingImg = '';
+		loadingImg += "<div id='loadingImg'>";
+		loadingImg += " <img src='LoadingImg.gif' 
+		style='position: relative; display: block; margin: 0px auto;'/>";
+		loadingImg += "</div>";
+		//화면에 레이어 추가
+		$('body')
+		.append(mask)
+		.append(loadingImg)
+		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+		$('#mask').css({
+			'width' : maskWidth,
+			'height': maskHeight, 
+			'opacity' : '0.3'}); 
+		//마스크 표시
+		$('#mask').show();
+		//로딩중 이미지 표시
+		$('#loadingImg').show();}
+</script>
 	<form id="upload" name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data">
 		<tr>
 			<td colspan="12"><h2><b>광고 등록</b></h2><hr></td>
@@ -220,7 +251,7 @@ function DoWrite()
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><h4>상품이름:</h4></td>
-			<td>
+			<td colspan="3" width="100px">
 				<input type="text" id="name" name="name" style="width:400px; height:30px" placeholder="상품이름을 입력해주세요.">
 			</td>
 		</tr>
@@ -228,10 +259,10 @@ function DoWrite()
 			<td colspan="2" align="center"><h4>키워드:</h4></td>
 			<td>
 				<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" placeholder="키워드는 , 단위로 입력해주세요">
-				<a href = "javascript:click()">키워드 추천받기</a>
+				<a href = "javascript:click()"><input type="button" id="submitbutton" value="키워드 추천"></a>
 			</td>
 		</tr>
-		<tr>
+		<tr height="60px">
 			<td colspan="5" align="center">
 				<div id="chat-container">
 			       <div id="chat-messages"></div>
