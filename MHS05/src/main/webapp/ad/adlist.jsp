@@ -83,9 +83,9 @@ function Dodelete()
 		<td align="center" width="10px">
 			<input type="checkbox" name="delNo" id="delNo"  value="selectall" onclick='selectAll(this)'>
 		</td>
-		<td align="center" width="30px">광고번호</td>
-		<td align="center" width="100px">상품이름</td>
-		<td align="center" width="50px">키워드</td>
+		<td align="left" width="20px">No</td>
+		<td align="left" width="40px">상품이름</td>
+		<td align="center" width="120px">키워드</td>
 		<td align="center" width="50px">노출횟수</td>
 	</tr>
 	<tr>
@@ -102,9 +102,21 @@ function Dodelete()
 		<td align="center" width="10px">
 			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getAdno() %>" onclick='getCheckedCnt()'>
 		</td>
-		<td align="center"><%= vo.getAdno() %></td>
-		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
+		<td align="left"><%= vo.getAdno() %></td>
+		<td align="left"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
+		<%
+		if( vo.adkey.length() > 25)
+		{
+		%>
+		<td align="center"><%= vo.adkey.substring(0, 25) %>...</td>
+		<%
+		}else
+		{
+		%>
 		<td align="center"><%= vo.adkey %></td>
+		<%
+		}
+		%>
 		<td align="center"><%= clickCount %></td>
 	</tr>
 	<tr>

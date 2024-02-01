@@ -158,25 +158,25 @@ function DoWrite()
 					<span class="btn-upload2" id="btn-upload2" style="padding: 0px 0px" >광고 이미지 수정</span>
 				</label>
 				<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
-				<div class="image_container" id="image_container"><img src="../admin/adimagedown.jsp?adno=<%= adno %>" width="650px" height="100px"></div>
+				<div class="image_container" id="image_container"><img src="../admin/adimagedown.jsp?adno=<%= adno %>" width="800px" height="140px"></div>
 			</td>
 		</tr>
 		<tr>
 			<td height="50px"></td>
 		</tr>
 		<tr>
-			<td colspan="12" align="right">픽셀 : 650 * 100<hr></td>
+			<td colspan="12" align="right">픽셀 : 800 * 140<hr></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><h4>상품이름:</h4></td>
 			<td>
-				<input type="text" id="name" name="name" style="width:400px; height:30px" placeholder="<%= vo.getAdname() %>">
+				<input type="text" id="name" name="name" style="width:400px; height:30px" value="<%= vo.getAdname() %>">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><h4>키워드:</h4></td>
 			<td>
-				<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" placeholder="<%= vo.getAdkey() %>">
+				<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" value="<%= vo.getAdkey() %>">
 			</td>
 		</tr>
 		<tr>
