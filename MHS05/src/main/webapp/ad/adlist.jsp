@@ -83,7 +83,7 @@ function Dodelete()
 		<td align="center" width="10px">
 			<input type="checkbox" name="delNo" id="delNo"  value="selectall" onclick='selectAll(this)'>
 		</td>
-		<td align="center" width="30px">번호</td>
+		<td align="center" width="30px">광고번호</td>
 		<td align="center" width="100px">상품이름</td>
 		<td align="center" width="50px">키워드</td>
 		<td align="center" width="50px">노출횟수</td>
@@ -92,33 +92,20 @@ function Dodelete()
 		<td colspan="7"><hr></td>
 	</tr>
 	<%
-	int SeqNo = totalData - (page_no - 1) * 10;
-	
 	for(AdVO vo : list)
 	{
 		ClickAdDTO addto = new ClickAdDTO();
 		ClickAdVO  advo = addto.Read(vo.getAdno());
+		int clickCount = dto.getclickadtotal(vo.getAdno());
 	%>
 	<tr>
 		<td align="center" width="10px">
 			<input type="checkbox" name="delNo" id="delNo" value="<%= vo.getAdno() %>" onclick='getCheckedCnt()'>
 		</td>
-		<td align="center"><%= SeqNo-- %></td>
+		<td align="center"><%= vo.getAdno() %></td>
 		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adname %></a></td>
 		<td align="center"><%= vo.adkey %></td>
-		<%
-		if(advo.getCcount() != null)
-		{
-		%>
-		<td align="center"><%= advo.getCcount() %></td>
-		<%
-		}else
-		{
-		%>
-		<td align="center">0</td>
-		<%
-		}
-		%>
+		<td align="center"><%= clickCount %></td>
 	</tr>
 	<tr>
 		<td colspan="7"><hr></td>

@@ -5,19 +5,9 @@
 
 String adno = request.getParameter("adno");
 
+NewsDTO newdto = new NewsDTO();
 AdDTO dto = new AdDTO();
 AdVO  vo  = dto.Read(adno);
-
-ClickAdDTO addto = new ClickAdDTO();
-ClickAdVO  advo = addto.Read(adno);
-if(advo != null)
-{
-	ClickAdVO  advo1 = addto.Read(adno);
-	
-}else
-{
-	ClickAdVO  advo2  = addto.Read2(adno);
-}
 if( vo == null )
 {
 	//해당 게시물 번호의 데이터가 없음
@@ -70,20 +60,21 @@ ArrayList<ClickAdVO> list = listdto.getclickadlist(adno);
 	</tr>
 	<tr>
 		<td>
-			<table border="1" width="800px" height="100px" align="center">
+			<table border="1" width="800px" align="center" style="border-collapse: collapse; ">
 				<tr>
-					<td></td>
-					<td>날짜</td>
-					<td>게시물 제목</td>
+					<td width="50px" align="center"></td>
+					<td width="200px" align="center">날짜</td>
+					<td align="center">게시물 제목</td>
 				</tr>
 				<%
 				for(ClickAdVO clickadvo : list)
 				{
+					NewsVO newsvo = newdto.Read(clickadvo.getNno());
 				%>
 				<tr>
-					<td><%= clickadvo.getCcount() %></td>
+					<td>10</td>
 					<td><%= clickadvo.getCdate() %></td>
-					<td><%= clickadvo.getTitle() %></td>
+					<td><%= newsvo.getTitle() %></td>
 				</tr>
 				<%
 				}

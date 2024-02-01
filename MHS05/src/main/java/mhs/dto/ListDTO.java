@@ -7,6 +7,24 @@ import mhs.vo.*;
 
 public class ListDTO extends DBManager
 {
+	public int getclickadtotal(String adno)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select count(*) as total ";
+		sql += "from clickad ";
+		sql += "where adno = " + adno;
+
+		this.RunSelect(sql);
+		this.GetNext();				
+		int total = Integer.parseInt(this.GetValue("total")); 
+		
+		this.DBClose();
+		return total;
+	}
+	
 	
 	public ArrayList<ClickAdVO> getclickadlist(String adno)
 	{
@@ -18,14 +36,14 @@ public class ListDTO extends DBManager
 		
 		sql  = "select * from clickad ";
 		sql += "where adno = " + adno;
+		sql += " order by cdate desc";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{
 			ClickAdVO vo = new ClickAdVO();
-			vo.setTitle(this.GetValue("title"));
+			vo.setAdno(adno);
+			vo.setNno(this.GetValue("nno"));
 			vo.setCdate(this.GetValue("cdate"));
-			vo.setCcount(this.GetValue("ccount"));
-			
 			list.add(vo);
 		}		
 		this.DBClose();

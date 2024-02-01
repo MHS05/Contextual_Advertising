@@ -99,7 +99,6 @@ if(!adno.equals("N"))
 			{
 				nno   : <%= vo.getNno() %>,
 				adno  : <%= vo.getAdno() %>,
-				title : '<%= vo.getTitle().replace("'","''") %>'
 			},		
 			dataType : "html",	
 			success : function(data) 
