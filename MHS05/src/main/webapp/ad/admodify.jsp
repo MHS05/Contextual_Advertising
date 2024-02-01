@@ -87,6 +87,84 @@ AdVO  vo  = dto.Read(adno);
 	}
 </style>
 <script>
+
+//채팅 메시지를 표시할 DOM
+const chatMessages = document.querySelector('#chat-messages');
+// 사용자 입력 필드
+const userInput = document.querySelector('#user-input input');
+// 발급받은 OpenAI API 키를 변수로 저장
+const apiKey = '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';
+// OpenAI API 엔드포인트 주소를 변수로 저장
+const apiEndpoint = 'https://api.openai.com/v1/chat/completions'
+
+function addMessage(sender, message) 
+{
+   $("#chat-messages").html(message)
+}
+
+async function fetchAIResponse(prompt) {
+    // API 키를 적절한 위치에서 가져오세요.
+
+    // API 요청에 사용할 옵션을 정의
+    const requestOptions = {
+        method: 'POST',
+        // API 요청의 헤더를 설정
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer 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`
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",  // 사용할 AI 모델
+            messages: [{
+                role: "user", // 메시지 역할을 user로 설정
+                content: prompt // 사용자가 입력한 메시지
+            }],
+            temperature: 0.8, // 모델의 출력 다양성
+            max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
+            top_p: 1, // 토큰 샘플링 확률을 설정
+            frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
+            presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
+            stop: ["Human"] // 생성된 텍스트에서 종료 구문을 설정
+        }),
+    };
+
+    const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+
+    // API 요청후 응답 처리
+    try {
+        const response = await fetch(apiEndpoint, requestOptions);
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+        return aiResponse;
+    } catch (error) {
+        console.error('OpenAI API 호출 중 오류 발생:', error);
+        return 'OpenAI API 호출 중 오류 발생';
+    }
+}
+
+async function click(){
+	if($("#keywords").val() == "")
+	{
+		alert("키워드를 입력하세요.")
+		$("#keywords").focus();
+		return false;
+	}
+	// 사용자가 입력한 메시지
+    const keyword = $("#keywords").val().trim();
+    const message = "숫자 없이 쉼표로 구분해서 " + keyword + " 관련 키워드 10개 추천해줘"
+    alert(message)
+    // 메시지가 비어있으면 리턴
+    if (message.length === 0) return;
+    // 사용자 메시지 화면에 추가
+    //ChatGPT API 요청후 답변을 화면에 추가
+    const aiResponse = await fetchAIResponse(message);
+    addMessage('챗봇', aiResponse);
+}
+
+
+
+</script>
+<script>
 window.onload=function()
 {
 	$("#title").focus();
@@ -177,6 +255,14 @@ function DoWrite()
 			<td colspan="2" align="center"><h4>키워드:</h4></td>
 			<td>
 				<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" value="<%= vo.getAdkey() %>">
+				<a href = "javascript:click()">키워드 추천받기</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" align="center">
+				<div id="chat-container">
+			       <div id="chat-messages"></div>
+			   </div>
 			</td>
 		</tr>
 		<tr>

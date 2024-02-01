@@ -69,7 +69,7 @@ if(loginVO == null)
 				</td>
 				<td rowspan="50" valign="top" height="30px" height="30px">
 					<div class="admin">
-						<a href="../adminmember.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
+						<a href="../admin/member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
 					<table border="0" width="910px" align="center">
 						<!-- 여기까찌 -->

@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//Document/mhs.sql=euc-kr
+encoding//src/main/webapp/ad/adupload.jsp=EUC-KR
 encoding//src/main/webapp/admin/adimagedown.jsp=EUC-KR
 encoding//src/main/webapp/admin/adminnews.jsp=euc-kr
 encoding//src/main/webapp/admin/adminnewslist.jsp=euc-kr

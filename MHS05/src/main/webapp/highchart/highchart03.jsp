@@ -180,8 +180,6 @@ String adkey[] = svo.getAdkey().split(",");
 			<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
 			<span id="button_back"><img src="../image/back.png" style="width:50px; height:50px"></span></a>
 			<span class="ad"><img src="../admin/adimagedown.jsp?adno=<%= vo.getAdno() %>" style="width:850px; height:200px"></span>
-			<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
-			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
 		</div>
 <!-- 3. 유사도 차트 highchart_similarity.jsp -->
 	    <span class="board_keywords"><h2>[ 뉴스 키워드 리스트 ]</h2></span>
