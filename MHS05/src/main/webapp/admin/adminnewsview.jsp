@@ -213,7 +213,7 @@ if( vo == null )
 				%>
 				<div id="adimage">
 					<a href="javascript:openreason();">
-						<img id="hidden" style="display:none; border:1px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=5">
+						<img id="hidden" style="display:none; border:1px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
 						<img id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>"></a>
 						<span class="ad" style="margin-right:2px">
 							<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
