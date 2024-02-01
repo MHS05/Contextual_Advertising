@@ -1,27 +1,27 @@
-//ëŒ“ê¸€ ì •ë³´ í´ë˜ìŠ¤
+//´ñ±Û Á¤º¸ Å¬·¡½º
 package mhs.vo;
 
 public class UserVO
 {	
-	private String uno;      //íšŒì›ë²ˆí˜¸
-	private String id;		 //ì•„ì´ë””
-	private String pw;		 //ë¹„ë°€ë²ˆí˜¸
-	private String name;	 //ì´ë¦„
-	private String nickname; //ë‹‰ë„¤ì„
-	private String gender;	 //ì„±ë³„
-	private String birth;	 //ìƒë…„ì›”ì¼
-	private String email;	 //ì´ë©”ì¼
-	private String con;	     //ë‚˜ì˜ì²´ì§ˆ
-	private String joindate; //ê°€ì…ì¼ì
-	private String isretire; //íƒˆí‡´ì—¬ë¶€
+	private String uno;      //È¸¿ø¹øÈ£
+	private String id;		 //¾ÆÀÌµğ
+	private String pw;		 //ºñ¹Ğ¹øÈ£
+	private String name;	 //ÀÌ¸§
+	private String nickname; //´Ğ³×ÀÓ
+	private String gender;	 //¼ºº°
+	private String birth;	 //»ı³â¿ùÀÏ
+	private String email;	 //ÀÌ¸ŞÀÏ
+	private String con;	     //³ªÀÇÃ¼Áú
+	private String joindate; //°¡ÀÔÀÏÀÚ
+	private String isretire; //Å»Åğ¿©ºÎ
 	
 	
-	//ì¶”ê°€í•„ë“œ
-	private String cocount;  //ì‘ì„±ê¸€ìˆ˜
-	private String recount;  //ì‘ì„±ëŒ“ê¸€ìˆ˜
+	//Ãß°¡ÇÊµå
+	private String cocount;  //ÀÛ¼º±Û¼ö
+	private String recount;  //ÀÛ¼º´ñ±Û¼ö
 	
 
-	//ìƒì„±ì
+	//»ı¼ºÀÚ
 	public UserVO()
 	{
 		uno      = "";

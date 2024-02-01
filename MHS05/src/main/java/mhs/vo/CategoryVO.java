@@ -1,25 +1,25 @@
-//ì¹´í…Œê³ ë¦¬ ì •ë³´ í´ë˜ìŠ¤
+//Ä«Å×°í¸® Á¤º¸ Å¬·¡½º
 package mhs.vo;
 
 public class CategoryVO 
 {
-	public String pno;			//ìƒí’ˆë²ˆí˜¸
-	public String ptype;		//êµ¬ë¶„
-	public String pname;		//ìƒí’ˆëª…
-	public String pfimage;		//ì´ë¯¸ì§€_ë…¼ë¦¬
-	public String ppimage;		//ì´ë¯¸ì§€_ë¬¼ë¦¬
-	public String age;			//ì—°ë ¹
-	public String pgender;		//ì„±ë³„
-	public String pcon;			//ì²´ì§ˆ
-	public String link;			//ë§í¬
-	public String tag_age;		//íƒœê·¸_ë‚˜ì´
-	public String tag_pgender;	//íƒœê·¸_ì„±ë³„
-	public String tag_pcon;		//íƒœê·¸_ì²´ì§ˆ
-	public String month_start;	//ì›”_ì‹œì‘
-	public String month_end;	//ì›”_ë
-	public String info;			//ê¸°ë³¸ì •ë³´
-	public String takeinfo;		//ì„­ì·¨ì •ë³´
-	public String calorie;		//ì¹¼ë¡œë¦¬
+	public String pno;			//»óÇ°¹øÈ£
+	public String ptype;		//±¸ºĞ
+	public String pname;		//»óÇ°¸í
+	public String pfimage;		//ÀÌ¹ÌÁö_³í¸®
+	public String ppimage;		//ÀÌ¹ÌÁö_¹°¸®
+	public String age;			//¿¬·É
+	public String pgender;		//¼ºº°
+	public String pcon;			//Ã¼Áú
+	public String link;			//¸µÅ©
+	public String tag_age;		//ÅÂ±×_³ªÀÌ
+	public String tag_pgender;	//ÅÂ±×_¼ºº°
+	public String tag_pcon;		//ÅÂ±×_Ã¼Áú
+	public String month_start;	//¿ù_½ÃÀÛ
+	public String month_end;	//¿ù_³¡
+	public String info;			//±âº»Á¤º¸
+	public String takeinfo;		//¼·ÃëÁ¤º¸
+	public String calorie;		//Ä®·Î¸®
 	
 	
 	public CategoryVO()

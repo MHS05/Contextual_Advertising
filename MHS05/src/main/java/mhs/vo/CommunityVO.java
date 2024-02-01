@@ -1,26 +1,26 @@
-//ì»¤ë®¤ë‹ˆí‹° ì •ë³´ í´ë˜ìŠ¤
+//Ä¿¹Â´ÏÆ¼ Á¤º¸ Å¬·¡½º
 package mhs.vo;
 
 public class CommunityVO
 {
-	private String no;		//ê²Œì‹œë¬¼ ë²ˆí˜¸
-	private String uno;	    //íšŒì›ë²ˆí˜¸
-	private String id;	    //íšŒì›ì•„ì´ë””
-	private String title;	//ì œëª©
-	private String type;    //êµ¬ë¶„
-	private String note;	//ë‚´ìš©
-	private String phyname; //ì²¨ë¶€íŒŒì¼_ë¬¼ë¦¬ëª…
-	private String fname;	//ì²¨ë¶€íŒŒì¼_ë…¼ë¦¬ëª…
-	private String wdate;   //ì¡°íšŒìˆ˜
-	private String hit; 	//ì‘ì„±ì¼
-	private String image; 	//ì´ë¯¸ì§€_ë…¼ë¦¬
-	private String phyimage;//ì´ë¯¸ì§€_ë¬¼ë¦¬
+	private String no;		//°Ô½Ã¹° ¹øÈ£
+	private String uno;	    //È¸¿ø¹øÈ£
+	private String id;	    //È¸¿ø¾ÆÀÌµğ
+	private String title;	//Á¦¸ñ
+	private String type;    //±¸ºĞ
+	private String note;	//³»¿ë
+	private String phyname; //Ã·ºÎÆÄÀÏ_¹°¸®¸í
+	private String fname;	//Ã·ºÎÆÄÀÏ_³í¸®¸í
+	private String wdate;   //Á¶È¸¼ö
+	private String hit; 	//ÀÛ¼ºÀÏ
+	private String image; 	//ÀÌ¹ÌÁö_³í¸®
+	private String phyimage;//ÀÌ¹ÌÁö_¹°¸®
 		
 	
-	//ì¶”ê°€ ë³€ìˆ˜ ì„¤ì •
-	private String name;    //íšŒì›ì´ë¦„
-	private String nickname;//íšŒì›ë‹‰ë„¤ì„
-	private String recount; //ëŒ“ê¸€ ê°¯ìˆ˜
+	//Ãß°¡ º¯¼ö ¼³Á¤
+	private String name;    //È¸¿øÀÌ¸§
+	private String nickname;//È¸¿ø´Ğ³×ÀÓ
+	private String recount; //´ñ±Û °¹¼ö
 
 	
 	public CommunityVO()

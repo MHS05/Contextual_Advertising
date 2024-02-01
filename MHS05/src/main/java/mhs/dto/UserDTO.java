@@ -1,4 +1,4 @@
-//íšŒì›ì •ë³´ ê´€ë¦¬ í´ë˜ìŠ¤
+//È¸¿øÁ¤º¸ °ü¸® Å¬·¡½º
 package mhs.dto;
 
 import mhs.vo.*;
@@ -6,8 +6,8 @@ import mhs.dao.*;
 
 public class UserDTO extends DBManager
 {
-	//ì•„ì´ë”” ì¤‘ë³µ ê²€ì‚¬
-	//ë¦¬í„´ê°’ : true - ì¤‘ë³µëœ ID, false - ì¤‘ë³µì´ ì•ˆëœ ID
+	//¾ÆÀÌµğ Áßº¹ °Ë»ç
+	//¸®ÅÏ°ª : true - Áßº¹µÈ ID, false - Áßº¹ÀÌ ¾ÈµÈ ID
 	public boolean CheckID(String id)
 	{
 		String sql = "";
@@ -18,11 +18,11 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == true)
 		{
-			//ì•„ì´ë””ê°€ ìˆìŒ
+			//¾ÆÀÌµğ°¡ ÀÖÀ½
 			this.DBClose();
 			return true;
 		}
-		//ì•„ì´ë””ê°€ ì—†ìŒ
+		//¾ÆÀÌµğ°¡ ¾øÀ½
 		this.DBClose();
 		return false;
 		
@@ -36,17 +36,17 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == true)
 		{
-			//ë¹„ë°€ë²ˆí˜¸ê°€ ìˆìŒ
+			//ºñ¹Ğ¹øÈ£°¡ ÀÖÀ½
 			this.DBClose();
 			return true;
 		}
-		//ë¹„ë°€ë²ˆí˜¸ê°€ ì—†ìŒ
+		//ºñ¹Ğ¹øÈ£°¡ ¾øÀ½
 		this.DBClose();
 		return false;
 	}
 	
-	//ë‹‰ë„¤ì„ ì¤‘ë³µ ê²€ì‚¬
-	//ë¦¬í„´ê°’ : true - ì¤‘ë³µëœ ID, false - ì¤‘ë³µì´ ì•ˆëœ ID
+	//´Ğ³×ÀÓ Áßº¹ °Ë»ç
+	//¸®ÅÏ°ª : true - Áßº¹µÈ ID, false - Áßº¹ÀÌ ¾ÈµÈ ID
 	public boolean CheckNick(String nick)
 	{
 		String sql = "";
@@ -55,17 +55,17 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == true)
 		{
-			//ë‹‰ë„¤ì„ì´ ìˆìŒ
+			//´Ğ³×ÀÓÀÌ ÀÖÀ½
 			this.DBClose();
 			return true;
 		}
-		//ë‹‰ë„¤ì„ì´ ì—†ìŒ
+		//´Ğ³×ÀÓÀÌ ¾øÀ½
 		this.DBClose();
 		return false;
 		
 	}
-	//ì´ë¦„ ì¤‘ë³µ ê²€ì‚¬
-	//ë¦¬í„´ê°’ : true - ìˆëŠ” ì´ë¦„ , false - ì—†ëŠ” ì´ë¦„
+	//ÀÌ¸§ Áßº¹ °Ë»ç
+	//¸®ÅÏ°ª : true - ÀÖ´Â ÀÌ¸§ , false - ¾ø´Â ÀÌ¸§
 	public boolean CheckName(String name)
 	{
 		String sql = "";
@@ -74,18 +74,18 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == true)
 		{
-			//ì´ë¦„ì´ ìˆìŒ
+			//ÀÌ¸§ÀÌ ÀÖÀ½
 			this.DBClose();
 			return true;
 		}
-		//ì´ë¦„ì´ ì—†ìŒ
+		//ÀÌ¸§ÀÌ ¾øÀ½
 		this.DBClose();
 		return false;
 		
 	}
 	
-	//ì´ë©”ì¼ ì¤‘ë³µ ê²€ì‚¬
-	//ë¦¬í„´ê°’ : true - ì¤‘ë³µëœ email, false - ì¤‘ë³µì´ ì•ˆëœ email
+	//ÀÌ¸ŞÀÏ Áßº¹ °Ë»ç
+	//¸®ÅÏ°ª : true - Áßº¹µÈ email, false - Áßº¹ÀÌ ¾ÈµÈ email
 	public boolean CheckEmail(String email)
 	{
 		String sql = "";
@@ -94,26 +94,26 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == true)
 		{
-			//ì´ë©”ì¼ì´ ìˆìŒ
+			//ÀÌ¸ŞÀÏÀÌ ÀÖÀ½
 			this.DBClose();
 			return true;
 		}
-		//ì´ë©”ì¼ì´ ì—†ìŒ
+		//ÀÌ¸ŞÀÏÀÌ ¾øÀ½
 		this.DBClose();
 		return false;
 		
 	}
-	//íšŒì›ê°€ì… ì²˜ë¦¬
-	//ë¦¬í„´ê°’ : true - ê°€ì…ì„±ê³µ, false - ê°€ì…ì‹¤íŒ¨
+	//È¸¿ø°¡ÀÔ Ã³¸®
+	//¸®ÅÏ°ª : true - °¡ÀÔ¼º°ø, false - °¡ÀÔ½ÇÆĞ
 	public boolean Join(UserVO vo)
 	{
-		//ì¤‘ë³µëœ ì•„ì´ë”” ì¸ì§€ ê²€ì‚¬í•œë‹¤.
+		//Áßº¹µÈ ¾ÆÀÌµğ ÀÎÁö °Ë»çÇÑ´Ù.
 		if(CheckID(vo.getId()) == true)
 		{
 			return false;
 		}
 		
-		//ì¤‘ë³µëœ ì•„ì´ë”” ì¸ì§€ ê²€ì‚¬í•œë‹¤.
+		//Áßº¹µÈ ¾ÆÀÌµğ ÀÎÁö °Ë»çÇÑ´Ù.
 		if(CheckNick(vo.getNickname()) == true)
 		{
 			return false;
@@ -121,7 +121,7 @@ public class UserDTO extends DBManager
 		
 		this.DBOpen();
 			
-		//íšŒì›ì •ë³´ë¥¼ Insert í•œë‹¤.
+		//È¸¿øÁ¤º¸¸¦ Insert ÇÑ´Ù.
 		String sql = "";
 		sql  = "insert into user (id,pw,name,nickname,gender,birth,email,con) ";
 		sql += "values (";
@@ -141,7 +141,7 @@ public class UserDTO extends DBManager
 	}
 	
 	
-	//íšŒì› ë¡œê·¸ì¸ ì²˜ë¦¬
+	//È¸¿ø ·Î±×ÀÎ Ã³¸®
 	public UserVO Login(String id,String pw)
 	{
 		String sql = "";
@@ -149,12 +149,12 @@ public class UserDTO extends DBManager
 		sql  = "select id,name,gender,con,birth,uno,email,nickname,pw ";
 		sql += "from user ";
 		sql += "where id = '" + _R(id) + "' and pw = md5('" + _R(pw) + "') ";
-		//íƒˆí‡´íšŒì›ì€ ì œì™¸
+		//Å»ÅğÈ¸¿øÀº Á¦¿Ü
 		sql += "and isretire = 'N' ";
 		this.RunSelect(sql);
 		if(this.GetNext() == false)
 		{
-			//í•´ë‹¹ íšŒì› ì •ë³´ê°€ ì—†ìŒ.
+			//ÇØ´ç È¸¿ø Á¤º¸°¡ ¾øÀ½.
 			this.DBClose();
 			return null;
 		}
@@ -172,7 +172,7 @@ public class UserDTO extends DBManager
 		return vo;
 	}
 	
-	//ê´€ë¦¬ì í˜ì´ì§€ì—ì„œ íšŒì›ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	//°ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ È¸¿øÁ¤º¸ °¡Á®¿À±â
 	public UserVO memberInfo(String uno)
 	{
 		String sql = "";
@@ -187,7 +187,7 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if(this.GetNext() == false)
 		{
-			//í•´ë‹¹ íšŒì› ì •ë³´ê°€ ì—†ìŒ.
+			//ÇØ´ç È¸¿ø Á¤º¸°¡ ¾øÀ½.
 			this.DBClose();
 			return null;
 		}
@@ -215,7 +215,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "nickname = '" + _R(nickname) + "', ";
@@ -247,8 +247,8 @@ public class UserDTO extends DBManager
 		return true;
 	}
 	
-	//íšŒì› 1ëª…ì˜ ì •ë³´ë¥¼ ì¡°íšŒí•œë‹¤.
-	//uno : íšŒì› ë²ˆí˜¸
+	//È¸¿ø 1¸íÀÇ Á¤º¸¸¦ Á¶È¸ÇÑ´Ù.
+	//uno : È¸¿ø ¹øÈ£
 	public UserVO Read(String uno)
 	{
 		String sql = "";
@@ -260,7 +260,7 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			//í•´ë‹¹ ìœ ì € ì—†ìŒ.
+			//ÇØ´ç À¯Àú ¾øÀ½.
 			this.DBClose();
 			return null;
 		}
@@ -281,8 +281,8 @@ public class UserDTO extends DBManager
 		return vo;
 	}
 	
-	//íšŒì› 1ëª…ì˜ ì •ë³´ë¥¼ ì¡°íšŒí•œë‹¤.
-	//name : íšŒì› ì´ë¦„
+	//È¸¿ø 1¸íÀÇ Á¤º¸¸¦ Á¶È¸ÇÑ´Ù.
+	//name : È¸¿ø ÀÌ¸§
 	public UserVO readname(String name)
 	{
 		String sql = "";
@@ -295,7 +295,7 @@ public class UserDTO extends DBManager
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			//í•´ë‹¹ ìœ ì € ì—†ìŒ.
+			//ÇØ´ç À¯Àú ¾øÀ½.
 			this.DBClose();
 			return null;
 		}
@@ -320,7 +320,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "pw=md5('" + _R(vo.getPw()) + "') ";
@@ -335,7 +335,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "pw=md5('" + _R(pw) + "') ";
@@ -350,7 +350,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "nickname = '" + _R(vo.getNickname()) + "' ";
@@ -365,7 +365,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "con = '" + _R(vo.getCon()) + "', ";
@@ -381,7 +381,7 @@ public class UserDTO extends DBManager
 	{
 		this.DBOpen();
 		
-		//íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸
+		//È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
 		String sql = "";
 		sql  = "update user set ";
 		sql += "isretire = '" + isretire + "' ";

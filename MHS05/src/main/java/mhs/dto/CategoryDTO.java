@@ -1,4 +1,4 @@
-//ìƒí’ˆ ê´€ë¦¬ í´ë˜ìŠ¤
+//»óÇ° °ü¸® Å¬·¡½º
 package mhs.dto;
 
 import mhs.dao.*;
@@ -6,7 +6,7 @@ import mhs.vo.*;
 
 public class CategoryDTO extends DBManager
 {
-	//ìƒí’ˆì„ ë“±ë¡í•œë‹¤.
+	//»óÇ°À» µî·ÏÇÑ´Ù.
 	public boolean Insert(CategoryVO vo)
 	{
 		this.DBOpen();
@@ -36,7 +36,7 @@ public class CategoryDTO extends DBManager
 		sql += ")";
 		this.RunCommand(sql);		
 				
-		//ë“±ë¡ëœ ìƒí’ˆ ë²ˆí˜¸ë¥¼ ì–»ëŠ”ë‹¤.
+		//µî·ÏµÈ »óÇ° ¹øÈ£¸¦ ¾ò´Â´Ù.
 		sql = "select last_insert_id() as pno ";
 		this.RunSelect(sql);
 		this.GetNext();
@@ -48,7 +48,7 @@ public class CategoryDTO extends DBManager
 	
 	
 	
-	//ìƒí’ˆ ì •ë³´ë¥¼ ë³€ê²½í•œë‹¤.
+	//»óÇ° Á¤º¸¸¦ º¯°æÇÑ´Ù.
 	public boolean Update(CategoryVO vo)
 	{
 		this.DBOpen();
@@ -84,7 +84,7 @@ public class CategoryDTO extends DBManager
 		return true;
 	}	
 	
-	//ìƒí’ˆ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.
+	//»óÇ° Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.
 	public boolean Delete(String pno)
 	{
 		this.DBOpen();
@@ -100,8 +100,8 @@ public class CategoryDTO extends DBManager
 	}	
 	
 	
-	//ìƒí’ˆ 1ê°œì˜ ì •ë³´ë¥¼ ì¡°íšŒí•œë‹¤.
-	//pno : ìƒí’ˆ ë²ˆí˜¸
+	//»óÇ° 1°³ÀÇ Á¤º¸¸¦ Á¶È¸ÇÑ´Ù.
+	//pno : »óÇ° ¹øÈ£
 	public CategoryVO Read(String pno)
 	{
 		String sql = "";
@@ -115,7 +115,7 @@ public class CategoryDTO extends DBManager
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
-			//í•´ë‹¹ ê²Œì‹œë¬¼ ì—†ìŒ.
+			//ÇØ´ç °Ô½Ã¹° ¾øÀ½.
 			this.DBClose();
 			return null;
 		}
