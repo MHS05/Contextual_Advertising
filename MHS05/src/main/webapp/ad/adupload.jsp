@@ -57,7 +57,6 @@ if( loginVO == null)
 	}
 </style>
 <script>
-
 //채팅 메시지를 표시할 DOM
 const chatMessages = document.querySelector('#chat-messages');
 // 사용자 입력 필드
@@ -113,6 +112,12 @@ async function fetchAIResponse(prompt) {
 }
 
 async function click(){
+	if($("#keywords").val() == "")
+	{
+		alert("키워드를 입력하세요.")
+		$("#keywords").focus();
+		return false;
+	}
 	// 사용자가 입력한 메시지
     const keyword = $("#keywords").val().trim();
     const message = "숫자 없이 쉼표로 구분해서 " + keyword + " 관련 키워드 10개 추천해줘"
@@ -124,9 +129,6 @@ async function click(){
     const aiResponse = await fetchAIResponse(message);
     addMessage('챗봇', aiResponse);
 }
-
-
-
 </script>
 <script>
 window.onload=function()
