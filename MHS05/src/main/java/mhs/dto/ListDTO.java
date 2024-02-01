@@ -26,7 +26,7 @@ public class ListDTO extends DBManager
 	}
 	
 	
-	public ArrayList<ClickAdVO> getclickadlist(String adno)
+	public ArrayList<ClickAdVO> getclickadlist(String adno,int pageNo)
 	{
 		ArrayList<ClickAdVO> list = new ArrayList<ClickAdVO>();
 		
@@ -36,7 +36,9 @@ public class ListDTO extends DBManager
 		
 		sql  = "select * from clickad ";
 		sql += "where adno = " + adno;
-		sql += " order by cdate desc";
+		sql += " order by cdate desc ";
+		int startno = 10 * (pageNo - 1);
+		sql += "limit " + startno + ",10 ";		
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{
@@ -50,6 +52,8 @@ public class ListDTO extends DBManager
 		
 		return list;		
 	}
+	
+	
 	public ArrayList<AdVO> getadlist(int pageNo,String keyword)
 	{
 		ArrayList<AdVO> list = new ArrayList<AdVO>();

@@ -102,5 +102,13 @@
 		cursor: pointer;
 	}
 	
+	#modspan
+	{
+	
+		padding: 7px 30px;
+		border-radius: 5px;
+		text-align: center;
+		margin-left: 600px;
+	}
 
 		
