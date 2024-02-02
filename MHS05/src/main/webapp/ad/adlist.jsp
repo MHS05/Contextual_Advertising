@@ -144,7 +144,7 @@ function Dodelete()
 		if(startBlock > 10)
 		{
 			%>
-			<a href="adminnlist.jsp?page=<%= startBlock - 1 %>">이전</a>
+			<a href="adlist.jsp?page=<%= startBlock - 1 %>">이전</a>
 			<%					
 		}		
 		for(int i=startBlock; i <= endBlock; i++)
@@ -152,17 +152,17 @@ function Dodelete()
 			if( i == page_no )
 			{
 				//현재 페이지임
-				%><a style="color:red;" href="adminnlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
+				%><a style="color:red;" href="adlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
 			}else
 			{
-				%><a href="adminnlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
+				%><a href="adlist.jsp?page=<%= i %>"><%= i %></a>&nbsp;<%
 			}
 		}
 		//다음 블럭 표시하기
 		if(endBlock < totalPage)
 		{
 			%>
-			<a href="adminnlist.jsp?page=<%= endBlock + 1 %>">다음</a>
+			<a href="adlist.jsp?page=<%= endBlock + 1 %>">다음</a>
 			<%					
 		}		
 		%>
