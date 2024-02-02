@@ -76,7 +76,7 @@ ArrayList<CommunityVO> list = dto.GetList(page_no, kind, "");
 				<td rowspan="26" width="20%" valign="top">
 					<div><a href="communitylist.jsp"><h1><u>Ä¿¹Â´ÏÆ¼</u></h1></a></div> 
 					<div style="width: 220px; height: 300px; box-shadow: 3px 3px 3px 3px lightgray;">
-						<table border="1" align="left" width="200px" height="50px">
+						<table border="0" align="left" width="200px" height="50px">
 							</tr>
 							<tr height="50px">
 								<td class="submenu">
