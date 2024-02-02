@@ -108,12 +108,12 @@ function Dodelete()
 		if( vo.adkey.length() > 25)
 		{
 		%>
-		<td align="center"><%= vo.adkey.substring(0, 25) %>...</td>
+		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adkey.substring(0, 25) %>...</a></td>
 		<%
 		}else
 		{
 		%>
-		<td align="center"><%= vo.adkey %></td>
+		<td align="center"><a href="adinfo.jsp?adno=<%= vo.getAdno() %>"><%= vo.adkey %></a></td>
 		<%
 		}
 		%>

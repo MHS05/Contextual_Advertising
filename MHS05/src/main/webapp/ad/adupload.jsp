@@ -13,7 +13,7 @@ if( loginVO == null)
 	.btn-upload 
 	{	
 		width: 130px;
-		height: 100px;
+		height: 70px;
 		background: #fff;
 		background-color:#4dd5b0;
 		border: 1px solid rgb(77,77,77);
@@ -37,7 +37,7 @@ if( loginVO == null)
 	#submitbutton
 	{	
 		width:100px;
-		height:50px; 
+		height:35px; 
 		font-size:17px;
 		cursor:pointer;
 		background-color:#4dd5b0;
@@ -45,10 +45,32 @@ if( loginVO == null)
 		border-radius: 5px;
 	}
 	
+	#recobutton
+	{	
+		width:100px;
+		height:35px; 
+		font-size:17px;
+		cursor:pointer;
+		background-color:#4dd5b0;
+		border:0;
+		border-radius: 10px;
+  		box-shadow:.4rem .3rem 0.7rem #BEC5D0,
+             	  -.2rem -.2rem .4rem #FBFBFB;
+       	color: #333333;
+       	font-size: 14px;
+	}
+	
+	#recobutton:active 
+	{
+	  box-shadow: inset -.3rem -.1rem 1.4rem  #FBFBFB, 
+	              inset .3rem .4rem .8rem #BEC5D0; 
+	  cursor: pointer;
+	}
+	
 	#cancelbutton
 	{	
 		width:100px;
-		height:50px; 
+		height:35px; 
 		font-size:17px;
 		cursor:pointer;
 		background-color:lightgray;
@@ -61,6 +83,8 @@ if( loginVO == null)
 	}
 </style>
 <script>
+//챗gpt연결하기
+
 //채팅 메시지를 표시할 DOM
 const chatMessages = document.querySelector('#chat-messages');
 // 사용자 입력 필드
@@ -115,6 +139,7 @@ async function fetchAIResponse(prompt) {
     }
 }
 
+//키워드 추천 버튼 눌렀을때
 async function click(){
 	if($("#keywords").val() == "")
 	{
@@ -149,6 +174,7 @@ window.onload=function()
 		
 	});
 }
+
 window.onload = function()
 {
 	$("#title").focus();
@@ -202,81 +228,49 @@ function DoWrite()
 	}
 }
 </script>
-<script>
-function LoadingWithMask() {
-		//화면의 높이와 너비를 구합니다.
-var maskHeight = $(document).height();
-		var maskWidth = window.document.body.clientWidth;
-		//화면에 출력할 마스크를 설정해줍니다.
-		var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
-		var loadingImg = '';
-		loadingImg += "<div id='loadingImg'>";
-		loadingImg += " <img src='LoadingImg.gif' 
-		style='position: relative; display: block; margin: 0px auto;'/>";
-		loadingImg += "</div>";
-		//화면에 레이어 추가
-		$('body')
-		.append(mask)
-		.append(loadingImg)
-		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
-		$('#mask').css({
-			'width' : maskWidth,
-			'height': maskHeight, 
-			'opacity' : '0.3'}); 
-		//마스크 표시
-		$('#mask').show();
-		//로딩중 이미지 표시
-		$('#loadingImg').show();}
-</script>
-	<form id="upload" name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data">
-		<tr>
-			<td colspan="12"><h2><b>광고 등록</b></h2><hr></td>
-		</tr>
-		<tr>
-			<td height="50px"></td>
-		</tr>
-		<tr>
-			<td colspan="12" align="center" id="upload">
-				<label for="image">
-					<span class="btn-upload" id="btn-upload" style="padding: 0px 0px" >광고 이미지<br>등록</span>
-				</label>
-				<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
-			</td>
-		</tr>
-		<tr>
-			<td height="50px"></td>
-		</tr>
-		<tr>
-			<td colspan="12" align="right">픽셀 : 800 * 150<hr></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center"><h4>상품이름:</h4></td>
-			<td colspan="3" width="100px">
-				<input type="text" id="name" name="name" style="width:400px; height:30px" placeholder="상품이름을 입력해주세요.">
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center"><h4>키워드:</h4></td>
-			<td>
-				<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" placeholder="키워드는 , 단위로 입력해주세요">
-				<a href = "javascript:click()"><input type="button" id="submitbutton" value="키워드 추천"></a>
-			</td>
-		</tr>
-		<tr height="60px">
-			<td colspan="5" align="center">
-				<div id="chat-container">
-			       <div id="chat-messages"></div>
-			   </div>
-			</td>
-		</tr>
-		<tr>
-			<td height="50px" colspan="5"></td>
-		</tr>
-		<tr>
-			<td colspan="5" align="center"> 
-				<input type="button" id="submitbutton" value="완료" onclick="DoWrite()">&emsp;
-				<input type="button" id="cancelbutton" value="취소" onclick="window.history.back()">
-			</td>
-		</tr>
-	</form>
+<form id="upload" name="upload" method="post" action="aduploadok.jsp" enctype="multipart/form-data">
+	<tr>
+		<td colspan="2"><h2><b>광고 등록</b></h2><hr></td>
+	</tr>
+	<tr height="160px">
+		<td colspan="2" align="center" id="upload">
+			<label for="image">
+				<span class="btn-upload" id="btn-upload" style="padding: 0px 0px" >광고 이미지<br>등록</span>
+			</label>
+			<input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">픽셀 : 800 * 140<hr></td>
+	</tr>
+	<tr>
+		<td width="100px" align="center"><h4>상품이름:</h4></td>
+		<td>
+			<input type="text" id="name" name="name" style="width:400px; height:30px" placeholder="상품이름을 입력해주세요.">
+		</td>
+	</tr>
+	<tr>
+		<td width="100px" align="center"><h4>키워드:</h4></td>
+		<td>
+			<input type="text" id="keywords" name="keywords" style="width:400px; height:30px" placeholder="키워드는 , 단위로 입력해주세요">
+			<a href = "javascript:click()"><input type="button" id="recobutton" value="키워드 추천"></a>
+		</td>
+	</tr>
+	<tr height="60px">
+		<td colspan="2" align="center">
+			<div id="chat-container">
+		       <div id="chat-messages"></div>
+		   </div>
+		</td>
+	</tr>
+	<tr>
+		<td height="50px" colspan="2"></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"> 
+			<input type="button" id="submitbutton" value="완료" onclick="DoWrite()">&emsp;
+			<input type="button" id="cancelbutton" value="취소" onclick="window.history.back()">
+		</td>
+	</tr>
+</form>
 <%@ include file="../admininclude/tail.jsp" %> 

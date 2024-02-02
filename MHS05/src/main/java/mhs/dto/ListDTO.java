@@ -7,6 +7,32 @@ import mhs.vo.*;
 
 public class ListDTO extends DBManager
 {
+	public ArrayList<AdVO> getAdList(String nno)
+	{
+		ArrayList<AdVO> list = new ArrayList<AdVO>();
+		
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "select * from similarity ";
+		sql += "where nno = " + nno;
+		sql += " and similary >= 0.0 ";
+		sql += "order by similary desc ";
+		this.RunSelect(sql);
+		while( this.GetNext() == true)
+		{
+			AdVO vo = new AdVO();
+			vo.setAdno(this.GetValue("adno"));
+			vo.setImage(this.GetValue("image"));
+			vo.setPhyimage(this.GetValue("phyimage"));
+			list.add(vo);
+		}		
+		this.DBClose();
+		
+		return list;		
+	}
+	
 	public int getclickadtotal(String adno)
 	{
 		this.DBOpen();

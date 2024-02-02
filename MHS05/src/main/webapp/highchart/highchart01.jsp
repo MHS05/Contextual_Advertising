@@ -7,6 +7,7 @@
 <%
 String senno = request.getParameter("senno");
 String nno = request.getParameter("nno");
+String adno = request.getParameter("adno");
 
 SemotionDTO dto = new SemotionDTO();
 
@@ -108,7 +109,7 @@ for(SemotionVO vo : list)
 		//JS 여기까지	
 		</script>	
 		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
-			<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
+			<a href="../highchart/highchart02.jsp?nno=<%= nno %>&adno=<%= adno %>">
 			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
 		</div>
 		<div class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></div>

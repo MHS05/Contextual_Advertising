@@ -30,12 +30,19 @@ String nno = request.getParameter("nno");
 
 NewsDTO dto = new NewsDTO();
 NewsVO  vo  = dto.Read(nno);
-String adno = vo.getAdno();
 
-if(!adno.equals("N"))
+ListDTO listdto = new ListDTO();
+String adno = "";
+
+ArrayList<AdVO> adlist = listdto.getAdList(nno);
+if( adlist.size() == 0)
 {
-	AdDTO addto = new AdDTO();
-	AdVO advo = addto.Read(adno);
+	adno = "";
+} else 
+{
+	
+	Collections.shuffle(adlist);
+	adno = adlist.get(0).getAdno();
 }
 
 
@@ -85,12 +92,16 @@ if(!adno.equals("N"))
 	padding: 5px;
 	color: white;
 }
+.ad
+{
+	position:absolute;
+	right:432px;
+	margin-top:5px;
+}
 </style>
 <script>
 	function count()
 	{
-		
-		
 		$.ajax
 		({
 			type : "post",
@@ -104,10 +115,49 @@ if(!adno.equals("N"))
 			success : function(data) 
 			{
 				data = data.trim();
-				document.location = "newsview.jsp?nno=<%= nno %>";
+				alert(data);
 			}				
 		});		
 		
+	}
+	
+	function openreason() 
+	{
+		$.ajax
+		({
+			type : "post",
+			url  : "countad.jsp",
+			data :
+			{
+				nno   : <%= vo.getNno() %>,
+				adno  : <%= adno %>,
+			},		
+			dataType : "html",	
+			success : function(data) 
+			{
+				data = data.trim();
+			}				
+		});		
+		
+		var _width = '1200';
+		var _height = '1000';
+			
+		var _left = Math.ceil((window.screen.width - _width )/2);
+		var _top = Math.ceil((window.screen.height - _height )/2);
+		
+		window.open('../highchart/highchart01.jsp?nno=<%= vo.getNno() %>&adno=<%= adno %>', '', 'width=1200, height=1000, left=' + _left +', top=' + (_top - 250)); return false;
+		
+	}
+	
+	function cancel()
+	{	
+		if(confirm("±¤°í¸¦ ´ÝÀ¸½Ã°Ú½À´Ï±î?") == 0)
+		{
+			return;
+		}else
+		{
+			$("#adimage").css("display","none");
+		}	
 	}
 </script>
 <div id="fixed" style="width:50px; height: 50px;">
@@ -235,7 +285,7 @@ if(!adno.equals("N"))
 			<%
 			}else
 			{	
-				if( vo.getAdno().equals("N") || vo.getAdno().equals(""))
+				if( adno.equals(""))
 				{
 					%>
 					<div id="adimage" style="display:none;"></div>
@@ -244,10 +294,14 @@ if(!adno.equals("N"))
 				} else 
 				{
 					%>
-					<div id="adimage" onclick="count()";>
-						<a href="../highchart/highchart01.jsp?nno=<%= vo.getNno() %>" target="_blank">
-							<img width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>&nno=<%= nno %>">
+					<div id="adimage">
+						<a href="javascript:openreason()">
+							<img style="border:3px solid lightgray" width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>">
 						</a>
+						<span class="ad" style="margin-right:2px">
+							<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
+							<img src="../image/x.png" width="30px" height="20px" valign="top" onclick="cancel()" style="cursor:pointer">
+						</span>
 					</div>
 					<%
 				}

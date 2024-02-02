@@ -5,13 +5,14 @@
 <%@ page import = "mhs.dao.*" %>
 <%@ page import = "java.util.*" %>
 <%
-String nno = request.getParameter("nno");
+String nno  = request.getParameter("nno");
+String adno = request.getParameter("adno");
 
 NewsDTO dto = new NewsDTO();
 NewsVO vo = dto.Read(nno);
 
 SimilarityDTO sdto = new SimilarityDTO();
-SimilarityVO svo = sdto.Read(nno, vo.getAdno());
+SimilarityVO svo = sdto.Read(nno, adno);
 
 double similary = Double.parseDouble(svo.getSimilary());
 similary = similary * 100;
@@ -177,9 +178,9 @@ String adkey[] = svo.getAdkey().split(",");
 		//JS 여기까지	
 		</script>
 		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
-			<a href="../highchart/highchart02.jsp?nno=<%= nno %>">
+			<a href="../highchart/highchart02.jsp?nno=<%= nno %>&adno=<%= adno %>">
 			<span id="button_back"><img src="../image/back.png" style="width:50px; height:50px"></span></a>
-			<span class="ad"><img src="../admin/adimagedown.jsp?adno=<%= vo.getAdno() %>" style="width:850px; height:200px"></span>
+			<span class="ad"><img src="../admin/adimagedown.jsp?adno=<%= adno %>" style="width:850px; height:200px"></span>
 		</div>
 <!-- 3. 유사도 차트 highchart_similarity.jsp -->
 	    <span class="board_keywords"><h2>[ 뉴스 키워드 리스트 ]</h2></span>

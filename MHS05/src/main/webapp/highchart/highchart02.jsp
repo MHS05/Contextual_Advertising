@@ -5,7 +5,8 @@
 <%@ page import = "java.util.*" %>
 <%
 String nkeyno = request.getParameter("nkeyno");
-String nno = request.getParameter("nno");
+String nno    = request.getParameter("nno");
+String adno   = request.getParameter("adno");
 
 NewsKeywordDTO dto = new NewsKeywordDTO();
 
@@ -126,9 +127,9 @@ for(NewsKeywordVO vo : list)
 		//JS 여기까지
 		</script>
 		<div class="title"><h1>[ 광고 선정 이유 ]&emsp;</h1>
-			<a href="../highchart/highchart01.jsp?nno=<%= nno %>">
+			<a href="../highchart/highchart01.jsp?nno=<%= nno %>&adno=<%= adno %>">
 			<span id="button_back"><img src="../image/back.png" style="width:50px; height:50px"></span></a>
-			<a href="../highchart/highchart03.jsp?nno=<%= nno %>">
+			<a href="../highchart/highchart03.jsp?nno=<%= nno %>&adno=<%= adno %>">
 			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
 		</div>
 		<div class="subtitle1"><h2>&lt; 키워드 빈도 분석 &gt;</h2></div>
