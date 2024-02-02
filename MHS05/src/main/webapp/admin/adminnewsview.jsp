@@ -113,6 +113,26 @@ if( vo == null )
 	right: 100px;
 	top:0px;
 }
+#yes_btn
+{	
+	width: 80px;
+	height:30px;
+	background-color:lightgray;
+	border-radius: 12px;
+	cursor: pointer;
+	font-size:18px;
+	border: none;
+}
+#no_btn
+{	
+	width: 80px;
+	height:30px;
+	background-color:lightgray;
+	border-radius: 12px;
+	cursor: pointer;
+	font-size:18px;
+	border: none;
+}
 .del
 {
 	border: 0;
@@ -120,11 +140,30 @@ if( vo == null )
 	font-size: 16px;
 	cursor: pointer;
 }
-.ad
+.icon
 {
 	position:absolute;
 	right:432px;
 	margin-top:5px;
+}
+
+#ad {
+    display: block; /* 초기에는 보이게 설정 */
+}
+
+#confirm-btn {
+    display: none; /* 초기에는 숨김 */
+    text-align:center;
+    margin-left:50px;
+    font-size:20px;
+    position:relative;
+    top:50px;
+}
+
+#ad2
+{	
+	left:660px;
+    position:absolute;
 }
 </style>
 <script>
@@ -166,16 +205,28 @@ if( vo == null )
 		
 	}
 	
-	function cancel()
-	{	
-		if(confirm("광고를 닫으시겠습니까?") == 0)
-		{
-			return;
-		}else
-		{
-			$("#adimage").css("display","none");
-		}	
-	}
+// X 버튼 클릭 시 이벤트 처리
+function cancel() 
+{
+	document.getElementById('ad').style.display = 'none';
+	document.getElementById('ad2').style.display = '';
+	document.getElementById('icon').style.display = 'none';
+	document.getElementById('confirm-btn').style.display = 'block';
+};
+
+function adnone()
+{
+	$("#adimage").css("display","none");
+}
+
+function adview()
+{	
+	$("#ad2").css("display","none");
+	$("#confirm-btn").css("display","none");
+	$("#ad").css("display","");
+	$("#icon").css("display","");
+}
+
 </script>
 <tr>
 	<td valign="top">
@@ -211,14 +262,19 @@ if( vo == null )
 				AdDTO addto = new AdDTO();
 				AdVO advo = addto.Read(adno);
 				%>
-				<div id="adimage">
+				<div id="adimage" style="width:770px; height:100px">
 					<a href="javascript:openreason();">
-						<img id="hidden" style="display:none; border:1px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
-						<img id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>"></a>
-						<span class="ad" style="margin-right:2px">
-							<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
-							<img src="../image/x.png" width="30px" height="20px" valign="top" onclick="cancel()" style="cursor:pointer">
-						</span>
+						<img id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
+					</a>
+						<img id="ad2" style="display:none; border:3px solid lightgray" width="800px" height="140px" src="../image/gray.png">
+					<span id="confirm-btn">광고를 닫으시겠습니까?<br>
+						 <input id="yes_btn" type="button" value="예" onclick="adnone()">
+					   	 <input id="no_btn" type="button" value="아니오" onclick="adview()">
+				   </span>
+					<span id="icon" class="icon" style="margin-right:2px">
+					<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
+					<img id="close-btn" src="../image/x.png" width="30px" height="20px" valign="top" style="cursor:pointer" onclick="cancel()">
+					</span>
 				</div>
 				<%
 			}
@@ -232,7 +288,7 @@ if( vo == null )
 		</div>
 		<div style="height: 20px"></div>
 		<div style="text-align: center;">
-			<a href="adminnewslist.jsp"><div id="listbutton">목록</div></a>
+			<a href="adminnewslist.jsp"><div id="listbutton" style="background-color: #4dd5b0;">목록</div></a>
 		</div>
 	</td>
 </tr>
