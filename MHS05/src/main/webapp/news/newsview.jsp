@@ -31,6 +31,18 @@ String nno = request.getParameter("nno");
 NewsDTO dto = new NewsDTO();
 NewsVO  vo  = dto.Read(nno);
 
+if( vo == null )
+{
+	//해당 게시물 번호의 데이터가 없음
+	%>
+	<script>
+		alert("해당 게시물을 조회 할 수 없습니다.");
+		document.location = "newslist.jsp";
+	</script>
+	<%
+	return;
+}
+
 ListDTO listdto = new ListDTO();
 String adno = "";
 
@@ -44,8 +56,6 @@ if( adlist.size() == 0)
 	Collections.shuffle(adlist);
 	adno = adlist.get(0).getAdno();
 }
-
-
 %>
 <style>
 #newstitle
@@ -92,35 +102,55 @@ if( adlist.size() == 0)
 	padding: 5px;
 	color: white;
 }
-.ad
+
+#yes_btn
+{	
+	width: 80px;
+	height:30px;
+	background-color:lightgray;
+	border-radius: 12px;
+	cursor: pointer;
+	font-size:18px;
+	border: none;
+}
+#no_btn
+{	
+	width: 80px;
+	height:30px;
+	background-color:lightgray;
+	border-radius: 12px;
+	cursor: pointer;
+	font-size:18px;
+	border: none;
+}
+.icon
 {
 	position:absolute;
 	right:432px;
 	margin-top:5px;
 }
+
+#ad {
+	margin-left:72px;
+    display: block; /* 초기에는 보이게 설정 */
+}
+
+#confirm-btn {
+    display: none; /* 초기에는 숨김 */
+    text-align:center;
+    margin-left:190px;
+    font-size:20px;
+    position:relative;
+    top:50px;
+}
+
+#ad2
+{	
+	left:675px;
+    position:absolute;
+}
 </style>
 <script>
-	function count()
-	{
-		$.ajax
-		({
-			type : "post",
-			url  : "countad.jsp",
-			data :
-			{
-				nno   : <%= vo.getNno() %>,
-				adno  : <%= vo.getAdno() %>,
-			},		
-			dataType : "html",	
-			success : function(data) 
-			{
-				data = data.trim();
-				alert(data);
-			}				
-		});		
-		
-	}
-	
 	function openreason() 
 	{
 		$.ajax
@@ -158,6 +188,28 @@ if( adlist.size() == 0)
 		{
 			$("#adimage").css("display","none");
 		}	
+	}
+	
+	// X 버튼 클릭 시 이벤트 처리
+	function cancel() 
+	{
+		document.getElementById('ad').style.display = 'none';
+		document.getElementById('ad2').style.display = '';
+		document.getElementById('icon').style.display = 'none';
+		document.getElementById('confirm-btn').style.display = 'block';
+	};
+	
+	function adnone()
+	{
+		$("#adimage").css("display","none");
+	}
+	
+	function adview()
+	{	
+		$("#ad2").css("display","none");
+		$("#confirm-btn").css("display","none");
+		$("#ad").css("display","");
+		$("#icon").css("display","");
 	}
 </script>
 <div id="fixed" style="width:50px; height: 50px;">
@@ -281,33 +333,38 @@ if( adlist.size() == 0)
 			if(vo.getEmotion().equals("부정"))
 			{
 			%>
-				<div id="adimage"></div>
+				<div id="adimage">부정 기사 입니다</div>
 			<%
 			}else
 			{	
-				if( adno.equals(""))
+				if(adno.equals(""))
 				{
 					%>
-					<div id="adimage" style="display:none;"></div>
+					<div id="adimage">키워드 유사도가 높은 기사가 없습니다</div>
 					<%
 					
 				} else 
 				{
 					%>
-					<div id="adimage">
+					<div id="adimage" style="width:800px; height:140px">
 						<a href="javascript:openreason()">
-							<img style="border:3px solid lightgray" width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>">
+							<img class="ad" id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="../admin/adimagedown.jsp?adno=<%= adno %>">
 						</a>
-						<span class="ad" style="margin-right:2px">
+						<img id="ad2" style="display:none; border:3px solid lightgray" width="800px" height="140px" src="../image/gray.png">
+						<span id="confirm-btn">광고를 닫으시겠습니까?<br>
+							<input id="yes_btn" type="button" value="예" onclick="adnone()">
+						   	<input id="no_btn" type="button" value="아니오" onclick="adview()">
+						</span>
+						<span id="icon" class="icon" style="margin-right:2px">
 							<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
-							<img src="../image/x.png" width="30px" height="20px" valign="top" onclick="cancel()" style="cursor:pointer">
+							<img id="close-btn" src="../image/x.png" width="30px" height="20px" valign="top" style="cursor:pointer" onclick="cancel()">
 						</span>
 					</div>
 					<%
 				}
 			}
 			%>
-			<div style="height:50px"></div>
+			<div style="height:30px;"></div>
 			<div id="newsmain" style="">
 				<div id="newsnote">
 					<%= vo.getNote() %>

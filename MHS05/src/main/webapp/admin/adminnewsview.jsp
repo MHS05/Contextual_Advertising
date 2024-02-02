@@ -32,8 +32,6 @@ if(category.equals("F2"))
 	htitle = "여성건강";
 }
 String nno = request.getParameter("nno");
-String page_no = request.getParameter("page");
-if(page_no == null || page_no.equals("")) page_no = "";
 
 NewsDTO dto = new NewsDTO();
 NewsVO  vo  = dto.Read(nno);
@@ -47,6 +45,20 @@ if( vo == null )
 	</script>
 	<%
 	return;
+}
+
+ListDTO listdto = new ListDTO();
+String adno = "";
+
+ArrayList<AdVO> adlist = listdto.getAdList(nno);
+if( adlist.size() == 0)
+{
+	adno = "";
+} else 
+{
+	
+	Collections.shuffle(adlist);
+	adno = adlist.get(0).getAdno();
 }
 %>
 <style>
@@ -201,32 +213,31 @@ if( vo == null )
 		var _left = Math.ceil((window.screen.width - _width )/2);
 		var _top = Math.ceil((window.screen.height - _height )/2);
 		
-		window.open('../highchart/highchart01.jsp?nno=<%= vo.getNno() %>', '', 'width=1200, height=1000, left=' + _left +', top=' + (_top - 250)); return false;
+		window.open('../highchart/highchart01.jsp?nno=<%= vo.getNno() %>&adno=<%= adno %>', '', 'width=1200, height=1000, left=' + _left +', top=' + (_top - 250)); return false;
 		
 	}
 	
 // X 버튼 클릭 시 이벤트 처리
-function cancel() 
-{
-	document.getElementById('ad').style.display = 'none';
-	document.getElementById('ad2').style.display = '';
-	document.getElementById('icon').style.display = 'none';
-	document.getElementById('confirm-btn').style.display = 'block';
-};
-
-function adnone()
-{
-	$("#adimage").css("display","none");
-}
-
-function adview()
-{	
-	$("#ad2").css("display","none");
-	$("#confirm-btn").css("display","none");
-	$("#ad").css("display","");
-	$("#icon").css("display","");
-}
-
+	function cancel() 
+	{
+		document.getElementById('ad').style.display = 'none';
+		document.getElementById('ad2').style.display = '';
+		document.getElementById('icon').style.display = 'none';
+		document.getElementById('confirm-btn').style.display = 'block';
+	};
+	
+	function adnone()
+	{
+		$("#adimage").css("display","none");
+	}
+	
+	function adview()
+	{	
+		$("#ad2").css("display","none");
+		$("#confirm-btn").css("display","none");
+		$("#ad").css("display","");
+		$("#icon").css("display","");
+	}
 </script>
 <tr>
 	<td valign="top">
@@ -246,31 +257,28 @@ function adview()
 		if(vo.getEmotion().equals("부정"))
 		{
 		%>
-			<div id="adimage">X</div>
+			<div id="adimage">부정 기사 입니다</div>
 		<%
 		}else
 		{	
-			if( vo.getAdno().equals("N") || vo.getAdno().equals(""))
+			if(adno.equals(""))
 			{
 				%>
-				<div id="adimage">X</div>
+				<div id="adimage">키워드 유사도가 높은 기사가 없습니다</div>
 				<%
 				
 			} else 
 			{
-				String adno =  vo.getAdno();
-				AdDTO addto = new AdDTO();
-				AdVO advo = addto.Read(adno);
 				%>
-				<div id="adimage" style="width:770px; height:100px">
+				<div id="adimage" style="width:800px; height:150px">
 					<a href="javascript:openreason();">
 						<img id="ad" style="border:3px solid lightgray" width="800px" height="140px" src="adimagedown.jsp?adno=<%= adno %>">
 					</a>
-						<img id="ad2" style="display:none; border:3px solid lightgray" width="800px" height="140px" src="../image/gray.png">
+					<img id="ad2" style="display:none; border:3px solid lightgray" width="800px" height="140px" src="../image/gray.png">
 					<span id="confirm-btn">광고를 닫으시겠습니까?<br>
 						 <input id="yes_btn" type="button" value="예" onclick="adnone()">
 					   	 <input id="no_btn" type="button" value="아니오" onclick="adview()">
-				   </span>
+				    </span>
 					<span id="icon" class="icon" style="margin-right:2px">
 					<img src="../image/ad.png" width="40px" height="19px" valign="top" style="border-radius:5px">
 					<img id="close-btn" src="../image/x.png" width="30px" height="20px" valign="top" style="cursor:pointer" onclick="cancel()">
@@ -280,7 +288,6 @@ function adview()
 			}
 		}
 		%>
-		<div style="height:50px"></div>
 		<div id="newsmain" style="">
 			<div id="newsnote">
 				<%= vo.getNote() %>
