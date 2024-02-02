@@ -30,12 +30,6 @@ if(category == null) category = "D";
 		top      : 450px;
 		left     : 620px;
 	}
-	.mainyn
-	{
-		position : absolute;
-		top      : 500px;
-		left     : 620px;
-	}
 	.image
 	{
 		position : absolute;
@@ -90,7 +84,7 @@ if(category == null) category = "D";
 		left     : 620px;
 		width    : 960px;
 	}
-	.submit
+	#submitbutton
 	{
 		position         : absolute;
 		top              : 1600px;
@@ -99,6 +93,8 @@ if(category == null) category = "D";
 		padding          : 10px 50px;
 		border           : 1px solid #4dd5b0;
 		border-radius    : 10px;
+		font-size  		 : 16px;
+		cursor			 : pointer;
 	}
 	.cancel
 	{
@@ -191,7 +187,7 @@ function setThumbnail(event)
 		</tr>
 		<tr>
 			<td>
-				<div id="type" class="type">
+				<div id="type" class="type" style="background-color:yellow">
 					<h4>카테고리 : 
 						<select style="width:100px;" name="category">
 							<option id="category" name="category" value="D"  <%= category.equals("D") ? "selected" : "" %>>다이어트</option>
@@ -207,17 +203,7 @@ function setThumbnail(event)
 		</tr>
 		<tr>
 			<td>
-				<div class="mainyn" id="mainyn">
-					<h4>메인여부 : 
-						<label><input type="radio" name="main" value="Y">Y</label>
-						<label><input type="radio" name="main" value="N">N</label>
-					</h4>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="image"><h4>이미지 업로드 : </h4></div>
+				<div class="image" style="background-color:yellow"><h4>이미지 업로드 : </h4></div>
 				<div class="uploadbutton" id="uploadbutton">
 					<label for="image">
 						<span class="btn-upload" id="btn-upload">이미지 업로드</span>
