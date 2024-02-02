@@ -16,7 +16,6 @@ MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 String category   = multi.getParameter("category");
 String title      = multi.getParameter("title");
 String note       = multi.getParameter("ir1");
-String mainyn     = multi.getParameter("main");
 String image      = (String)multi.getFilesystemName("image");
 String phyimage     = "";
 
@@ -43,7 +42,6 @@ vo.setId(loginVO.getId());
 vo.setCategory(category);
 vo.setTitle(title);
 vo.setNote(note);
-vo.setMainyn(mainyn);
 if(image != null)
 {
 	vo.setImage(image);

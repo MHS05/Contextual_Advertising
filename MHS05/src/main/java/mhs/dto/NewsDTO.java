@@ -11,15 +11,14 @@ public class NewsDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into news (id,category,title,note,image,phyimage,mainyn) ";
+		sql += "insert into news (id,category,title,note,image,phyimage) ";
 		sql += "values (";
 		sql += "'" + _R(vo.getId())        + "',";
 		sql += "'" + _R(vo.getCategory())  + "',";
 		sql += "'" + _R(vo.getTitle())     + "',";
 		sql += "'" + _R(vo.getNote())      + "',";
 		sql += "'" + _R(vo.getImage())     + "',";
-		sql += "'" + _R(vo.getPhyimage())  + "',";
-		sql += "'" + _R(vo.getMainyn())    + "'";
+		sql += "'" + _R(vo.getPhyimage())  + "'";
 		sql += ")";
 		this.RunCommand(sql);		
 
@@ -39,7 +38,7 @@ public class NewsDTO extends DBManager
 		this.DBOpen();
 
 
-		sql  = "select id,adno,title,category,mainyn,image,phyimage,note,emotion,wdate,score ";
+		sql  = "select id,adno,title,category,image,phyimage,note,emotion,wdate,score ";
     
 		sql += "from news where nno = " + nno;
 		this.RunSelect(sql);
@@ -54,7 +53,6 @@ public class NewsDTO extends DBManager
 		vo.setAdno(this.GetValue("adno"));
 		vo.setTitle(this.GetValue("title"));
 		vo.setCategory(this.GetValue("category"));
-		vo.setMainyn(this.GetValue("mainyn"));
 		vo.setNote(this.GetValue("note"));
 		vo.setImage(this.GetValue("image"));
 		vo.setPhyimage(this.GetValue("Phyimage"));
@@ -91,7 +89,6 @@ public class NewsDTO extends DBManager
 			sql  = "update news set ";
 			sql += "title='"    + _R(vo.getTitle())    + "',";
 			sql += "category='" + _R(vo.getCategory()) + "',";
-			sql += "mainyn='"   + _R(vo.getMainyn())   + "',";
 			sql += "note='"     + _R(vo.getNote())     + "'";
 			if( !vo.getPhyimage().equals(""))
 			{

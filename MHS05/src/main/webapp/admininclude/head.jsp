@@ -71,5 +71,5 @@ if(loginVO == null)
 					<div class="admin">
 						<a href="../admin/member.jsp"><h1>나만의 건강 쇼핑몰(관리자)</h1></a>
 					</div>	
-					<table border="0" width="910px" align="center">
+					<table border="1" width="910px" align="center">
 						<!-- 여기까찌 -->

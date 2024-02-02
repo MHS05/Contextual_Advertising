@@ -13,7 +13,6 @@ public class NewsVO
 	public String phyimage;  //이미지_물리
 	public String emotion;   //긍부정
 	public String score;     //긍부정퍼센트
-	public String mainyn;    //메인여부
 	
 	public NewsVO() 
 	{
@@ -26,7 +25,6 @@ public class NewsVO
 		wdate    = "";
 		image    = "";
 		phyimage = "";
-		mainyn   = "";
 		emotion  = "";
 		score    = "";
 	}
@@ -54,13 +52,6 @@ public class NewsVO
 	public void setEmotion(String emotion) 	  {	 this.emotion = emotion;   }
 	public void setScore(String score) 	 	  {	 this.score = score;       }
 
-	public String getMainyn() {
-		return mainyn;
-	}
-
-	public void setMainyn(String mainyn) {
-		this.mainyn = mainyn;
-	}
 
 	public String getId() {
 		return id;
