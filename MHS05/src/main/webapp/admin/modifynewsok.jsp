@@ -17,7 +17,6 @@ String nno       = multi.getParameter("nno");
 String title     = multi.getParameter("title");
 String category  = multi.getParameter("category");
 String note      = multi.getParameter("ir1");
-String mainyn    = multi.getParameter("main");
 String image     = (String)multi.getFilesystemName("image"); //논리명
 String phyimage  = ""; //물리명
 
@@ -44,7 +43,6 @@ vo.setNno(nno);
 vo.setTitle(title);
 vo.setCategory(category);
 vo.setNote(note);
-vo.setMainyn(mainyn);
 if(image != null)
 {
 	vo.setImage(image);

@@ -50,7 +50,7 @@ NewsVO  vo  = dto.Read(nno);
 	.type
 	{
 		position : absolute;
-		top      : 450px;
+		top      : 470px;
 		left     : 620px;
 	}
 	.mainyn
@@ -62,13 +62,13 @@ NewsVO  vo  = dto.Read(nno);
 	.image
 	{
 		position : absolute;
-		top      : 550px;
+		top      : 530px;
 		left     : 620px;
 	}
 	.btn-upload 
 	{	
 		position         : absolute;
-		top              : 560px;
+		top              : 540px;
 		left             : 750px;
 		padding          : 10px 10px;
 		border-radius    : 10px;
@@ -218,7 +218,7 @@ function setThumbnail(event)
 			<td>
 				<div class="title">
 					<h4>제목 : 
-						<input id="title" name="title" type="text" style="width:700px;height:20px;" placeholder="<%= vo.getTitle()%>">
+						<input id="title" name="title" type="text" style="width:700px;height:20px;" value="<%= vo.getTitle()%>">
 					</h4>
 				</div>
 			</td>
@@ -235,16 +235,6 @@ function setThumbnail(event)
 							<option id="category" name="category" value="M" <%= vo.getCategory().equals("M") ? "selected" : "" %>>남성건강</option>
 							<option id="category" name="category" value="F2" <%= vo.getCategory().equals("F2") ? "selected" : "" %>>여성건강</option>
 						</select>
-					</h4>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="mainyn" id="mainyn">
-					<h4>메인여부 : 
-						<label><input type="radio" id="main" name="main" value="Y" <%= vo.getMainyn().equals("Y") ? "checked" : "" %>>Y</label>
-						<label><input type="radio" id="main" name="main" value="Y" <%= vo.getMainyn().equals("N") ? "checked" : "" %>>N</label>
 					</h4>
 				</div>
 			</td>
@@ -269,7 +259,7 @@ function setThumbnail(event)
 		<tr>
 			<td>
 				<div class="displayi"><h4>이미지 나오는 곳 : </h4></div>
-				<div class="image_container" id="image_container"><img src="../image/<%=vo.getImage() %>" width="900px" height="300px"></div>
+				<div class="image_container" id="image_container"><img src="newsimagedown.jsp?nno=<%=vo.getNno() %>" width="900px" height="300px"></div>
 			</td>
 		</tr>
 		<tr>
