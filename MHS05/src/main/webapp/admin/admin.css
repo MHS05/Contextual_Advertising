@@ -108,7 +108,10 @@
 		padding: 7px 30px;
 		border-radius: 5px;
 		text-align: center;
-		margin-left: 660px;
+		margin-left: 600px;
+		cursor: pointer;
+		position:absolute;
+		right:400px;
+		top:320px;	
 	}
-
-		
+	

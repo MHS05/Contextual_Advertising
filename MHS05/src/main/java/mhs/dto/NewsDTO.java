@@ -73,6 +73,12 @@ public class NewsDTO extends DBManager
 		sql = "delete from semotion where nno = " + nno;
 		this.RunCommand(sql);
 		
+		sql = "delete from newskeyword where nno = " + nno;
+		this.RunCommand(sql);
+		
+		sql = "delete from similarity where nno = " + nno;
+		this.RunCommand(sql);
+		
 		sql = "delete from news where nno = " + nno;
 		this.RunCommand(sql);
 		
