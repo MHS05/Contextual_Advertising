@@ -16,6 +16,7 @@ SimilarityVO svo = sdto.Read(nno, adno);
 
 double similary = Double.parseDouble(svo.getSimilary());
 similary = similary * 100;
+int similar = (int)similary;
 
 String nkey[] = svo.getNkeylist().split(",");
 String adkey[] = svo.getAdkey().split(",");
@@ -166,7 +167,7 @@ String adkey[] = svo.getAdkey().split(",");
 			            color: Highcharts.getOptions().colors[1],
 			            radius: '80%',
 			            innerRadius: '60%',
-			            y: <%= similary %>
+			            y: <%= similar %>
 			        }],
 			        custom: {
 			            icon: 'comments-o',
@@ -195,7 +196,12 @@ String adkey[] = svo.getAdkey().split(",");
 	    <span class="ad_keywords1"><h1>
 	   		 <%
 			    for(String key : adkey )
-			    {
+			    {	
+			    	if(key.length() > 6)
+			    	{
+			    		key  = key.substring(0,6);
+			    		key += "...";
+			    	}
 			    	out.println(key);%><br><%
 			    }
 			    %></h1></span>
