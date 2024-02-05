@@ -295,7 +295,7 @@ if( adlist.size() == 0)
 		</div>
 		<div style="height: 20px"></div>
 		<div style="text-align: center;">
-			<a href="adminnewslist.jsp"><div id="listbutton" style="background-color: #4dd5b0;">목록</div></a>
+			<a href="adminnewslist.jsp?category=<%= vo.getCategory() %>"><div id="listbutton" style="background-color: #4dd5b0;">목록</div></a>
 		</div>
 	</td>
 </tr>
