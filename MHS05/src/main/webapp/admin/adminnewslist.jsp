@@ -76,7 +76,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 {	
 	width: 80px;
 	height:30px;
-	background-color:lightgray;
+	background-color:#4dd5b0;
 	padding-top:6px;
 	margin: auto;
 	border-radius: 12px;

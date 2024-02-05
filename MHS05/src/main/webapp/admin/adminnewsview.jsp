@@ -102,7 +102,7 @@ if( adlist.size() == 0)
 {	
 	width: 80px;
 	height:30px;
-	background-color:lightgray;
+	background-color:#FD7064;
 	padding-top:6px;
 	margin: auto;
 	border-radius: 12px;
@@ -116,7 +116,7 @@ if( adlist.size() == 0)
 {	
 	width: 80px;
 	height:30px;
-	background-color:lightgray;
+	background-color:#4dd5b0;
 	padding-top:6px;
 	margin: auto;
 	border-radius: 12px;
@@ -146,9 +146,9 @@ if( adlist.size() == 0)
 	border: none;
 }
 .del
-{
+{	
 	border: 0;
-	background-color:lightgray;
+	background-color:#FD7064;
 	font-size: 16px;
 	cursor: pointer;
 }
