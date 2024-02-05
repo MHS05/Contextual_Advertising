@@ -17,7 +17,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select * from similarity ";
 		sql += "where nno = " + nno;
-		sql += " and similary > 0 ";
+		sql += " and similary >= 0.4 ";
 		sql += "order by similary desc ";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
