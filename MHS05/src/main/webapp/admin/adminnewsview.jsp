@@ -257,7 +257,7 @@ if( adlist.size() == 0)
 		if(vo.getEmotion().equals("부정"))
 		{
 		%>
-			<div id="adimage">부정 기사 입니다</div>
+			<div id="adimage">부정 기사 입니다<img src="../image/devil.png" style="width:25px; height:25px;"></div>
 		<%
 		}else
 		{	
