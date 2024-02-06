@@ -218,7 +218,7 @@ if( adlist.size() == 0)
 <table border="0" align="center" width="1200px">
 	<tr>
 		<td width="200px" valign="top" >		
-			<div><a href="news.jsp"><h1><u>건강소식</u></h1></a></div> 	
+			<div><a href="newslist.jsp"><h1><u>건강소식</u></h1></a></div> 	
 			<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
 				<table border="0" align="left" width="200px" height="50px">
 					<tr height="50px">
@@ -333,7 +333,7 @@ if( adlist.size() == 0)
 			if(vo.getEmotion().equals("부정"))
 			{
 			%>
-				<div id="adimage">부정 기사 입니다</div>
+				<div id="adimage">부정 기사 입니다<img src="../image/devil.png" style="width:25px; height:25px;"></div>
 			<%
 			}else
 			{	
@@ -372,7 +372,7 @@ if( adlist.size() == 0)
 			</div>
 			<div style="height: 20px"></div>
 			<div style="text-align: center;">
-				<a href="newslist.jsp"><div id="listbutton">목록</div></a>
+				<a href="newslist.jsp?category=<%= vo.getCategory() %>"><div id="listbutton">목록</div></a>
 			</div>
 		</td>
 	</tr>

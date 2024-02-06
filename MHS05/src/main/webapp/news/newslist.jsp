@@ -66,7 +66,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 <table border="0" align="center" width="1200px">
 			<tr>
 				<td width="200px" valign="top" >		
-					<div><a href="news.jsp"><h1><u>건강소식</u></h1></a></div> 	
+					<div><a href="newslist.jsp"><h1><u>건강소식</u></h1></a></div> 	
 					<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
 						<table border="0" align="left" width="200px" height="50px">
 							<tr height="50px">
@@ -177,7 +177,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 						<div style="width: 650px;" >
 							<div>
 								<div style="width:650px;">
-									<h2><a href="../news/newsview.jsp?nno=<%= vo.getNno() %>&category=<%=category %>"><%= vo.getTitle() %></a></h2>
+									<h3><a href="../news/newsview.jsp?nno=<%= vo.getNno() %>&category=<%=category %>"><%= vo.getTitle() %></a></h3>
 									<div style="color: #999999; font-size: 16px;margin: 10px 0px 0px;padding: 0px 0px 10px;">
 										<% 
 											String content = vo.getNote(); 
