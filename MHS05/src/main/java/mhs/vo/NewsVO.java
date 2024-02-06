@@ -31,6 +31,7 @@ public class NewsVO
 	
 	public String getNno()      {	return nno;	     }
 	public String getAdno()     {	return adno;	 }
+	public String getId() 		{	return id;		 }
 	public String getCategory() {	return category; }
 	public String getTitle()    {	return title;	 }
 	public String getNote() 	{	return note;	 }
@@ -43,6 +44,7 @@ public class NewsVO
 	
 	public void setNno(String nno) 			  {	 this.nno = nno;		   }
 	public void setAdno(String adno)          {	 this.adno = adno;	       }
+	public void setId(String id) 			  {  this.id = id;	 		   }
 	public void setCategory(String category)  {	 this.category = category; }
 	public void setTitle(String title) 		  {	 this.title = title;	   }
 	public void setNote(String note) 		  {	 this.note = note;		   }
@@ -51,14 +53,5 @@ public class NewsVO
 	public void setPhyimage(String phyimage)  {	 this.phyimage = phyimage; }
 	public void setEmotion(String emotion) 	  {	 this.emotion = emotion;   }
 	public void setScore(String score) 	 	  {	 this.score = score;       }
-
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 }

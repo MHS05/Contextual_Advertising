@@ -50,6 +50,10 @@ if(totalData % 10 != 0)
 ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 %>
 <style>
+.submenu
+{
+	font-size: 20px;
+}
 #fixed 
 {
 	position: fixed;
@@ -70,91 +74,109 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 					<div style="width:220px; height:360px; box-shadow: 3px 3px 3px 3px lightgray">
 						<table border="0" align="left" width="200px" height="50px">
 							<tr height="50px">
-								<%
-								if(category.equals("D"))
-								{
-								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=D"><b><u>다이어트</u></b></a></td>
-								<%
-								}else
-								{
-								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=D"><b>다이어트</b></a></td>
-								<%
-								}
-								%>
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/diet.png">
+									<a href="../news/newslist.jsp?category=D">
+									<%
+									if(category.equals("D"))
+									{
+									%>
+										<b><u>다이어트</u></b></a></td>
+									<%
+									}else
+									{
+									%>
+										<b>다이어트</b></a></td>
+									<%
+									}
+									%>
 							</tr>
 							<tr height="50px">
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/food.png">
+									<a href="../news/newslist.jsp?category=F">
 								<%
 								if(category.equals("F"))
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=F"><b><u>음식</u></b></a></td>
+									<b><u>음식</u></b></a></td>
 								<%
 								}else
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=F"><b>음식</b></a></td>
+									<b>음식</b></a></td>
 								<%
 								}
 								%>
 							</tr>
 							<tr height="50px">
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/excercise.png">
+									<a href="../news/newslist.jsp?category=E">
 								<%
 								if(category.equals("E"))
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=E"><b><u>운동</u></b></td>
+									<b><u>운동</u></b></td>
 								<%
 								}else
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=E"><b>운동</b></td>
+									<b>운동</b></td>
 								<%
 								}
 								%>
 							</tr>
 							<tr height="50px">
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/nutrition.png">
+									<a href="../news/newslist.jsp?category=N">
 								<%
 								if(category.equals("N"))
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=N"><b><u>영양제</u></b></td>
+									<b><u>영양제</u></b></td>
 								<%
 								}else
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=N"><b>영양제</b></td>
+									<b>영양제</b></td>
 								<%
 								}
 								%>
 							</tr>
 							<tr height="50px">
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/man.png">
+									<a href="../news/newslist.jsp?category=M">
 								<%
 								if(category.equals("M"))
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=M"><b><u>남성건강</u></b></td>
+									<b><u>남성건강</u></b></td>
 								<%
 								}else
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=M"><b>남성건강</b></td>
+									<b>남성건강</b></td>
 								<%
 								}
 								%>
 							</tr>
 							<tr height="50px">
+								<td class="submenu">
+									<image width="30px" height="30px" src="../image/woman.png">
+									<a href="../news/newslist.jsp?category=F2">
 								<%
 								if(category.equals("F2"))
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=F2"><b><u>여성건강</u></b></td>
+									<b><u>여성건강</u></b></td>
 								<%
 								}else
 								{
 								%>
-									<td style="font-size: 20px;"><a href="../news/newslist.jsp?category=F2"><b>여성건강</b></td>
+									<b>여성건강</b></td>
 								<%
 								}
 								%>
@@ -259,7 +281,6 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 							%>
 							<a href="newslist.jsp?category=<%= category %>&page=<%= endBlock + 1 %>">다음▶</a>
 							<%
-							
 						}
 					%>
 				</td>
