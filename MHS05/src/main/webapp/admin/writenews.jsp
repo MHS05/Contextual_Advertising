@@ -27,19 +27,19 @@ if(category == null) category = "D";
 	.type
 	{
 		position : absolute;
-		top      : 450px;
+		top      : 470px;
 		left     : 620px;
 	}
 	.image
 	{
 		position : absolute;
-		top      : 550px;
+		top      : 530px;
 		left     : 620px;
 	}
 	.btn-upload 
 	{	
 		position         : absolute;
-		top              : 560px;
+		top              : 540px;
 		left             : 750px;
 		padding          : 10px 10px;
 		border-radius    : 10px;
@@ -195,7 +195,7 @@ function setThumbnail(event)
 							<option id="category" name="category" value="E"  <%= category.equals("E") ? "selected" : "" %>>운동</option>
 							<option id="category" name="category" value="N"  <%= category.equals("N") ? "selected" : "" %>>영양제</option>
 							<option id="category" name="category" value="M"  <%= category.equals("M") ? "selected" : "" %>>남성건강</option>
-							<option id="category" name="category" value="F2"  <%= category.equals("F") ? "selected" : "" %>>여성건강</option>
+							<option id="category" name="category" value="F2"  <%= category.equals("F2") ? "selected" : "" %>>여성건강</option>
 						</select>
 					</h4>
 				</div>
