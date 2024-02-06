@@ -41,39 +41,12 @@ def getNote(nno) :
     #print("뉴스번호", newsno)
     #print(text)
     text = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣. ]','', text)
-    dbms.DBClose()
     return text, newsno
 
 #뉴스 내용의 감정 분석
 def getEmotion(Okt,nno) :
-    '''
-    #데이터 베이스에 연결
-    con = pymysql.connect(host="127.0.0.1", port=3306,
-                          user="root", passwd="ezen",
-                          db="mhs", charset="euckr")
-    
-    # 자바   : 문맥객체 statement -> sql 구문을 실행 -> resultset
-    # 파이썬 : cursor 객채를 이용해서 sql 구문을 실행하고, 결과를 받아옴
-    cursor = con.cursor()
-    
-    #데이터 읽어오기
-    sql = f"select note from news where nno = {nno}"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    text = ""
-    for row in data :
-        text = row
-    
-    text = text[0]
-    
-    print("=" * 60)
-    
-    cursor.close();
-    con.close();
-    '''
     
     text,newsno = getNote(nno)
-    
     stop_words = pd.read_csv('stopword.txt',header=None,
                              encoding='utf-8')
 
@@ -91,6 +64,10 @@ def getEmotion(Okt,nno) :
         tokenizer = pickle.load(handle)
 
     loaded_model = load_model('best_model.h5')
+    
+    dbms = db.DBmanager() 
+    if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
+        print("ERROR")
         
     def sentiment_predict(new_sentence):
         new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
@@ -103,10 +80,18 @@ def getEmotion(Okt,nno) :
         if(score > 0.5):
             str = "{:.2f}% 확률로 긍정 뉴스입니다.\n".format(score * 100)
             print(str)
+            sql   = "update news "
+            sql  += "set emotion = '%s', score = '%s' where nno = %d " %("긍정","{:.2f}".format(score * 100),nno)
+            dbms.RunSql(sql)
+            dbms.DBClose()
             return text, nno,"{:.2f}".format(score * 100), "긍정"
         else:
             str = "{:.2f}% 확률로 부정 뉴스입니다.\n".format((1 - score) * 100)
             print(str)
+            sql   = "update news "
+            sql  += "set emotion = '%s', score = '%s' where nno = %d " %("부정","{:.2f}".format((1 - score) * 100),nno)
+            dbms.RunSql(sql)
+            dbms.DBClose()
             return text, nno, "{:.2f}".format((1 - score) * 100), "부정"
     return sentiment_predict(text)
     
@@ -212,7 +197,7 @@ def insertSentance(Okt, nno, text) :
     dbms.DBClose()
 
 
-#Okt,뉴스번호, 뉴스내용 받아서 키워드 뽑고 데이터베이스에 저장
+#뉴스번호, 뉴스내용 받아서 키워드 뽑고 데이터베이스에 저장
 def insertKeyword(Okt,nno,text) :
     
     dbms = db.DBmanager() 
@@ -250,10 +235,10 @@ def insertKeyword(Okt,nno,text) :
         count.append(item[1])
         
     nouns = [ words, count ]
-    #print(nouns)
+    print(nouns)
     
     df = pd.DataFrame(nouns)
-    #print(df)
+    print(df)
     
     #행과 열을 뒤집는다.
     df = df.transpose()
@@ -261,8 +246,8 @@ def insertKeyword(Okt,nno,text) :
     #빈도수를 숫자로 변환
     df["빈도수"] = df["빈도수"].astype("int64")
     df = df.sort_values(by="단어", ascending=True)
-    #print(df)
-    #print(df.dtypes)
+    print(df)
+    print(df.dtypes)
     
     rc('font', family='Malgun Gothic')
     plt.figure(figsize=(20,10))
@@ -274,7 +259,7 @@ def insertKeyword(Okt,nno,text) :
     plt.show()
     
     
-    #워드클라우드의 모양 설정. 원모양의 이미지를 그대로 가져와 만들도록 하였음.
+    #워드클라우드의 모양 설정. 이미지를 그대로 가져와 만들도록 하였음.
     cand_mask=np.array(Image.open('sun.png'))
     
     #워드 클라우드 표시용 딕셔너리로 변환
@@ -320,29 +305,23 @@ def getSimilary(nno, adno) :
     adkey = dbms.GetValue(0, "adkey")
     adlist = adkey.split(",")
     
-    sql = f"select nkey from newskeyword where nno = {nno}" 
+    sql = f"select nkey,nkeynum from newskeyword where nno = {nno}" 
     dbms.OpenQuery(sql)
     total = dbms.GetTotal()
-    if total > 10 :
-        total = 10;
+    if total > len(adlist) :
+        total = len(adlist);
     
-    '''
-    for i in range(0,total) :
-        key = dbms.GetValue(i, "adkey")
-        adlist = adlist + key
-        if i != (total-1) :
-            adlist = adlist + ","
-    '''
-    
+    nkeylist = ""
     nkey = ""
     for i in range(0,total) :
         key = dbms.GetValue(i, "nkey")
-        nkey = nkey + key
-        if i != total - 1 :
+        nkeynum = dbms.GetValue(i, "nkeynum")
+        nkeylist = nkeylist + key
+        if i != total-1 :
+            nkeylist = nkeylist + ","
+        for j in range(0,int(nkeynum)):
+            nkey = nkey + key
             nkey = nkey + ","
-
-    #print(nkey)
-    #print(adkey)
     
     dbms.DBClose()
      
@@ -358,6 +337,8 @@ def getSimilary(nno, adno) :
     # TF-IDF 계산 및 코사인 유사도 측정 (# 문장을 콤마로 이어서 리스트에 추가)
     sentences = ["".join(nkey),adkey] 
     print(sentences)
+    sentences2 = ["".join(nkeylist),adkey] 
+    print(sentences2)
     
     tfidf_vectorizer = TfidfVectorizer()
     tfidf_matrix = tfidf_vectorizer.fit_transform(sentences)
@@ -371,7 +352,7 @@ def getSimilary(nno, adno) :
     
     if count == 0 :
         sql  = "insert into similarity (nkeylist, adkey, similary, adno, nno) values "
-        sql += "('%s', '%s', '%s', '%d', '%d')" %(nkey, adkey, sim, adno, nno)
+        sql += "('%s', '%s', '%s', '%d', '%d')" %(nkeylist, adkey, sim, adno, nno)
         cursor.execute(sql)
         con.commit()
         
@@ -391,7 +372,7 @@ def getSimilary(nno, adno) :
         
     cursor.close()
     con.close()
-    return nkey, adkey, sim
+    return nkeylist, adkey, sim
 
 #새로 등록돼서 긍부정,문장별 긍부정 예측 안된 뉴스번호 리스트 불러오기
 def getNnoList() :
@@ -495,18 +476,10 @@ Okt = Okt()
 while True :
     print("긍부정 여부 확인을 시작합니다")
     print("=" * 60)
-    adlist = getNnoList()
-    if len(adlist) != 0 :
-        for i in adlist :
+    nnolist = getNnoList()
+    if len(nnolist) != 0 :
+        for i in nnolist :
             text, nno, score, emotion= getEmotion(Okt, i)
-            dbms = db.DBmanager() 
-            if dbms.DBOpen("192.168.0.101", 3306, "mhs", "root", "ezen") == False :
-                print("ERROR")
-                
-            sql   = "update news "
-            sql  += "set emotion = '%s', score = '%s' where nno = %d " %(emotion,score,nno)
-            dbms.RunSql(sql)
-            dbms.DBClose()
             print("=" * 60)
             insertSentance(Okt,nno,text)
             print("=" * 60)
@@ -534,5 +507,4 @@ while True :
     
     print("유사도 측정 및 광고 선정이 끝났습니다.")
     print("=" * 60)
-    
     time.sleep(10)
