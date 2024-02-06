@@ -112,7 +112,7 @@ for(SemotionVO vo : list)
 			<a href="../highchart/highchart02.jsp?nno=<%= nno %>&adno=<%= adno %>">
 			<span id="button_next"><img src="../image/next.png" style="width:50px; height:50px"></span></a>
 		</div>
-		<div class="subtitle1"><h2>&lt; 감성 분석 &gt;</h2></div>
+		<div class="subtitle1"><h2>&lt; 문장별 감정 분석 &gt;</h2></div>
 		<!-- 1. 긍부정 차트 highchart_emotion.jsp -->
 		<div id="emotion"></div>
 	</body>
