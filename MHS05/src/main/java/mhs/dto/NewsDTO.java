@@ -87,25 +87,25 @@ public class NewsDTO extends DBManager
 		return true;
 	}
 	
-		public boolean Update(NewsVO vo)
+	public boolean Update(NewsVO vo)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		sql  = "update news set ";
+		sql += "title='"    + _R(vo.getTitle())    + "',";
+		sql += "category='" + _R(vo.getCategory()) + "',";
+		sql += "note='"     + _R(vo.getNote())     + "'";
+		if( !vo.getPhyimage().equals(""))
 		{
-			this.DBOpen();
-			
-			String sql = "";
-			sql  = "update news set ";
-			sql += "title='"    + _R(vo.getTitle())    + "',";
-			sql += "category='" + _R(vo.getCategory()) + "',";
-			sql += "note='"     + _R(vo.getNote())     + "'";
-			if( !vo.getPhyimage().equals(""))
-			{
-				sql += ", phyimage='" + vo.getPhyimage() + "',";
-				sql += "image='"      + vo.getImage()    + "' ";
-			}
-			sql += " where nno = " + vo.getNno();
-			this.RunCommand(sql);
-			
-			this.DBClose();
-			return true;
-		}	
+			sql += ", phyimage='" + vo.getPhyimage() + "',";
+			sql += "image='"      + vo.getImage()    + "' ";
+		}
+		sql += " where nno = " + vo.getNno();
+		this.RunCommand(sql);
+		
+		this.DBClose();
+		return true;
+	}	
 	
 }
