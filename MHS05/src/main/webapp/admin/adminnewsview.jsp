@@ -304,7 +304,7 @@ if( adlist.size() == 0)
 			</tr>
 			<tr>
 				<td height="80px">
-					<div><a href="../admin/adminnews.jsp"><h1>건강소식</h1></a></div> 
+					<div><a href="../admin/adminnewslist.jsp"><h1>건강소식</h1></a></div> 
 				</td>
 			</tr>
 			<tr height="310px">

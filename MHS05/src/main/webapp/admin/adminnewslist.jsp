@@ -103,7 +103,7 @@ ArrayList<NewsVO> list = dto.getnewslist(page_no, category, "");
 			<div style="width: 650px;" >
 				<div>
 					<div style="width:650px;">
-						<h3><a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>"><%= vo.getTitle() %></a></h3>
+						<h3><a href="../admin/adminnewsview.jsp?nno=<%= vo.getNno() %>&category=<%= category %>"><%= vo.getTitle() %></a></h3>
 						<div id=note style="height:30px; color: #999999; font-size: 16px;margin: 0px 10px 5px;padding: 10px 10px 10px">
 							<% 
 								String content = vo.getNote(); 
