@@ -264,7 +264,7 @@ if( adlist.size() == 0)
 			if(adno.equals(""))
 			{
 				%>
-				<div id="adimage">키워드 유사도가 높은 기사가 없습니다</div>
+				<div id="adimage">키워드 유사도가 높은 광고가 없습니다</div>
 				<%
 				
 			} else 
